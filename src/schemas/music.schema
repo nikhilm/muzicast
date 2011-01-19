@@ -1,13 +1,20 @@
-create table album (
+create table artists (
   id               INTEGER PRIMARY KEY
 , name             TEXT
-, artist           TEXT
+);
+
+create table albums (
+  id               INTEGER PRIMARY KEY
+, name             TEXT
+, artist           INTEGER -- ID of artist
 , image            TEXT  -- URL
 );
-create table artist (
+
+create table genres (
   id               INTEGER PRIMARY KEY
 , name             TEXT
 );
+
 create table statistics (
   id               INTEGER PRIMARY KEY
 , url              TEXT
@@ -16,13 +23,14 @@ create table statistics (
 , rating           INTEGER DEFAULT 0
 , playcount        INTEGER DEFAULT 0
 );
+
 create table tracks (
   id               INTEGER PRIMARY KEY
 , url              TEXT    -- file:///<path>
-, artist           TEXT
-, album            TEXT
-, genre            TEXT
-, composer         TEXT
+, artist           INTEGER
+, album            INTEGER
+, genre            INTEGER
+, composer         INTEGER
 , year             INTEGER -- UNIX time
 , title            TEXT
 , comment          TEXT
