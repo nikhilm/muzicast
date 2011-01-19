@@ -1,0 +1,39 @@
+create table album (
+  id               INTEGER PRIMARY KEY
+, name             TEXT
+, artist           TEXT
+, image            TEXT  -- URL
+);
+create table artist (
+  id               INTEGER PRIMARY KEY
+, name             TEXT
+);
+create table statistics (
+  id               INTEGER PRIMARY KEY
+, url              TEXT
+, createdate       INTEGER
+, accessdate       INTEGER
+, rating           INTEGER DEFAULT 0
+, playcount        INTEGER DEFAULT 0
+);
+create table tracks (
+  id               INTEGER PRIMARY KEY
+, url              TEXT    -- file:///<path>
+, artist           TEXT
+, album            TEXT
+, genre            TEXT
+, composer         TEXT
+, year             INTEGER -- UNIX time
+, title            TEXT
+, comment          TEXT
+, tracknumber      INTEGER
+, discnumber       INTEGER
+, bitrate          INTEGER
+, length           INTEGER -- stored as milliseconds
+, samplerate       INTEGER
+, filesize         INTEGER
+, filetype         TEXT
+, bpm              REAL
+, createdate       INTEGER  -- UNIX time
+, modifydate       INTEGER  -- UNIX time
+);
