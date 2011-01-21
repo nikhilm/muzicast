@@ -11,6 +11,7 @@ and all the features it offers.
 
    using/interface
    using/playsongs
+   using/search
    using/register
    using/playlists
 
