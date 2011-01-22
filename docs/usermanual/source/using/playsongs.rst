@@ -31,7 +31,21 @@ or give your own rating.
 
 To get detailed statistics click the statistics.
 
-Library statistics
-------------------
+Library information
+-------------------
 
-Going through a 
+ProjectName collects statistics for albums and artists as well, and you can
+view them on the album or artist page.
+In addition ProjectName will try to fetch album covers from `Amazon
+<http://www.amazon.com>`_ when it can find them.
+
+Playlists
+---------
+
+You can create a playlist by adding songs from the web interface. Simply press
+the :guilabel:`+` icon next to a track, album or artist. An unregistered user
+only has one playlist, which is **not saved**. Once you close the web interface
+or the browser, the playlist is lost.
+
+Registered users may save and share playlists. For complete playlist
+documentation read the :doc:`Playlists section </using/playlists>`.
