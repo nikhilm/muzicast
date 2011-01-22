@@ -29,7 +29,7 @@ Setting the Administrator Password
 
 Enter a password which will be used to change any server settings
 
-.. IMPORTANT::
+.. warning::
 
    The Administrator Password allows you to change any settings of your server.
    You should keep it safe and ensure that no one else knows it.
