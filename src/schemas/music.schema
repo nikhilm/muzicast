@@ -37,11 +37,33 @@ create table tracks (
 , tracknumber      INTEGER
 , discnumber       INTEGER
 , bitrate          INTEGER
-, length           INTEGER -- stored as milliseconds
+, duration         INTEGER -- stored as milliseconds
 , samplerate       INTEGER
 , filesize         INTEGER
 , filetype         TEXT
 , bpm              REAL
 , createdate       INTEGER  -- UNIX time
 , modifydate       INTEGER  -- UNIX time
+);
+
+create table playlists (
+  id               INTEGER PRIMARY KEY
+, name             TEXT
+, owner            TEXT
+, public           BOOLEAN
+, createdate       INTEGER
+, modifydate       INTEGER
+);
+
+create table playlist_tracks (
+  playlist_id      INTEGER
+, track_id         INTEGER
+, track_num        INTEGER
+);
+
+create table users (
+  id               TEXT PRIMARY KEY
+, name             TEXT
+, bio              TEXT
+, createdate       INTEGER
 );
