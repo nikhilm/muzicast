@@ -13,15 +13,14 @@ ProjectName User Manual
    installation
    quickstart
    using
-   customization
    administration
    faq
    troubleshooting
+   glossary
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
