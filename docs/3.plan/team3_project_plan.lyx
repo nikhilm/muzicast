@@ -1,0 +1,1781 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass memoir
+\begin_preamble
+\usepackage{vhistory}
+\usepackage{scrpage2}
+\ifoot{\docTitle - - Version \vhCurrentVersion}
+\cfoot[]{}
+\ofoot[\thepage]{\thepage}
+\end_preamble
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Team 3 Project Plan"
+\pdf_author "Team 3"
+\pdf_subject "SEN"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Project Plan: Music streaming server with web interface
+\end_layout
+
+\begin_layout Author
+Team 3
+\end_layout
+
+\begin_layout Date
+Version 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vhCurrentVersion
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vhCurrentDate
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{versionhistory}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vhEntry{1.0}{22nd January 2011}{Swati Ittan|Shreya Agarwal}{created}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vhEntry{1.0}{23rd January 2011}{Anurakt Awasthi}{modifications to assumptions}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{versionhistory}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose of the plan
+\end_layout
+
+\begin_layout Standard
+The project plan will provide a definition of the project including the
+ project’s goals and objectives.
+ The plan will also serve as an agreement between the following parties:
+ Client, Project Manager, Project Team, and other personnel associated with
+ and/or affected by the project.
+ 
+\end_layout
+
+\begin_layout Standard
+The Project Plan defines the following: 
+\end_layout
+
+\begin_layout Itemize
+Project purpose
+\end_layout
+
+\begin_layout Itemize
+Project goals and objectives 
+\end_layout
+
+\begin_layout Itemize
+Scope and expectations 
+\end_layout
+
+\begin_layout Itemize
+Roles and responsibilities 
+\end_layout
+
+\begin_layout Itemize
+Project Management Approach 
+\end_layout
+
+\begin_layout Itemize
+Project budget 
+\end_layout
+
+\begin_layout Itemize
+Project timeline
+\end_layout
+
+\begin_layout Subsection
+Project Approach 
+\end_layout
+
+\begin_layout Standard
+This section highlights the various phases involved in the development of
+ a software project.
+ 
+\end_layout
+
+\begin_layout Itemize
+Project Proposal 
+\end_layout
+
+\begin_layout Itemize
+Requirement Gathering and Feasibility Study 
+\end_layout
+
+\begin_layout Itemize
+Design Phase 
+\end_layout
+
+\begin_layout Itemize
+Implementation 
+\end_layout
+
+\begin_layout Itemize
+Testing 
+\end_layout
+
+\begin_layout Itemize
+Maintenance 
+\end_layout
+
+\begin_layout Standard
+Proceeding, in the given format, helps to achieve timely and cost effective
+ development environment.
+\end_layout
+
+\begin_layout Section
+Project goals and objectives 
+\end_layout
+
+\begin_layout Standard
+The project objective is to create an easy to use music streaming server.
+ This will be capable of streaming existing music files on local storage
+ to remote players over HTTP.
+ We wish to provide a user-friendly, cross-platform, inter-operable and
+ efficient music sharing system as the outcome of our project which includes
+ the following: 
+\end_layout
+
+\begin_layout Itemize
+An easy to use modern music server 
+\end_layout
+
+\begin_layout Itemize
+Convenient way to store all music in one location and play in various locations.
+ 
+\end_layout
+
+\begin_layout Itemize
+Stream internet radio
+\end_layout
+
+\begin_layout Section
+Scope 
+\end_layout
+
+\begin_layout Subsection
+Scope of the project
+\end_layout
+
+\begin_layout Itemize
+Support music streaming, but do not manage hosting or creation/obtaining
+ of the music files.
+ 
+\end_layout
+
+\begin_layout Itemize
+Do not worry about the legal issues of streaming.
+ As a software, we are not responsible if third parties choose to use it
+ to stream music obtained illegally, or not having permission to stream
+ it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features islongtable="true">
+<column alignment="center" valignment="top" width="30page%">
+<column alignment="center" valignment="top" width="30page%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+In
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Out
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Creating a music streaming server
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Creating a general purpose media server capable of delivering images, videos
+ and other media
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Using well supported protocols and format: ICY, HTTP, mp3/ogg so that most
+ software can play it
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Generalizing the server to handle multiple protocols like RTSP/UPnP or more
+ formats in order to please a larger segment of users
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Working with the most common browsers, simply and quickly
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Having jazzy features (themes, live feedback etc.) that work only on high-end
+ computers with latest browsers or fast net speeds
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Database and server load that can be handled by one computer
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Web-scale databases with support for partitioning, availability and other
+ concerns
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Simple single-admin, multiple user support
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Access Control Lists, groups, and user levels
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Project budget 
+\end_layout
+
+\begin_layout Standard
+The cost of the project is mainly due to the cost of human resources and
+ other resources such as hardware and software, which would be used to implement
+ the project.
+ For development of the project, open source software would be used which
+ are available free of cost.
+ Hardware costs would be zero as we don’t need specialized hardware, the
+ requirements are satisfied by the laptops of the team members and the workstati
+ons provided by the college.
+ Thus, our assessment cost is based on the amount of man hours put in by
+ the team which will be about 1200 person hours.
+\end_layout
+
+\begin_layout Section
+Stakeholders
+\end_layout
+
+\begin_layout Standard
+Our music streaming platform will have the opportunity to be deployed in
+ various home networks, college networks, and perhaps even radio stations.
+ The target audience is mainly students and home owners who will be able
+ to appreciate the simplicity of the system.
+ Radio stations will definitely find it useful, but it will need some feature
+ additions for them to fully exploit the software’s power.
+\end_layout
+
+\begin_layout Section
+Assumptions
+\end_layout
+
+\begin_layout Standard
+We assume that the internet connectivity of the client is such that it will
+ allow the him to stream the music atleast at the lowest of bit rate.
+ We also presume that the server performs optimally for N number of users
+ connected at a time.
+ We will be more precise on this number as the development phase progresses.
+ Though the ICY protocol over Http is supported by most of the current players
+ but still we posit that the client uses a media player which supports this
+ protocol.
+ 
+\end_layout
+
+\begin_layout Section
+Constraints
+\end_layout
+
+\begin_layout Itemize
+Limited number of active online users depending on the load the server can
+ take up to 1000.
+ 
+\end_layout
+
+\begin_layout Itemize
+The transfer rate of data to the user depends on the type of internet connection
+ he has.
+ 
+\end_layout
+
+\begin_layout Itemize
+The number of songs available for the user to hear depends on what songs
+ are there in the database of the server.
+\end_layout
+
+\begin_layout Section
+Project Benefits
+\end_layout
+
+\begin_layout Itemize
+Team gets significant software development experience and knowledge.
+ 
+\end_layout
+
+\begin_layout Itemize
+Easy sharing of music for all the users across the world since the server
+ can be deployed on the web.
+\end_layout
+
+\begin_layout Itemize
+All the songs on the server would be available 24 X 7.
+\end_layout
+
+\begin_layout Itemize
+Users are cognizant of the current trending songs.
+\end_layout
+
+\begin_layout Itemize
+Hassle free update of the changes in songs directory on the server.
+ 
+\end_layout
+
+\begin_layout Itemize
+The interface uses ICY protocol over http to stream the music, which is
+ not blocked by firewalls so that everyone can enjoy the music.
+\end_layout
+
+\begin_layout Itemize
+The interface would be simple and easily comprehensible even to a layman.
+\end_layout
+
+\begin_layout Itemize
+The application is free and open source hence the users can modify it as
+ per their preferences.
+\end_layout
+
+\begin_layout Section
+Project Management Approach
+\end_layout
+
+\begin_layout Subsection
+Project Deliverables
+\end_layout
+
+\begin_layout Standard
+The following needs to be delivered at different point in time during the
+ entire project.
+ 
+\end_layout
+
+\begin_layout Itemize
+Project Proposal 
+\end_layout
+
+\begin_layout Itemize
+Project Plan 
+\end_layout
+
+\begin_layout Itemize
+Requirements 
+\end_layout
+
+\begin_layout Itemize
+Feasibility 
+\end_layout
+
+\begin_layout Itemize
+System Requirement Specification (SRS)
+\end_layout
+
+\begin_layout Itemize
+User Manual 
+\end_layout
+
+\begin_layout Itemize
+System Test Plan 
+\end_layout
+
+\begin_layout Itemize
+Software Design Specifications 
+\end_layout
+
+\begin_layout Itemize
+Coding Standard 
+\end_layout
+
+\begin_layout Itemize
+Test Cases 
+\end_layout
+
+\begin_layout Itemize
+Testing Report 
+\end_layout
+
+\begin_layout Itemize
+Quality Assurance Plan 
+\end_layout
+
+\begin_layout Itemize
+Risk Management Plan 
+\end_layout
+
+\begin_layout Itemize
+The tested final system
+\end_layout
+
+\begin_layout Subsection
+Project Timeline
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features islongtable="true">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="15page%">
+<column alignment="center" valignment="top" width="15page%">
+<column alignment="center" valignment="top" width="8page%">
+<column alignment="center" valignment="top" width="8page%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S.
+ No.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Task
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Document 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Assignment Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Completion Date
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Discussion about project problem
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Project Proposal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13-1-2011
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16-1-2011
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Planning project
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Project Plan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20-1-2011
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23-1-2011
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Perform initial requirements gathering
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements Document
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements analysis and feasibility test
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feasibility report
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preparation of SRS and project workspace
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SRS, User Manual, System Test Plan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+System and Database Design (In Parallel)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Software Design Specifications, Quality Assurance Plan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coding, Integration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Coding standard document, Unit testing report
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Testing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Test cases, Testing report, Final tested system
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Project organization and role of individual
+\end_layout
+
+\begin_layout Subsubsection
+Members and their respective roles
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="14" columns="4">
+<features>
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="20page%">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S.
+ No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Names
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Role
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prof.
+ Asim Banerjee
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Course Instructor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Home users, Students, Radio station broadcasters
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Client
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deepak Hemnani
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Team Mentor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nikhil Marathe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801011
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Team leader/Project manager
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nishant Jain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801006
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Shreya Agarwal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801013
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sandeep Sharma
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801023
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Saurabh Barnwal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801024
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Deeksha Gupta
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801025
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Jai.
+ M.
+ Bhorania
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801026
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ashish Jain
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801027
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Anurakt Awasthi
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801044
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Swati Ittan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+200801053
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Student Developer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Members’ Responsibilities (phase-wise)
+\end_layout
+
+\begin_layout Standard
+Phase Task Team Members Involved Discussion about the project problem
+\end_layout
+
+\begin_layout Standard
+All Project Plan Document
+\end_layout
+
+\begin_layout Standard
+All Requirement phase Questionnaire Swati Ittan, Sandeep Sharma, Saurabh
+ Bornwal
+\end_layout
+
+\begin_layout Standard
+Interview Jai Bhornia Anurakt Awasthi Ashish Jain, Nikhil Marathe 
+\end_layout
+
+\begin_layout Standard
+Background Reading Nishant Jain, Shreya Agarwal,Deeksha Gupta
+\end_layout
+
+\begin_layout Standard
+Documentation All Design phase
+\end_layout
+
+\begin_layout Standard
+All Implementation
+\end_layout
+
+\begin_layout Standard
+All Testing
+\end_layout
+
+\begin_layout Standard
+All
+\end_layout
+
+\begin_layout Subsection
+Risk Management
+\end_layout
+
+\begin_layout Itemize
+Potential conflict between creating a website that is simple to use and
+ one that is customizable or applies to many different use patterns.
+ This can be resolved by clearly understanding the needs of the stakeholders
+ clearly.
+ 
+\end_layout
+
+\begin_layout Itemize
+Developing a scalable but performant server is challenging and no team member
+ has done it before.
+ This could trip us and the solution will be to aggressively plan the design
+ and investigate various frameworks and benchmark them before settling on
+ one technology.
+ 
+\end_layout
+
+\begin_layout Itemize
+It is quite possible that certain features may require advanced support
+ in certain platforms which may require compilation or other such steps.
+ In this case we have to compromise between increasing the size of the software
+ or supporting certain features on certain platforms.
+\end_layout
+
+\begin_layout Subsection
+Issue management
+\end_layout
+
+\begin_layout Standard
+The information contained within the Project Plan will likely change as
+ the project progresses.
+ While change is both certain and required, it is important to note that
+ any changes to the Project Plan will impact at least one of three critical
+ success factors: Available Time, Available Resources (Financial, Personnel),
+ or Project Quality.
+ The decision by which to make modifications to the Project Plan should
+ be coordinated using the following process:
+\end_layout
+
+\begin_layout Itemize
+Step 1: As soon as a change which impacts project scope, schedule, resources
+ is identified, the Project leader will document the issue.
+ 
+\end_layout
+
+\begin_layout Itemize
+Step 2: The Project leader will review and discuss the change with the other
+ team members and determine the associated impact to the project and decide
+ whether to approve or reject the modification of the project based on the
+ time and resources requirement and the additional cost which will be incurred
+ if any.
+\end_layout
+
+\begin_layout Section
+Monitoring, Controlling and Regulating Mechanism
+\end_layout
+
+\begin_layout Standard
+Provision of periodic review meeting at least twice a week will help monitor
+ the project effectively and efficiently.
+ The work done would be reviewed and discussed to analyze whether it meets
+ the desired requirements or not.
+ In case, if some work could not be completed by an individual within the
+ deadline specified, then he/she needs to clarify the reasons for the same
+ to the entire team.
+ Also to keep the work of different sub group in sync, a Google group has
+ been created whereby all the documented work is uploaded periodically and
+ it also works as a forum for the team members.
+ 
+\end_layout
+
+\begin_layout Section
+Approvals
+\end_layout
+
+\begin_layout Standard
+Sign-off Sheet
+\end_layout
+
+\begin_layout Standard
+I have read the above Project Plan and will abide by its terms and conditions
+ and pledge my full commitment and support for the Project Plan.
+\end_layout
+
+\begin_layout Standard
+Project Manager/ Team leader: Nikhil Marathe 
+\end_layout
+
+\begin_layout Standard
+Team Member: Nishant Jain 
+\end_layout
+
+\begin_layout Standard
+Team Member: Shreya Agarwal 
+\end_layout
+
+\begin_layout Standard
+Team Member: Sandeep Sharma 
+\end_layout
+
+\begin_layout Standard
+Team Member: Saurabh Bornwal 
+\end_layout
+
+\begin_layout Standard
+Team Member: Deeksha Gupta 
+\end_layout
+
+\begin_layout Standard
+Team Member: Jai Bhornia 
+\end_layout
+
+\begin_layout Standard
+Team Member: Anurakt Awasthi 
+\end_layout
+
+\begin_layout Standard
+Team Member: Ashish Jain 
+\end_layout
+
+\begin_layout Standard
+Team Member: Swati Ittan 
+\end_layout
+
+\end_body
+\end_document

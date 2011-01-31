@@ -1,0 +1,270 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{vhistory}
+\usepackage{scrpage2}
+\ifoot{\docTitle - - Version \vhCurrentVersion}
+\cfoot[]{}
+\ofoot[\thepage]{\thepage}
+\end_preamble
+\use_default_options true
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Waterfall Model: Significance of Work Products
+\end_layout
+
+\begin_layout Author
+Team 3
+\end_layout
+
+\begin_layout Date
+ 30th January 2011
+\end_layout
+
+\begin_layout Section
+Systems Requirements Specification Document 
+\end_layout
+
+\begin_layout Standard
+The purpose of the System Requirements Specification is to list the various
+ functionality and requirements for the system in a clear and precise way.
+ The System Requirements Specification is to be the guide and vision for
+ the project. The Software Requirements Specification (SRS) document describes
+ all data, functional and behavioural requirements of the software under
+ production or development. It covers the overall description of the software
+ to be implemented, use cases and scenarios, data model, functional and
+ non-functional requirements, interface and behavioural models, as well
+ as restrictions and validation criteria to be used for the software.
+ The Appendices may include business rules, glossary, traceability matrices
+ and other necessary supplementary information that are specific to the
+ system.
+ It also describes the design constraints that are to be considered when
+ the system is to be designed, and other factors necessary to provide a
+ complete and comprehensive description of the requirements for the software.
+\end_layout
+
+\begin_layout Section
+Project Plan 
+\end_layout
+
+\begin_layout Standard
+The Project Plan provides a statement of how and when a project's objectives
+ are to be achieved, by showing the major products, milestones, activities
+ and resources required on the project.
+ It is used as a baseline against which to monitor project progress and
+ cost stage by stage.
+ It provides the business case with planned project costs and it identifies
+ the management stages and other major control points.
+\end_layout
+
+\begin_layout Section
+System Design Document
+\end_layout
+
+\begin_layout Standard
+The System Design Document records the results of the system design process
+ and describes how the system will satisfy the Requirements Specification.
+ Systems design is therefore the process of defining and developing systems
+ to satisfy specified requirements of the user.  The SDD interprets the requireme
+nts into a description of the structure, components, interfaces, and data
+ necessary to support the build process.
+ This document also helps in identifying software products to be produced.
+ It describes relevant benefits, objectives and goals.
+ It also discusses trade-offs such as resource use versus productivity.
+ It also identifies any constraints in the system design and contingencies
+ that might arise in the design of the system that may change the development
+ direction.
+ It also specifies about design process, design development and efficiency
+ of resources.
+\end_layout
+
+\begin_layout Section
+Detailed Design Document 
+\end_layout
+
+\begin_layout Standard
+Detail design document specifies the scope and purpose of the software.
+ It also gives the definitions, abbrevations and acronyms which will be
+ referred by the coders.
+ It also provides details about the project standards such as coding standards,
+ documentation standards and design standards, conventions and procedures.
+ It also gives a brief about software development tools.
+ Further its importance is shown when it provides detail system architecture
+ design about all components.
+ So it is a very important document for reference when the development phase
+ starts. 
+\end_layout
+
+\begin_layout Section
+Test Plan (with test cases) 
+\end_layout
+
+\begin_layout Standard
+The objective of software testing is to uncover errors.
+ It follows that the most severe defects (from the customer’s point of view)
+ are those that cause the program to fail to meet its requirements.
+ Tests should be planned before testing begins and for that a test plan
+ is required.
+ Detailed definition of test cases can begin as soon as the design model
+ has been solidified.
+ Therefore, all tests can be planned and designed before any code has been
+ generated.
+ Test cases are derived to ensure that all statements in the program have
+ been executed at least once during testing and that all logical conditions
+ have been exercised.
+ Test cases should be designed to uncover errors due to erroneous computations,
+ incorrect comparisons, or improper control flow.
+ A test plan outlines the classes of tests to be conducted and a test procedure
+ defines specific test cases that will be used to demonstrate conformity
+ with requirements.
+\end_layout
+
+\begin_layout Section
+Test Report
+\end_layout
+
+\begin_layout Standard
+As defined in the dictionary, a test report is a document that records data
+ obtained from an experiment of evaluation in organized manner describes
+ the environmental or operating conditions and shows the comparison of test
+ results with test objectives.
+ The testing of the program and system (as planned according to the test
+ plans) results in the creation of either a partial or complete system.
+ These tests result in discovery of problems that arise from modules / component
+s interactions.
+ Without testing the functionality of the code, all the possible bugs cannot
+ be detected.
+ Moreover, use of testing also ensures that all the requirements of the
+ customer are satisfactorily met, and there are no loose ends anywhere in
+ the code developed.
+ If any flaws or bugs are detected, or any problem occurs in any part of
+ the testing (be it Integration testing, validation testing or acceptance
+ testing), the details of it are written down in the form of a test report
+ so that the software can be reverted to the designing stage and all the
+ deficiencies can be fixed. The test report provides the details of all the
+ System modules / components and System features tested.
+ If, for instance, while integration testing a certain module doesn’t work
+ ,the test report mentions the flaw so that it can be rectified before handling
+ the system to the client.
+\end_layout
+
+\begin_layout Section
+Final code 
+\end_layout
+
+\begin_layout Standard
+Earlier this used to be one of the most important part of a software product
+ and people used to neglect the other things that were a part of software
+ development cycle but as time passed they realized the importance of other
+ phases of software development too.
+ But none the less this is still one of the integral part of the project
+ wherein the designs developed in the designing phase are actually translated
+ into a live code which would run on a piece of hardware.The final code is
+ written using a conventional programming language or an application generator.
+ Programming tools like compilers, interpreters are used to generate the
+ code.
+ The decision of choosing a programming language like C, C++, Java is taken
+ with respect to the type of application that is being created by the team.
+ 
+\end_layout
+
+\begin_layout Section
+Software manuals
+\end_layout
+
+\begin_layout Standard
+These are manuals that describe basic architecture and programming environment
+ of the software, presents an instructions set for installation, etc.
+ User manuals Typically, the user manual describes each feature of the program,
+ and assists the user in realizing these features.
+ End-user manuals facilitate the interaction of the end-user with the software
+ product.
+ Without it, users cannot train and they virtually cannot use the software.
+ A training manual is an example of a user-oriented manual.
+ It reduces the learning time to productive use of the software.
+ It is very important for user manuals to not be confusing, and for them
+ to be up to date.
+ Consistency and simplicity are also very valuable.
+ User manual is considered to constitute a contract specifying what the
+ software will do.
+ Through a user manual:  Users are guided through each step of accomplishing
+ particular tasks Sections which concentrate on one particular areas of
+ interest are of more general use to an intermediate user.
+ 
+\end_layout
+
+\begin_layout Section
+Installation manual
+\end_layout
+
+\begin_layout Standard
+An installation manual describes the steps of installing the software product
+ produced.
+ It should be made keeping in mind the end user for whom the software is
+ like a black box and hence the steps of installing the software and the
+ hardware and software configurations required should all be mentioned in
+ it.
+ These manuals also facilitate smooth interaction of the user with the software
+ in hand as it helps them to easily learn the way it is to be used efficiently
+ and they also give an in depth analysis of the working of the system or
+ a system's administrator’s guide which would detail how to operate and
+ maintain the system.
+\end_layout
+
+\begin_layout Section
+Review Reports
+\end_layout
+
+\begin_layout Standard
+These are the reports which summarize the proceedings of the various review
+ meetings that are held during the entire software development phase.
+ It basically addresses the following concerns: the topics that were reviewed,
+ people that were present in the review meeting and the findings and conclusions
+ of the meeting.
+ These review reports serve two purposes, firstly to identify the problem
+ areas within the product and secondly to serve as an action item checklist
+ that guides the team as the corrections are made.
+\end_layout
+
+\end_body
+\end_document
