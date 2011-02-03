@@ -5,7 +5,7 @@
 
 \author{Team 3}
 
-\date{\today}
+\date{February 3, 2011}
 
 \maketitle
 
@@ -14,10 +14,65 @@
 \newpage{}
 
 \newpage{}
+
+\section{Waterfall Model}
+\subsection{Advantages of Waterfall Model}
+\begin{itemize}
+\item Simple and a desirable approach when the requirements are clear and well understood at the beginning.
+\item    It provides a clear cut template for analysis, design, coding, testing and support.
+\item        It is an enforced disciplined approach.
+\item            Stages and activities are well defined.
+\item                Helps to plan schedule the project.
+\item                    Verification at each stage ensures early detection of errors / misunderstanding.
+\end{itemize}
+\subsection{Disadvantages of Waterfall Model}
+\begin{itemize}
+\item It is difficult for the customers to state the requirements clearly at the beginning. There is always certain degree of natural uncertainty at beginning of each project.
+\item     Difficult and costlier to change when the changes occur at a later stage.
+\item         Customer can see the working version only at the end. Thus any changes suggested here are not only difficult to incorporate but also expensive. This may result in disaster if any undetected problems are precipitated to this stage.
+\item             The model has difficulty in accommodating the natural uncertainty that exists in many projects.
+\end{itemize}
+
+\newpage{}
+\section{Iterative Waterfall Model}
+\subsection{Advantages of Iterative Waterfall Model}
+\begin{itemize}
+\item It accommodates changing requirements.
+\item     It facilitates reuse.
+\item         You can find and correct defects over several iterations
+\item             It facilitates better use of project personnel. 
+\item                     You can refine the development process along the way. 
+\end{itemize}
+\subsection{Disadvantages of Iterative Waterfall Model}
+\begin{itemize}
+\item The project might end up being perpetually stuck in iteration since there is no upper bound defined and the requirements keep changing.
+\item Constant modification may lead to lack of vision among team members and a loss of quality of code.
+\item Change at any step requires considerable change in all the other stages.
+\item Sufficient time may not be given to the implementation phase.
+\end{itemize}
+
+\newpage{}
+\section{Prototyping Model}
+\subsection{Advantages of Prototyping Model}
+\begin{itemize}
+\item Provides a good mechanism for understanding the customer requirements.
+\item     Facilitates critical examination of technical issues associated with software development.
+\item         Reduces wasted development effort.
+\end{itemize}
+\subsection{Disadvantages of Prototyping Model}
+\begin{itemize}
+\item Usually the prototype is built without adequately considering overall software quality or long-term maintainability.
+\item     Lack of appreciation that Prototype building is very different from product building
+\item         Compromises on the choices like operating system or programming language, are often made during prototyping.
+\item             Customer demands that the prototype be \emph{quickly} converted to a working product.
+\item                 The prototype is confused to be the actual product.
+\end{itemize}
+
+\newpage{}
 \section{Rapid Application Development Model}
 \subsection{Advantages of RAD}
 \begin{itemize}
-\item        Conventional software development methods take, on an average almost 20% more time than the RAD procedure. Using RAD can enable quicker visualization of the end-design and hence allow rapid software testing and rectifying steps. The customer is able to have a faster look at the design to add valuable inputs, in order to make the design more user-friendly.
+\item        Conventional software development methods take, on an average almost 20\% more time than the RAD procedure. Using RAD can enable quicker visualization of the end-design and hence allow rapid software testing and rectifying steps. The customer is able to have a faster look at the design to add valuable inputs, in order to make the design more user-friendly.
 \item        RAD reduces development time and reuses components to speed up development.
 \item        It protects the current project from the variations in the market.
 \item        RAD realizes an overall reduction in project risk.
@@ -122,7 +177,7 @@ with large projects where short development cycles might not be possible.
 \newpage{}
 \section{Model used for Muzicast}
 
-Muzicast the music streaming server, features a distinct set of features. So we will be using the natural fit, which is the \emph{incremental evolutionary model}. We believe this is justified because we can break down our project into these three distinct layers, each
+Muzicast the music streaming server, features a distinct set of features. So we will be using the natural fit, which is the \emph{incremental evolutionary model}. We believe this is justified because we can break down our project into these distinct layers, each
 of which will be implemented in the following order:
 
 \begin{itemize}
@@ -132,6 +187,10 @@ of which will be implemented in the following order:
 \item Browse, clone and modify other users public playlists.
 \end{itemize}
 
-In each phase, we will be following a simple prototype based design approach in which we will only create wireframe/rough mockups of our interface. This will aid us because all user interaction in our case is through the web interface and the flow of the user for certain actions will aid us in our requirements gathering and system design. We will soon update our roadmap for the project to accomodate these 4 phases instead of the simple waterfall model we had planned earlier.
+At the same time each phase fits onto earlier phases and utilises some core parts in a similar manner. So the project \emph{evolves} as time passes, but at each stage we can have some working features. In addition the core parts of our project like the collection scanner, administration interface and streaming server will get well tested as we implement more features.
+
+The incremental model will also allow team members to pick up skills slowly, since we will not have to deal with users and other data during the initial phases. At the same time we run the risk of losing sight of the specifications while experimenting with the upper layers. This will be mitigated by strong requirements gathering and design for each set of features, and then sticking to only implementing those.
+
+In each phase, we will be following a simple prototype based design approach in which we will create wireframe/rough mockups of our interface. This will aid us because all user interaction in our case is through the web interface and the flow of the user for certain actions will aid us in our requirements gathering and system design. Since user flow dictates our software design the prototypes will prove essential for us. At the same time, by making the prototypes as images and not working code, we do not make the mistake of considering the prototype as the final project or being influenced by it. We will soon update our roadmap for the project to accomodate these 4 phases instead of the simple waterfall model we had planned earlier.
 
 \end{document}
