@@ -122,6 +122,16 @@ with large projects where short development cycles might not be possible.
 \newpage{}
 \section{Model used for Muzicast}
 
-Prototype
+Muzicast the music streaming server, features a distinct set of features. So we will be using the natural fit, which is the \emph{incremental evolutionary model}. We believe this is justified because we can break down our project into these three distinct layers, each
+of which will be implemented in the following order:
+
+\begin{itemize}
+\item Core functionality of scanning collection, having the streaming server, and giving visitors the ability to create \emph{one} playlist which persists only for that session.
+\item Adding capability to register as user and have multiple playlists which persist.
+\item Add discovery features, like search, keeping track of top played\\ tracks/albums/artists.
+\item Browse, clone and modify other users public playlists.
+\end{itemize}
+
+In each phase, we will be following a simple prototype based design approach in which we will only create wireframe/rough mockups of our interface. This will aid us because all user interaction in our case is through the web interface and the flow of the user for certain actions will aid us in our requirements gathering and system design. We will soon update our roadmap for the project to accomodate these 4 phases instead of the simple waterfall model we had planned earlier.
 
 \end{document}
