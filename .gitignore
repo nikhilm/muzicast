@@ -3,3 +3,6 @@
 *.tex
 *.pyc
 docs/usermanual/build
+*.aux
+*.log
+*.toc
