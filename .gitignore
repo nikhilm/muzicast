@@ -6,3 +6,4 @@ docs/usermanual/build
 *.aux
 *.log
 *.toc
+jstree_demo
