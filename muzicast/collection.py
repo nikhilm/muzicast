@@ -1,17 +1,18 @@
 import os
 import sqlite3
-import mutagen
 import logging
 from watchdog.events import FileSystemEventHandler
 
 import gevent
 from gevent.pool import Pool
 
+from muzicast.formats import MusicFile
+
 def update_job(url):
     """ Scan a file.
 
     """
-    
+    f = MusicFile(url)
     
 class CollectionEventHandler(FileSystemEventHandler):
     def __init__(self, scanner):
@@ -60,4 +61,5 @@ class CollectionScanner(object):
                     if self.requires_update(fn):
                         # TODO: Do we wait around for updates to occur
                         # or do we have a two step pool
-                    	job_pool.spawn(self.update, fn)
+                        job_pool.spawn(update_job, fn)
+        job_pool.join()
