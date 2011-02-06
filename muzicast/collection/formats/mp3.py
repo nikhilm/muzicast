@@ -5,7 +5,7 @@
 # published by the Free Software Foundation
 
 from mutagen.mp3 import MP3
-from muzicast.formats._id3 import ID3File
+from muzicast.collection.formats._id3 import ID3File
 
 extensions = [".mp3", ".mp2"]
 

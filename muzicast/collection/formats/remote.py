@@ -4,7 +4,7 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 from muzicast.util.uri import URI
 
 extensions = []

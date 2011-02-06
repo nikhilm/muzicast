@@ -4,7 +4,7 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation
 
-from muzicast.formats._apev2 import APEv2File
+from muzicast.collection.formats._apev2 import APEv2File
 
 extensions = [".wv"]
 try:

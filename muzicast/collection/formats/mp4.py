@@ -7,8 +7,8 @@
 
 import tempfile
 
-from muzicast import util
-from muzicast.formats._audio import AudioFile
+from muzicast.collection import util
+from muzicast.collection.formats._audio import AudioFile
 
 extensions = ['.mp4', '.m4a']
 

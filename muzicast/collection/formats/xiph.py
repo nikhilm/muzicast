@@ -9,9 +9,9 @@ import base64
 
 import mutagen
 
-from muzicast import const
+from muzicast.collection import const
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 
 class MutagenVCFile(AudioFile):
     format = "Unknown Mutagen + vorbiscomment"

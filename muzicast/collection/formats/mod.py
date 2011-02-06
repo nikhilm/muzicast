@@ -6,7 +6,7 @@
 
 import os
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 
 extensions = [
     '.669', '.amf', '.ams', '.dsm', '.far', '.it', '.med', '.mod', '.mt2',

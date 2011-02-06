@@ -14,8 +14,8 @@ import glob
 import shutil
 import time
 
-from muzicast import const
-from muzicast import util
+from muzicast.collection import const
+from muzicast.collection import util
 
 from muzicast.util.uri import URI
 from muzicast.util import human_sort_key as human

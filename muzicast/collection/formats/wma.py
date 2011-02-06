@@ -7,7 +7,7 @@
 import tempfile
 import struct
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 
 extensions = [".wma"]
 try:

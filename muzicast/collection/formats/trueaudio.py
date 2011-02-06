@@ -11,7 +11,7 @@ try:
 except ImportError:
     TrueAudio = None
     extensions = []
-from muzicast.formats._id3 import ID3File
+from muzicast.collection.formats._id3 import ID3File
 
 class TrueAudioFile(ID3File):
     format = "True Audio"

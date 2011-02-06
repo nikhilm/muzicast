@@ -9,7 +9,7 @@ import sys
 
 from glob import glob
 from os.path import dirname, basename, join
-from muzicast import util
+from muzicast.collection import util
 
 base = dirname(__file__)
 self = basename(base)
@@ -79,4 +79,4 @@ def filter(filename):
         if lower.endswith(ext): return True
     return False
 
-from muzicast.formats._audio import USEFUL_TAGS, MACHINE_TAGS, PEOPLE
+from muzicast.collection.formats._audio import USEFUL_TAGS, MACHINE_TAGS, PEOPLE

@@ -8,9 +8,9 @@
 import mutagen.id3
 import tempfile
 
-from muzicast import const
+from muzicast.collection import const
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 
 def isascii(s):
     return ((len(s) == 0) or (ord(max(s)) < 128))

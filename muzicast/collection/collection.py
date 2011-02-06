@@ -6,7 +6,7 @@ from watchdog.events import FileSystemEventHandler
 import gevent
 from gevent.pool import Pool
 
-from muzicast.formats import MusicFile
+from muzicast.collection.formats import MusicFile
 
 def update_job(url):
     """ Scan a file.

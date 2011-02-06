@@ -7,7 +7,7 @@
 import os
 import wave
 
-from muzicast.formats._audio import AudioFile
+from muzicast.collection.formats._audio import AudioFile
 
 extensions = [".wav"]
 
