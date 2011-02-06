@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Muzicast: Admin Login</title>
+</head>
+<body>
+    {% if wrong %}
+        <h2>Wrong Password!</h2>
+    {% endif %}
+    <form action="{{ request.script_root }}" method="POST">
+        <label for="password">Administration Password</label>
+        <input type="password" name="password" placeholder="Enter Password" required> </input>
+        <input type="submit" value="Login"></input>
+    </form>
+</body>
+</html>
