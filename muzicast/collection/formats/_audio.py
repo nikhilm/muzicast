@@ -17,10 +17,10 @@ import time
 from muzicast.collection import const
 from muzicast.collection import util
 
-from muzicast.util.uri import URI
-from muzicast.util import human_sort_key as human
-from muzicast.util.tags import STANDARD_TAGS as USEFUL_TAGS
-from muzicast.util.tags import MACHINE_TAGS
+from muzicast.collection.util.uri import URI
+from muzicast.collection.util import human_sort_key as human
+from muzicast.collection.util.tags import STANDARD_TAGS as USEFUL_TAGS
+from muzicast.collection.util.tags import MACHINE_TAGS
 
 MIGRATE = frozenset(("~#playcount ~#laststarted ~#lastplayed ~#added "
            "~#skipcount ~#rating ~bookmark").split())
