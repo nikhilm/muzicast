@@ -1,6 +1,11 @@
+import sys
+import signal
+
 from flask import Module, render_template, url_for, redirect, session, escape, request
 
 from flaskext.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
+
+from muzicast.web.util import is_first_run
 
 admin = Module(__name__)
 
@@ -9,9 +14,14 @@ admin_permission = Permission(RoleNeed('admin'))
 
 @admin.route('/')
 def index():
+    # if it's the first run, we allow in
+    # otherwise we ask for the password
+    if is_first_run():
+        identity_changed.send(admin, identity=Identity('admin'))
+
     try:
         admin_permission.test()
-        return "hello admin"
+        return render_template('admin/index.html')
     except PermissionDenied:
         return redirect(url_for('login'))
 
