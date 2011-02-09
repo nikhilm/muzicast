@@ -1,0 +1,27 @@
+{% from "util.html" import stylesheet %}
+{% from "misc.html" import footer %}
+{% from "admin/blocks.html" import stop_muzicast, admin_password, collection_directories_browser %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  {{ stylesheet('admin.css') }}
+  <title>Muzicast: Settings</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Muzicast Administration</h1>
+        <div class="section" id="stop-muzicast-div">
+            {{ stop_muzicast() }}
+        </div>
+        <div class="section" id="admin-password-div">
+            {{ admin_password() }}
+        </div>
+        <div class="section" id="collection-div">
+            {{ collection_directories_browser() }}
+        </div>
+    </div>
+    {{ footer() }}
+</body>
+</html>
