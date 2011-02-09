@@ -14,7 +14,7 @@ import glob
 import shutil
 import time
 
-from muzicast.collection import const
+from muzicast import const
 from muzicast.collection import util
 
 from muzicast.collection.util.uri import URI

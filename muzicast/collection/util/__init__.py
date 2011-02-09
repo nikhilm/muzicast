@@ -12,7 +12,7 @@ import urlparse
 import unicodedata
 import urllib
 
-from muzicast.collection.const import FSCODING as fscoding, ENCODING
+from muzicast.const import FSCODING as fscoding, ENCODING
 
 def strip_win32_incompat(string, BAD = '\:*?;"<>|'):
     """Strip Win32-incompatible characters.

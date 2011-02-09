@@ -13,6 +13,7 @@ if 'MUZICAST_USERDIR' in os.environ:
 else:
     USERDIR = os.path.join(HOME, ".muzicast")
 
+CONFIG = os.path.join(USERDIR, "config")
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
 AUTHORS = sorted("""\

@@ -8,7 +8,7 @@
 import mutagen.id3
 import tempfile
 
-from muzicast.collection import const
+from muzicast import const
 
 from muzicast.collection.formats._audio import AudioFile
 

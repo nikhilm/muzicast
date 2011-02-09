@@ -9,7 +9,7 @@ import base64
 
 import mutagen
 
-from muzicast.collection import const
+from muzicast import const
 
 from muzicast.collection.formats._audio import AudioFile
 
