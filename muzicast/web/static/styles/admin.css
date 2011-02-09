@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    font-family: "Droid Sans", "DejaVu Sans", "Verdana", sans-serif;
+}
+
+#main {
+    margin: 0 auto;
+    width: 60%;
+    background: #efefef;
+    padding: 2px 20px;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    color: #486ea1;
+    background: #e0e0e0;
+    padding: 2px 20px;
+    font-size: 20px;
+}
+
+p, label {
+    font-family: "DejaVu Serif", "Helvetica", serif;
+    font-size: 14px;
+}
+
+table {
+    width: 50%;
+}
+
+div#stop-muzicast-div input {
+    margin: auto;
+    width: 20%;
+}
+
+#stop-muzicast-button {
+    background: #ff4f28;
+    border: solid 3px red;
+}
