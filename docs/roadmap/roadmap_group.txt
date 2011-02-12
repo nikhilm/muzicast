@@ -1,0 +1,78 @@
+Roadmap for Team 3 SEN Project
+==============================
+
+Iteration 1
+-----------
+  Implement core parts:
+  * streaming server
+  * collection scanner
+  * basic web interface and single playlist creation
+  
+  9th Feb - 10th March 2011
+  -------------------------
+  
+  9-11 February    Combine and create formal requirements specification
+  
+  12-15 February   Create mockups for version 1. Set up development environment in Linux and Windows.
+                   Bring rough user manual in line with UI.
+  
+  15-17            Create design document
+  
+  17-22            Create streaming server
+  
+  17-24            User web interface to show music details
+  
+  17-24            Other members Create detailed design document
+  
+  22-27            Synapse, so no coding, only basic testing and little fixes and some slack time
+  
+  28-6 March       Collection scanner
+  
+  28-6 March       Playlist creation/download interface in the web interface
+  
+  6-8 March        Synchronize documents and code, do final testing.
+                   Fix user documentation. Create packages for Linux and Windows.
+  
+  9th March        RELEASE ITERATION 1
+
+Iteration 2
+-----------
+  Implement:
+  * Search
+  * Amazon Cover Fetcher
+  
+  10th March - 22nd March 2011
+  ----------------------------
+  
+  10-12 March     Requirements updates for these 2 features
+  
+  13    March     Design modifications
+  
+  14-17 March     Amazon cover fetch
+  
+  18-20 March     Implement search
+  
+  20-21 March     Final testing, Documentation updates.
+  
+  22 March        RELEASE ITERATION 2
+
+Iteration 3
+-----------
+  Implement:
+  * User accounts
+  * Multiple playlist load/save
+  * Playlist share
+  
+  23-26 March     Requirements modifications. New mockups.
+  
+  26-29 March     Design updates. Manual updates.
+  
+  30-3 April      Implement users
+  
+  4-7  April      Admin interface for user management
+  
+  4-11 April      Playlist management interface
+  
+  11-15 April     Final documentation and testing
+  
+  16 April        RELEASE ITERATION 3 and FINISH
