@@ -1,5 +1,9 @@
+import os
 import sys
 import signal
+
+try: import simplejson as json
+except ImportError: import json
 
 from flask import Module, render_template, url_for, redirect, session, escape, request
 
@@ -42,16 +46,36 @@ def login():
             wrong = True
     return render_template('admin/login.html', wrong=wrong)
 
+@admin.route('/password', methods=['POST'])
+def change_password():
+    pass
+
+@admin.route('/dirlist', methods=['GET'])
+def dirlist():
+    if len(request.args) != 1:
+        abort(400)
+
+    req_path = request.args.keys()[0]
+    # TODO: lots of security checks
+    if req_path == "/":
+        # TODO: on windows for root, get drive letters
+        pass
+
+    ret = []
+    for entry in os.listdir(req_path):
+        path = os.path.join(req_path, entry)
+        # TODO: don't set state if no subdir
+        if os.path.isdir(path):
+            ret.append({'data': entry, 'metadata': path, 'state': 'closed'})
+
+    return json.dumps(ret)
+
 @admin.route('/stop', methods=['POST'])
 def stop():
     signal.alarm(1)
     #TODO: do cleanup
     return render_template('admin/stopped.html')
     #TODO: do more cleanup
-
-@admin.route('/password', methods=['POST'])
-def change_password():
-    pass
 
 def shutdown(signal, stack_frame):
     sys.exit(0)

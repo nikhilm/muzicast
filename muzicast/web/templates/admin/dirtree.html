@@ -1,0 +1,38 @@
+<!-- requires jquery to be included on page -->
+{% from "util.html" import script %}
+{% macro dirtree() %}
+    {{ script('jquery.jstree.js') }}
+    <div id="dirtree-div">
+    </div>
+    <script language="javascript">
+        $('#dirtree-div')
+        .bind("open_node.jstree", function() {
+        	console.log("Opened", arguments);
+        })
+        .jstree({
+            core: {},
+            themes: {
+                url: "{{ script_root }}/static/scripts/themes/themes/default/style.css"
+            },
+            plugins: [ "themes", "json_data", "checkbox" ],
+            json_data: {
+                data: [{
+                    data: "Computer",
+                    metadata: "/",
+                    state: "closed"
+                }],
+                ajax: {
+                    data: function(node) {
+                        console.log(this, node);
+                        if( node == -1 )
+                            return "root";
+                        console.log("DATA", $(node).data('jstree'));
+                        return $(node).data('jstree');
+                    },
+
+                    url: "{{ script_root }}/admin/dirlist"
+                }
+            }
+        });
+    </script>
+{%- endmacro %}

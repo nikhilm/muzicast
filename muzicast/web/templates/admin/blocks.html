@@ -1,4 +1,5 @@
 {% from "util.html" import script, stylesheet %}
+{% from "admin/dirtree.html" import dirtree %}
 
 {% macro stop_muzicast() %}
 <form action="{{ url_for('admin.stop') }}" method="POST">
@@ -34,5 +35,5 @@
 <p>Please select the folders on your computer which Muzicast should scan
 for music. You should tick the checkbox next to the folder. Selecting a parent folder will select all the children also.</p>
 
-{{ script('collection_browser.js') }}
+{{ dirtree() }}
 {%- endmacro %}
