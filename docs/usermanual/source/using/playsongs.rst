@@ -34,8 +34,8 @@ Library information
 
 Muzicast collects statistics for albums and artists as well, and you can
 view them on the album or artist page.
-In addition Muzicast will try to fetch album covers from `Amazon
-<http://www.amazon.com>`_ when it can find them.
+
+.. TODO: In addition Muzicast will try to fetch album covers from `Amazon <http://www.amazon.com>`_ when it can find them.
 
 Playlists
 ---------
