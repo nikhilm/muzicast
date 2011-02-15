@@ -15,8 +15,9 @@ see by default:
 
 #. Is the main panel. All content specific to the page, like albums of an Artist, Top Tracks for the day are shown in this area.
 
-#. Is the search box. You can enter some text into the search box and press :kbd:`Enter` to search artists, albums and tracks.
-
 #. These tabs allow you to navigate the web interface.
 
-#. The left pane is filled with information when you are signed in as a registered user. This will show any playlist you are currently editing and other details.
+#. This right pane will show any playlist you are currently editing and other details.
+
+.. TODO: #. Is the search box. You can enter some text into the search box and press :kbd:`Enter` to search artists, albums and tracks.
+
