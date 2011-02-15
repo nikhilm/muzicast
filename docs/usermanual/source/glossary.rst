@@ -21,9 +21,9 @@ Glossary
       to them or make copies of the playlist.
 
    web-interface
-      The ProjectName 'web site' accessed through the browser
-      for viewing tracks and accessing other ProjectName features.
+      The Muzicast 'web site' accessed through the browser
+      for viewing tracks and accessing other Muzicast features.
 
    user
-      A unique personalized account with the ProjectName server
+      A unique personalized account with the Muzicast server
       which provides extra features.

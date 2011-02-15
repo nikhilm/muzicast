@@ -1,7 +1,7 @@
 User Accounts
 =============
 
-A user account allows frequent users of a ProjectName server
+A user account allows frequent users of a Muzicast server
 to create and share playlists, save them and modify them later.
 
 .. todo:: do we allow uploads!?

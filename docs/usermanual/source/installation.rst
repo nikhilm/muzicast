@@ -1,15 +1,15 @@
 Installation
 ============
 
-Installing ProjectName is a quick and simple process.
-ProjectName can run on any computer which has any of
+Installing Muzicast is a quick and simple process.
+Muzicast can run on any computer which has any of
 the operating systems below:
 
 * Windows XP or later
 * Linux
 * Mac OSX
 
-To install ProjectName, please select the right section
+To install Muzicast, please select the right section
 for your operating system.
 
 .. toctree::

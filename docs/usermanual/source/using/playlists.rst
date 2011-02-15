@@ -1,7 +1,7 @@
 Playlists
 =========
 
-Playlists are the most important feature of ProjectName.
+Playlists are the most important feature of Muzicast.
 You can:
 
 * Create a custom playlist by manually inserting tracks, albums and artists, queueing them up in your music player, and listening to the

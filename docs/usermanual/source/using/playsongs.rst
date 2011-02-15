@@ -1,13 +1,11 @@
 Playing Tracks
 ==============
 
-.. todo:: Do we offer a flash player?!
-
-ProjectName provides a very convenient, in-browser player to
+Muzicast provides a very convenient, in-browser player to
 listen to tracks. But often you want to play songs in your dedicated
 music player like `iTunes <http://www.apple.com/itunes/>`_, `Amarok
 <http://amarok.kde.org>`_ or `VLC <http://videolan.org>`_. In fact
-ProjectName is built to play the music in these players, and once you
+Muzicast is built to play the music in these players, and once you
 start creating :doc:`/using/playlists`, that is exactly what you will do.
 
 The track's short profile and information page always show the URL over
@@ -20,7 +18,7 @@ track.
 Track information
 -----------------
 
-ProjectName keeps detailed statistics about tracks and their associated
+Muzicast keeps detailed statistics about tracks and their associated
 attributes like artist, album, play count and rating, together called
 **meta-data**. 
 
@@ -34,9 +32,9 @@ To get detailed statistics click the statistics.
 Library information
 -------------------
 
-ProjectName collects statistics for albums and artists as well, and you can
+Muzicast collects statistics for albums and artists as well, and you can
 view them on the album or artist page.
-In addition ProjectName will try to fetch album covers from `Amazon
+In addition Muzicast will try to fetch album covers from `Amazon
 <http://www.amazon.com>`_ when it can find them.
 
 Playlists

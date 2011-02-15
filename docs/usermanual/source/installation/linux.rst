@@ -3,10 +3,10 @@ Linux
 
 .. todo:: Put download URL
 
-First download ProjectName for Linux from
+First download Muzicast for Linux from
 
 Installation on Linux depends on your distribution.
-ProjectName requires the following additional packages to
+Muzicast requires the following additional packages to
 be installed.
 
 * Python 2.6 or later
@@ -14,7 +14,7 @@ be installed.
 * gevent 0.13.0 or later
 * gunicorn 0.11.0 or later
 
-Installing ProjectName on Debian
+Installing Muzicast on Debian
 --------------------------------
 
 #. Install the required packages
@@ -23,17 +23,17 @@ Installing ProjectName on Debian
 
     sudo apt-get install python python-setuptools python-gevent gunicorn
 
-#. Install ProjectName
+#. Install Muzicast
 
 .. parsed-literal::
 
-    tar zxvf ProjectName-|release|.tar.gz
-    cd ProjectName-|release|
+    tar zxvf Muzicast-|release|.tar.gz
+    cd Muzicast-|release|
     sudo python setup.py install
 
-To run ProjectName, see the :doc:`/quickstart`.
+To run Muzicast, see the :doc:`/quickstart`.
 
-Installing ProjectName on Fedora/Redhat
+Installing Muzicast on Fedora/Redhat
 ---------------------------------------
 
 .. todo:: check package names
@@ -44,17 +44,17 @@ Installing ProjectName on Fedora/Redhat
 
     sudo yum install python python-setuptools python-gevent gunicorn
 
-#. Install ProjectName
+#. Install Muzicast
 
 .. parsed-literal::
 
-    tar zxvf ProjectName-|release|.tar.gz
-    cd ProjectName-|release|
+    tar zxvf Muzicast-|release|.tar.gz
+    cd Muzicast-|release|
     sudo python setup.py install
 
 You may now proceed to the :doc:`/quickstart`.
 
-Installing ProjectName on Archlinux
+Installing Muzicast on Archlinux
 -----------------------------------
 
 .. todo:: Provide AUR package
@@ -62,12 +62,12 @@ Installing ProjectName on Archlinux
 Archlinux has a `AUR <http://aur.archlinux.org>`_ PKGBUILD available which will create a package.
 
 `Download <http://aur.archlinux.org>`_ the PKGBUILD and save it to
-`/tmp/ProjectName/` then run
+`/tmp/Muzicast/` then run
 
 .. parsed-literal::
     
-    cd /tmp/ProjectName
+    cd /tmp/Muzicast
     makepkg
-    pacman -U ProjectName-|release|.pkg.tar.xz
+    pacman -U Muzicast-|release|.pkg.tar.xz
 
-See the :doc:`/quickstart` for setting up ProjectName.
+See the :doc:`/quickstart` for setting up Muzicast.

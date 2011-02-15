@@ -4,30 +4,30 @@ Frequently Asked Questions
 General
 -------
 
-What is ProjectName?
+What is Muzicast?
 ~~~~~~~~~~~~~~~~~~~~
     This is the answer
 
-Who is ProjectName userful for?
+Who is Muzicast userful for?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ANother
 
-Who is behind ProjectName?
+Who is behind Muzicast?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Why do you use ICY?
 ~~~~~~~~~~~~~~~~~~~
 
-Is ProjectName free?
+Is Muzicast free?
 ~~~~~~~~~~~~~~~~~~~~
 
 So I can distribute or modify it?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-I would like to see a new feature in ProjectName.
+I would like to see a new feature in Muzicast.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Does ProjectName have Last.fm support?
+Does Muzicast have Last.fm support?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No, and there are no plans to add it. Any modern music
