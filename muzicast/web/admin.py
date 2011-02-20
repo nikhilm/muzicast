@@ -98,7 +98,12 @@ def rescan():
 
 @admin.route('/save_directories', methods=['POST'])
 def save_directories():
-    paths = []
+    config = GlobalConfig()
+    collection_paths = []
+    if 'collection' in config and 'paths' in config['collection']:
+        collection_paths = config['collection']['paths']
+
+    paths = set()
     def parse_paths(root, base=''):
         """
         If class is jstree-undetermined
@@ -118,9 +123,19 @@ def save_directories():
             # TODO(nikhil) handle windows
             root['data'] = '/'
 
+        abspath = os.path.join(base, root['data'])
+
         if 'class' in root['attr'] and 'jstree-checked' in root['attr']['class']:
-            paths.append(os.path.join(base, root['data']))
+            paths.add(abspath)
             return
+        elif 'class' in root['attr'] and 'jstree-undetermined' in root['attr']['class']:
+            for cp in collection_paths:
+                if cp.startswith(abspath):
+                    paths.add(cp)
+
+        if abspath in collection_paths and 'jstree-unchecked' in root['attr']['class']:
+            collection_paths.remove(abspath)
+            paths.remove(abspath)
 
         crawl = 'jstree-undetermined' in root['attr']['class']
         if crawl and 'children' in root:
@@ -130,10 +145,9 @@ def save_directories():
     listing = json.loads(request.data)
     parse_paths(listing[0])
 
-    config = GlobalConfig()
     if not 'collection' in config:
         config['collection'] = {'paths': []}
-    config['collection']['paths'] = paths
+    config['collection']['paths'] = list(paths)
     config.save()
 
     return jsonify(success=True)
