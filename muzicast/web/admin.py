@@ -1,6 +1,7 @@
 import os
 import sys
 import signal
+from hashlib import md5
 
 try: import simplejson as json
 except ImportError: import json
@@ -26,7 +27,7 @@ def index():
 
     try:
         admin_permission.test()
-        return render_template('admin/index.html')
+        return render_template('admin/index.html', first_run=is_first_run())
     except PermissionDenied:
         return redirect(url_for('login'))
 
@@ -36,10 +37,16 @@ def on_admin_login(sender, identity):
 
 @admin.route('/login', methods=['POST', 'GET'])
 def login():
+    if is_first_run():
+        return redirect(url_for('index'))
+
     wrong = False
     if request.method == 'POST':
-# TODO use actual password
-        if request.form['password'] == 'password':
+        input = md5(request.form['password']).hexdigest()
+        config = GlobalConfig()
+        if 'password' not in config:
+            wrong = True
+        elif input == config['password']:
             session['admin'] = True
             identity_changed.send(admin, identity=Identity('admin'))
             return redirect(url_for('index'))
@@ -49,7 +56,12 @@ def login():
 
 @admin.route('/password', methods=['POST'])
 def change_password():
-    pass
+    input = md5(request.form['password']).hexdigest()
+    config = GlobalConfig()
+    config['password'] = input
+    config.save()
+    #TODO(nikhil) flash success/error
+    return redirect(url_for('index'))
 
 @admin.route('/dirlist', methods=['GET'])
 def dirlist():
