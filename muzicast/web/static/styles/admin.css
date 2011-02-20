@@ -41,3 +41,9 @@ div#stop-muzicast-div input {
     background: #ff4f28;
     border: solid 3px red;
 }
+
+#rescan-collection-button {
+    background: #222dff;
+    border: solid 3px blue;
+    float: right;
+}
