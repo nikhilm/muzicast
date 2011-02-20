@@ -6,7 +6,7 @@ from hashlib import md5
 try: import simplejson as json
 except ImportError: import json
 
-from flask import Module, render_template, url_for, redirect, session, escape, request, jsonify, current_app
+from flask import Module, render_template, url_for, redirect, session, escape, request, jsonify, current_app, flash
 
 from flaskext.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
 
@@ -56,10 +56,14 @@ def login():
 
 @admin.route('/password', methods=['POST'])
 def change_password():
-    input = md5(request.form['password']).hexdigest()
-    config = GlobalConfig()
-    config['password'] = input
-    config.save()
+    try:
+        input = md5(request.form['password']).hexdigest()
+        config = GlobalConfig()
+        config['password'] = input
+        config.save()
+        flash("Password changed successfully.")
+    except Exception:
+        flash("Error changing password!", "error")
     #TODO(nikhil) flash success/error
     return redirect(url_for('index'))
 

@@ -53,3 +53,13 @@ div#stop-muzicast-div input {
     border: solid 3px blue;
     float: right;
 }
+
+ul.flashes {
+    list-style-type: none;
+    background: #66ff66;
+}
+
+ul.flashes li.error {
+    background: #ff0033;
+    color: white;
+}
