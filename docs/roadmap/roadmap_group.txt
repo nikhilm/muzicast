@@ -1,7 +1,7 @@
 Roadmap for Team 3 SEN Project
 ==============================
 
-Iteration 1
+Increment 1
 -----------
   Implement core parts:
   * streaming server
@@ -33,9 +33,9 @@ Iteration 1
   6-8 March        Synchronize documents and code, do final testing.
                    Fix user documentation. Create packages for Linux and Windows.
   
-  9th March        RELEASE ITERATION 1
+  9th March        RELEASE increment 1
 
-Iteration 2
+Increment 2
 -----------
   Implement:
   * Search
@@ -54,9 +54,9 @@ Iteration 2
   
   20-21 March     Final testing, Documentation updates.
   
-  22 March        RELEASE ITERATION 2
+  22 March        RELEASE increment 2
 
-Iteration 3
+Increment 3
 -----------
   Implement:
   * User accounts
@@ -75,4 +75,4 @@ Iteration 3
   
   11-15 April     Final documentation and testing
   
-  16 April        RELEASE ITERATION 3 and FINISH
+  16 April        RELEASE increment 3 and FINISH
