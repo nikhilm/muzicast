@@ -7,7 +7,7 @@
     <script language="javascript">
         $('#dirtree-div')
         .bind("open_node.jstree", function() {
-        	console.log("Opened", arguments);
+            console.log("Opened", arguments);
         })
         .bind("loaded.jstree", function(event, data) {
             // open the first level
@@ -45,5 +45,30 @@
                 }
             }
         });
+
+        function saveDirectoryTree() {
+            var json = jQuery.jstree._reference($('#dirtree-div')).get_json();
+            // TODO(nikhil) can probably be made
+            // more efficient rather than sending
+            // the entire thing across
+            $.ajax({
+                url: $('#save-directories-form').attr('action'), 
+                type: "POST",
+                dataType: "json",
+                // the 2 lines below allow us
+                // to just send JSON data
+                contentType: "application/json",
+                processData: false,
+
+                data:  JSON.stringify(json),
+                success: function(data, textStatus, xhr) {
+                          console.log("Got reply", data, textStatus);
+                },
+
+                error: function(xhr, textStatus, error) {
+                    // TODO(nikhil)
+                }
+            });
+        }
     </script>
 {%- endmacro %}

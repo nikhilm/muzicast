@@ -10,6 +10,7 @@ from flask import Module, render_template, url_for, redirect, session, escape, r
 from flaskext.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
 
 from muzicast.web.util import is_first_run
+from muzicast.config import GlobalConfig
 
 admin = Module(__name__)
 
@@ -76,6 +77,53 @@ def stop():
     #TODO: do cleanup
     return render_template('admin/stopped.html')
     #TODO: do more cleanup
+
+@admin.route('/rescan', methods=['POST'])
+def rescan():
+    # TODO(nikhil) rescan
+    return redirect(url_for('/'))
+
+@admin.route('/save_directories', methods=['POST'])
+def save_directories():
+    paths = []
+    def parse_paths(root, base=''):
+        """
+        If class is jstree-undetermined
+        some directory below it is checked so
+        we have to crawl this level.
+
+        If it is jstree-unchecked, don't bother
+
+        If it is jstree-checked, we handle it, but
+        we don't need to crawl lower.
+        """
+
+        if not 'class' in root['attr']:
+            return
+
+        if root['data'] == 'Computer' and base is '':
+            # TODO(nikhil) handle windows
+            root['data'] = '/'
+
+        if 'class' in root['attr'] and 'jstree-checked' in root['attr']['class']:
+            paths.append(os.path.join(base, root['data']))
+            return
+
+        crawl = 'jstree-undetermined' in root['attr']['class']
+        if crawl and 'children' in root:
+            for child in root['children']:
+                parse_paths(child, os.path.join(base, root['data']))
+
+    listing = json.loads(request.data)
+    parse_paths(listing[0])
+
+    config = GlobalConfig()
+    if not 'collection' in config:
+        config['collection'] = {'paths': []}
+    config['collection']['paths'] = paths
+    config.save()
+
+    return jsonify(success=True)
 
 def shutdown(signal, stack_frame):
     sys.exit(0)
