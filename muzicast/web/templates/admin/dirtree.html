@@ -33,8 +33,12 @@
                         console.log(this, node);
                         if( node == -1 )
                             return "root";
-                        console.log("DATA", $(node).data('jstree'));
                         return $(node).data('jstree');
+                    },
+
+                    success: function(data) {
+                        console.log("DATA", data);
+                        return data.tree;
                     },
 
                     url: "{{ script_root }}/admin/dirlist"

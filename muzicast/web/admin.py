@@ -5,7 +5,7 @@ import signal
 try: import simplejson as json
 except ImportError: import json
 
-from flask import Module, render_template, url_for, redirect, session, escape, request
+from flask import Module, render_template, url_for, redirect, session, escape, request, jsonify, current_app
 
 from flaskext.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
 
@@ -68,7 +68,7 @@ def dirlist():
         if os.path.isdir(path):
             ret.append({'data': entry, 'metadata': path, 'state': 'closed'})
 
-    return json.dumps(ret)
+    return jsonify(tree=ret)
 
 @admin.route('/stop', methods=['POST'])
 def stop():
