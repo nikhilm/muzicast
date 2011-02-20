@@ -56,6 +56,12 @@ def dirlist():
     if len(request.args) != 1:
         abort(400)
 
+    paths = []
+
+    config = GlobalConfig()
+    if 'collection' in config and 'paths' in config['collection']:
+        paths = config['collection']['paths']
+
     req_path = request.args.keys()[0]
     # TODO: lots of security checks
     if req_path == "/":
@@ -67,7 +73,14 @@ def dirlist():
         path = os.path.join(req_path, entry)
         # TODO: don't set state if no subdir
         if os.path.isdir(path):
-            ret.append({'data': entry, 'metadata': path, 'state': 'closed'})
+            d = {'data': entry, 'metadata': path, 'state': 'closed', 'attr': {}}
+            if path in paths:
+                d['attr']['class'] = "jstree-checked"
+            else:
+                for p in paths:
+                    if p.startswith(path):
+                        d['attr']['class'] = "jstree-undetermined"
+            ret.append(d)
 
     return jsonify(tree=ret)
 
