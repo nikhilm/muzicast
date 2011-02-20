@@ -49,5 +49,5 @@ class GlobalConfig(Config):
 
     def ensure_existence(self):
         if not os.path.exists(const.CONFIG):
-        	if not os.path.exists(const.USERDIR):
-        		os.mkdir(const.USERDIR)
+            if not os.path.exists(const.USERDIR):
+                os.mkdir(const.USERDIR)
