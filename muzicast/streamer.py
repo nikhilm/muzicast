@@ -22,8 +22,8 @@ def stream(a, b):
     f = open("/shared/music/Harry Potter and the Deathly Hallows Part I/01 The Oblivation.mp3", 'rb')
     chunk = f.read(512)
     while chunk:
-    	a.send(chunk)
-    	chunk = f.read(512)
+        a.send(chunk)
+        chunk = f.read(512)
     a.close()
 
 server = gevent.server.StreamServer(('0.0.0.0', 4000), stream)

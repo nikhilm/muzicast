@@ -1516,8 +1516,8 @@
 					if(li_attr.length) { tmp1.attr = { }; }
 					$.each(li_attr, function (i, v) { 
 						tmp2 = li.attr(v); 
-						if(tmp2 && tmp2.length && tmp2.replace(/jstree[^ ]*|$/ig,'').length) {
-							tmp1.attr[v] = tmp2.replace(/jstree[^ ]*|$/ig,''); 
+						if(tmp2 && tmp2.length) {
+							tmp1.attr[v] = tmp2;
 						}
 					});
 					if(li.hasClass("jstree-open")) { tmp1.state = "open"; }
