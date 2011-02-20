@@ -9,6 +9,13 @@
         .bind("open_node.jstree", function() {
         	console.log("Opened", arguments);
         })
+        .bind("loaded.jstree", function(event, data) {
+            // open the first level
+            // since just showing "Computer"
+            // is not very nice
+            console.log(event, data);
+            data.inst.open_node($('#dirtree-div li:first-child'));
+        })
         .jstree({
             core: {},
             themes: {
