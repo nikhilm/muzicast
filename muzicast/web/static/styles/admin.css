@@ -47,3 +47,9 @@ div#stop-muzicast-div input {
     border: solid 3px blue;
     float: right;
 }
+
+#save-directories-button {
+    background: #222dff;
+    border: solid 3px blue;
+    float: right;
+}
