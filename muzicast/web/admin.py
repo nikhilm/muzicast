@@ -1,7 +1,7 @@
 import os
 import sys
 import signal
-from hashlib import md5
+from hashlib import sha256
 
 try: import simplejson as json
 except ImportError: import json
@@ -42,7 +42,7 @@ def login():
 
     wrong = False
     if request.method == 'POST':
-        input = md5(request.form['password']).hexdigest()
+        input = sha256(request.form['password']).hexdigest()
         config = GlobalConfig()
         if 'password' not in config:
             wrong = True
@@ -57,7 +57,7 @@ def login():
 @admin.route('/password', methods=['POST'])
 def change_password():
     try:
-        input = md5(request.form['password']).hexdigest()
+        input = sha256(request.form['password']).hexdigest()
         config = GlobalConfig()
         config['password'] = input
         config.save()
