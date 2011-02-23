@@ -14,14 +14,14 @@ from muzicast.collection import util
 base = dirname(__file__)
 self = basename(base)
 parent = basename(dirname(base))
+grandparent = basename(dirname(dirname(base)))
 modules = [f[:-3] for f in glob(join(base, "[!_]*.py"))]
-modules = ["%s.%s.%s" % (parent, self, basename(m)) for m in modules]
+modules = ["%s.%s.%s.%s" % (grandparent, parent, self, basename(m)) for m in modules]
 
 _infos = {}
 for i, name in enumerate(modules):
     try: format = __import__(name, {}, {}, self)
     except Exception, err:
-        util.print_exc()
         continue
     format = __import__(name, {}, {}, self)
     for ext in format.extensions:
@@ -73,10 +73,10 @@ else:
     def supported(song):
         return song.key.lower().endswith(extensions)
 
-def filter(filename):
-    lower = filename.lower()
-    for ext in _infos.keys():
-        if lower.endswith(ext): return True
-    return False
+#def filter(filename):
+#    lower = filename.lower()
+#    for ext in _infos.keys():
+#        if lower.endswith(ext): return True
+#    return False
 
 from muzicast.collection.formats._audio import USEFUL_TAGS, MACHINE_TAGS, PEOPLE
