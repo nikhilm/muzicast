@@ -14,6 +14,7 @@ else:
     USERDIR = os.path.join(HOME, ".muzicast")
 
 CONFIG = os.path.join(USERDIR, "config")
+DB_FILE = os.path.join(USERDIR, "collection.db")
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
 AUTHORS = sorted("""\
