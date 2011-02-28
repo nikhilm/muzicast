@@ -1,0 +1,28 @@
+{% from 'util.html' import stylesheet %}
+<html>
+<head>
+<title>Muzicast</title>
+    {{ stylesheet('muzicast.css') }}
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<!-- header -->
+<div id="header">
+    {% include 'header.html' %}
+</div>
+<!-- end header -->
+
+<div id="main">
+    {% include 'top_tracks.html' %}
+</div>
+
+<div id="footer">
+    {% include 'footer.html' %}
+</div>
+
+</body>
+
+</html>
