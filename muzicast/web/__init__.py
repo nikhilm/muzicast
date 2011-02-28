@@ -6,9 +6,10 @@ app = Flask(__name__)
 from muzicast.web.admin import admin
 app.register_module(admin, url_prefix='/admin')
 
-#from muzicast.web.music import artist, album, track
-#app.register_module(artist, url_prefix='/artist')
-#app.register_module(album, url_prefix='/album')
+from muzicast.web.artist import artist
+app.register_module(artist, url_prefix='/artist')
+from muzicast.web.album import album
+app.register_module(album, url_prefix='/album')
 from muzicast.web.track import track
 app.register_module(track, url_prefix='/track')
 
