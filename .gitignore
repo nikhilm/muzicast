@@ -7,3 +7,7 @@ docs/usermanual/build
 *.log
 *.toc
 jstree_demo
+env
+jstree_docs
+StreamNameAlias
+watchdog
