@@ -6,9 +6,9 @@ import signal
 import socket
 import time
 import re
-import sqlite3
 
 from muzicast.const import DB_FILE
+from muzicast.meta import Track
 
 class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 #    def __init__(self, socket, addr, server):
@@ -20,14 +20,9 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
         Get track meta-data given a track ID.
         Returns {} in case of failure
         """
-        #TODO(nikhil) refactor DB connectivity
-        conn = sqlite3.connect(DB_FILE)
-#TODO(nikhil) error handling
-        c = conn.cursor()
-        c.execute('''select url, title, bitrate, duration, filetype from tracks where id = ?''', id)
-        for row in c:
-            return row
-        return None
+        #TODO(nikhil) handle exception
+        track = Track.get(id)
+        return track
 
     def do_GET(self):
         #TODO(nikhil) keep regex compiled
@@ -50,7 +45,7 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             self.send_header("icy-pub", "1")
 # TODO(nikhil) decide all the ones below based on actual file
             self.send_header("Content-Type", "audio/mpeg")
-            self.send_header("icy-br", metadata[2])
+            self.send_header("icy-br", metadata.bitrate)
             self.send_header("icy-metaint", 512)
             self.wfile.write("\r\n")
             f = open(metadata[0].replace('file://', ''), 'rb')
@@ -60,7 +55,7 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.connection.send(chunk)
 #TODO(nikhil) deal with larger titles
                 if first:
-                    title = "\x02StreamTitle='%s';StreamUrl='';"%metadata[1]
+                    title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
                     title = title.ljust(33, '\x00')
                     print title
                     self.connection.send(title)

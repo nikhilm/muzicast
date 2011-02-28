@@ -15,14 +15,14 @@
 </head>
 <body>
     <div id="main">
-        <h1>{{ track['title'] }}</h1>
+        <h1>{{ track.title }}</h1>
         <h3>by
-            <a href="{{ url_for('.artist.index', id=track['artist_id']) }}">
-                {{ track['artist_name'] }}
+            <a href="{{ url_for('.artist.index', id=track.artist.id) }}">
+                {{ track.artist.name }}
             </a>
             on
-            <a href="{{ url_for('.album.index', id=track['album']) }}">
-                {{ track['album_name'] }}
+            <a href="{{ url_for('.album.index', id=track.album.id) }}">
+                {{ track.album.name }}
             </a>
         </h3>
         <a href="http://localhost:4000" id="player" style="width:300px; height: 100px"></a>
