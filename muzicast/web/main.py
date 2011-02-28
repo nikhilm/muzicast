@@ -11,4 +11,4 @@ def index():
         return redirect(url_for('admin.index'))
 
     # TODO: will need attributes for template
-    return render_template('home')
+    return render_template('home.html')
