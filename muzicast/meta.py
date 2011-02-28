@@ -5,7 +5,7 @@ from muzicast.const import DB_FILE
 
 #TODO(nikhil) handle windows sqlobject alternate drive syntax
 #TODO(nikhil) first run should create all tables
-connection = connectionForURI('sqlite://' + DB_FILE, debug=True)
+connection = connectionForURI('sqlite://' + DB_FILE)
 sqlhub.processConnection = connection
 
 class Artist(SQLObject):
@@ -35,7 +35,6 @@ class Track(SQLObject):
     discnumber = IntCol()
     bitrate = IntCol()
     duration = IntCol()
-    samplerate = IntCol()
     filesize = IntCol()
     filetype = StringCol()
     bpm = IntCol()
