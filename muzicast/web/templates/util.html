@@ -5,3 +5,12 @@
 {% macro script(name) %}
 <script language="javascript" src="{{ url_for('.static', filename='scripts/%s'%name) }}" type="text/javascript"> </script>
 {%- endmacro %}
+
+{% macro image(name) %}
+<img src="{{ url_for('.static', filename='images/%s'%name) }}"> </img>
+{%- endmacro %}
+
+{% macro pretty_time(seconds) %}
+{{seconds}}
+{{seconds//3600}}:{{seconds%3600//60}}:{{seconds%3600%60}}
+{%- endmacro %}

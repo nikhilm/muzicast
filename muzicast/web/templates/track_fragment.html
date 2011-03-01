@@ -1,0 +1,8 @@
+{% from 'util.html' import image, pretty_time %}
+
+<li id="{{track.id}}" class="track" ><a href="{{ url_for('.track.index', id=track.id) }}">
+{{track.title}}</a>
+<a class="add-to-playlist-button" href="/track/add/{{track.id}}">{{ image('add.png') }}</a>
+<a class="play-button" href="/track/play/{{track.id}}">{{ image('play.png') }}</a>
+<span class="duration">{{ pretty_time(track.duration) }}</span>
+</li>
