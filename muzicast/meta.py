@@ -10,11 +10,13 @@ sqlhub.processConnection = connection
 
 class Artist(SQLObject):
     name = StringCol()
+    albums = MultipleJoin('Album')
 
 class Album(SQLObject):
     name = StringCol()
     artist = ForeignKey('Artist')
     image = StringCol()
+    tracks = MultipleJoin('Track')
 
 class Genre(SQLObject):
     name = StringCol()
