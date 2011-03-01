@@ -10,5 +10,5 @@ artist = Module(__name__)
 @artist.route('/<id>')
 def index(id):
     #TODO(nikhil) handle exception
-    artist = Track.get(id)
+    artist = Artist.get(id)
     return render_template("artist.html", artist=artist)

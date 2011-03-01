@@ -1,0 +1,28 @@
+{% from "util.html" import stylesheet %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Artist: {{ artist.name }}</title>
+</head>
+<body>
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+    <div id="main">
+        <h1>{{ artist.name }}</h1>
+        <!-- TODO: fixme below -->
+        {% for album in artist.albums %}
+            {% for track in album.tracks %}
+                {% include 'track_fragment.html' %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    {# {% include 'playlist.html' %} #}
+    <div id="footer">
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>
