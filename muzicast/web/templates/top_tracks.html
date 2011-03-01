@@ -2,7 +2,7 @@
 
 <ul id="top-10">
 {% for track in top_tracks(10)  %}
-{{ include 'track_fragment.html' }}
+{% include 'track_fragment.html' %}
 {% endfor %}
 </ul>
 
