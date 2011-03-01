@@ -26,7 +26,7 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(self):
         #TODO(nikhil) keep regex compiled
-        match = re.match(r'/([0-9]*)$', self.path)
+        match = re.match(r'/([0-9]*)(;\.mp3)?$', self.path)
         if match:
             self.stream_song(match.group(1))
         else:
@@ -34,6 +34,11 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def stream_song(self, id):
         metadata = self.get_track(id)
+
+        send_title = False
+        if 'icy-metadata' in self.headers:
+            send_title = True
+
         if metadata:
             #TODO(nikhil) statistics update
             self.wfile.write("ICY 200 OK\r\n")
@@ -46,22 +51,25 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 # TODO(nikhil) decide all the ones below based on actual file
             self.send_header("Content-Type", "audio/mpeg")
             self.send_header("icy-br", metadata.bitrate)
-            self.send_header("icy-metaint", 512)
+
+            if send_title:
+                self.send_header("icy-metaint", 512)
+
             self.wfile.write("\r\n")
-            f = open(metadata[0].replace('file://', ''), 'rb')
+            f = open(metadata.url.replace('file://', ''), 'rb')
             chunk = f.read(512)
             first = True
             while chunk:
                 self.connection.send(chunk)
 #TODO(nikhil) deal with larger titles
-                if first:
-                    title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
-                    title = title.ljust(33, '\x00')
-                    print title
-                    self.connection.send(title)
-                    first = False
-                else:
-                    self.connection.send('\x00')
+                if send_title:
+                    if first:
+                        title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
+                        title = title.ljust(33, '\x00')
+                        self.connection.send(title)
+                        first = False
+                    else:
+                        self.connection.send('\x00')
                 chunk = f.read(512)
         else:
             #play fake stream or error out
