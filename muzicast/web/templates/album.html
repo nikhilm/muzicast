@@ -1,0 +1,30 @@
+{% from "util.html" import stylesheet %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Album: {{ album.name }}</title>
+</head>
+<body>
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+    <div id="main">
+        <h1>{{ album.name }}</h1>
+        <h3>by
+            <a href="{{ url_for('.artist.index', id=album.artist.id) }}">
+                {{ album.artist.name }}
+            </a>
+        </h3>
+        {% for track in album.tracks %}
+            {% include 'track_fragment.html' %}
+        {% endfor %}
+    </div>
+
+    {# {% include 'playlist.html' %} #}
+    <div id="footer">
+    {% include 'footer.html' %}
+</div>
+</body>
+</html>
