@@ -1,0 +1,9 @@
+<h2>Recently Played</h2>
+
+<ul id="recently-played">
+{% for track in recently_played(10)  %}
+{% include 'track_fragment.html' %}
+{% endfor %}
+
+</ul>
+
