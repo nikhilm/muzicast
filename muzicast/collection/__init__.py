@@ -1,17 +1,19 @@
 import os
+import sys
 import sqlite3
 import logging
 import datetime
 import time
+import signal
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
-logging.basicConfig(level=logging.DEBUG)
 
 from muzicast.collection.formats import MusicFile
 from muzicast.collection.fswatcher import CollectionEventHandler
 from muzicast.meta import Artist, Album, Genre, Composer, Track
 from muzicast.config import GlobalConfig
+
+logging.basicConfig(level=logging.DEBUG)
 
 def update_job(url):
     """ Scan a file.
@@ -86,8 +88,12 @@ class CollectionScanner(object):
             self.observer.schedule(self.fswatcher, path=directory, recursive=True)
 
         self.log.debug("Starting fswatcher")
-#TODO(nikhil) enable this
+#TODO(nikhil) enable this, but only after initialization (self.start) is done
         #self.observer.start()
+
+        signal.signal(signal.SIGINT, self.quit)
+
+        self.start()
 
     def update(self, url):
         pass
@@ -119,9 +125,31 @@ class CollectionScanner(object):
                         # or do we have a two step pool
                         update_job(fn)
 
+    def start(self):
+# initialization
+# 1. read last scan time
+#    if non existent, we have to do a full scan
+#    otherwise we have to do an incremental scan
+#
+# 2. set up watchers
+#
+    def quit(self, signum, frame):
+# close all update threads
+# save current time
+        config = GlobalConfig()
+        try:
+            config['collection']
+        except KeyError:
+            config['collection'] = {}
+        now = int(time.time())
+        config['collection']['last_scan'] = now
+        config.save()
+        sys.exit(0)
+
 if __name__ == '__main__':
     config = GlobalConfig()
 
+    # TODO(nikhil) needs to be refactored!
     if 'collection' in config and 'paths' in config['collection']:
         scanner = CollectionScanner(config['collection']['paths'])
         try:
