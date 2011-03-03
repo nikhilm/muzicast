@@ -3,10 +3,15 @@ import sqlite3
 import logging
 import datetime
 import time
+from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+logging.basicConfig(level=logging.DEBUG)
+
 from muzicast.collection.formats import MusicFile
+from muzicast.collection.fswatcher import CollectionEventHandler
 from muzicast.meta import Artist, Album, Genre, Composer, Track
+from muzicast.config import GlobalConfig
 
 def update_job(url):
     """ Scan a file.
@@ -68,23 +73,21 @@ def update_job(url):
             #TODO(nikhil) handle ascii encoding issues
             Track(**d)
     
-class CollectionEventHandler(FileSystemEventHandler):
-    def __init__(self, scanner):
-        self.scanner = scanner
-
-    def on_created(self, event):
-        pass
-
-    def on_modified(self, event):
-        pass
-
 class CollectionScanner(object):
     def __init__(self, list_of_directories):
         self.log = logging.getLogger('collectionscanner')
-        #self.log.addHandler(logging.StreamHandler())
-        self.log.addHandler(logging.NullHandler())
+        self.log.addHandler(logging.StreamHandler())
+        #self.log.addHandler(logging.NullHandler())
         self.log.setLevel(logging.DEBUG)
         self.directories = list_of_directories
+        self.fswatcher = CollectionEventHandler(self)
+        self.observer = Observer()
+        for directory in list_of_directories:
+            self.observer.schedule(self.fswatcher, path=directory, recursive=True)
+
+        self.log.debug("Starting fswatcher")
+#TODO(nikhil) enable this
+        #self.observer.start()
 
     def update(self, url):
         pass
@@ -115,3 +118,15 @@ class CollectionScanner(object):
                         # TODO: Do we wait around for updates to occur
                         # or do we have a two step pool
                         update_job(fn)
+
+if __name__ == '__main__':
+    config = GlobalConfig()
+
+    if 'collection' in config and 'paths' in config['collection']:
+        scanner = CollectionScanner(config['collection']['paths'])
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            scanner.observer.stop()
+        scanner.observer.join()
