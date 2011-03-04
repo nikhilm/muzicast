@@ -1,5 +1,7 @@
 from flask import Module, render_template, url_for, redirect, session, escape, request
 
+from sqlobject.main import SQLObjectNotFound
+
 from muzicast.web.util import is_first_run
 from muzicast.meta import Track
 
@@ -10,14 +12,20 @@ def top_tracks(n):
     Returns the top n tracks
     """
     #TODO(nikhil) fix this to use statistics
-    return [Track.get(i) for i in range(1, n+1)]
+    try:
+        return [Track.get(i) for i in range(1, n+1)]
+    except SQLObjectNotFound:
+        return []
 
 def recently_played(n):
     """
     Returns n latest played tracks
     """
     #TODO(nikhil) fix this to use statistics
-    return [Track.get(i) for i in range(1, n+1)]
+    try:
+        return [Track.get(i) for i in range(1, n+1)]
+    except SQLObjectNotFound:
+        return []
 
 @main.route('/')
 def index():
