@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="main">
+        <p><a href="{{ url_for('.main.index') }}">&#171; Back to Music</a></p>
         <h1>Muzicast Administration</h1>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
