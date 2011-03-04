@@ -1,0 +1,19 @@
+{% from "util.html" import stylesheet %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  {{ stylesheet('admin.css') }}
+  <title>Muzicast: First Run</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Sorry!</h1>
+        <p>There was some error installing Muzicast! Please fix it and refresh this page.</p>
+        <ul>
+            <li class="error">{{ error }}</li>
+        </ul>
+    </div>
+</body>
+</html>

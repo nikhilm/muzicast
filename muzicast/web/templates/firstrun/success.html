@@ -1,0 +1,19 @@
+{% from "util.html" import stylesheet %}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  {{ stylesheet('admin.css') }}
+  <title>Muzicast: First Run</title>
+</head>
+<body>
+    <div id="main">
+        <h1>Success</h1>
+        <p>Muzicast is installed and ready to go!</p>
+
+        <p>You should now set the administrator password and tell Muzicast where to find your music. Please press continue.</p>
+        <a href="{{ url_for('.admin.index') }}" class="goodbutton">Continue</a>
+    </div>
+</body>
+</html>
