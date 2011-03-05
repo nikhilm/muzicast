@@ -11,6 +11,9 @@
 {%- endmacro %}
 
 {% macro pretty_time(seconds) %}
-{{seconds}}
-{{seconds//3600}}:{{seconds%3600//60}}:{{seconds%3600%60}}
+{% if seconds > 3600 %}
+{{ "%02d:%02d:%02d"|format(seconds//3600, seconds%3600//60, seconds%3600%60) }}
+{% else %}
+{{ "%02d:%02d"|format(seconds%3600//60, seconds%3600%60) }}
+{% endif %}
 {%- endmacro %}
