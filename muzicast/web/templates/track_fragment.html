@@ -2,7 +2,10 @@
 
 <li id="{{track.id}}" class="track" ><a href="{{ url_for('.track.index', id=track.id) }}">
 {{track.title}}</a>
-<a class="add-to-playlist-button" href="/track/add/{{track.id}}">{{ image('add.png') }}</a>
+
+{% if not playlist.playlist_contains(track.id) %}
+    <a class="add-to-playlist-button" href="{{ url_for('.track.add_track_to_playlist', id=track.id) }}">{{ image('add.png') }}</a>
+{% endif %}
 <a class="play-button" href="/track/play/{{track.id}}">{{ image('play.png') }}</a>
 <span class="duration">{{ pretty_time(track.duration) }}</span>
 </li>

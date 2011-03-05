@@ -4,6 +4,7 @@ from sqlobject.main import SQLObjectNotFound
 
 from muzicast.web.util import is_first_run
 from muzicast.meta import Track
+from muzicast.web import playlist
 
 main = Module(__name__)
 
@@ -34,4 +35,4 @@ def index():
         return redirect(url_for('admin.index'))
 
     # TODO: will need attributes for template
-    return render_template('home.html', top_tracks=top_tracks, recently_played=recently_played)
+    return render_template('home.html', top_tracks=top_tracks, recently_played=recently_played, playlist=playlist)
