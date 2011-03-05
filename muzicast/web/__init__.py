@@ -1,5 +1,5 @@
 import os
-from pysqlite2 import dbapi2
+import exceptions
 from sqlobject import dberrors
 from flask import Flask, redirect, url_for, request, current_app, render_template
 
@@ -45,7 +45,7 @@ def first_run():
         app.before_request_funcs[None] = filter(not_first_run_func,
                                                 app.before_request_funcs[None])
         return render_template('firstrun/success.html')
-    except (OSError, dbapi2.Error, dberrors.Error), e: #TODO(nikhil) add more errors as req
+    except (OSError, dberrors.Error, Error, exceptions.RuntimeError), e: #TODO(nikhil) add more errors as req
         current_app.logger.debug(e)
         return render_template('firstrun/error.html', error=e.message)
 
