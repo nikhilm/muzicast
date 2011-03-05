@@ -26,6 +26,8 @@ from muzicast.web.album import album
 app.register_module(album, url_prefix='/album')
 from muzicast.web.track import track
 app.register_module(track, url_prefix='/track')
+from muzicast.web.genre import genre
+app.register_module(genre, url_prefix='/genre')
 
 from muzicast.web.main import main
 app.register_module(main, url_prefix='/')
