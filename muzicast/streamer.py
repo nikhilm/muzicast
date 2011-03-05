@@ -94,8 +94,7 @@ class StreamServer(asyncore.dispatcher):
             print 'New conn', addr
             handler = StreamJob(sock, addr, self)
 
-#TODO(nikhil) change bind address
-server = StreamServer('localhost', 7665)
+server = StreamServer('0.0.0.0', 7665)
 asyncore.loop()
 
 #def stream(a, b):
