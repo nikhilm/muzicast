@@ -4,7 +4,7 @@ import sys
 import signal
 import subprocess
 
-from muzicast.const import BASEDIR
+from muzicast.const import BASEDIR, WEB_PORT
 from muzicast.web import app
 
 print 'Running', os.getpid(), os.getppid()
@@ -17,8 +17,8 @@ class Runner(object):
         print 'Started scanner PID %d'%self.scanner.pid
         signal.signal(signal.SIGINT, self.shutdown)
         signal.signal(signal.SIGTERM, self.shutdown)
-        #app.run('0.0.0.0', 7664, debug=True, use_reloader=False)
-        app.run('0.0.0.0', 7664, debug=False, use_reloader=False)
+        app.run('0.0.0.0', WEB_PORT, debug=True, use_reloader=False)
+        #app.run('0.0.0.0', WEB_PORT, debug=False, use_reloader=False)
 
     def shutdown(self, signum, frame):
         self.streamer.terminate()

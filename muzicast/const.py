@@ -17,6 +17,9 @@ CONFIG = os.path.join(USERDIR, "config")
 DB_FILE = os.path.join(USERDIR, "collection.db")
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
+WEB_PORT = 7664
+STREAM_PORT = 7665
+
 AUTHORS = sorted("""\
 TODO
 """.strip().split("\n"))
