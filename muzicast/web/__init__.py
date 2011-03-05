@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 def redirect_firstrun():
     current_app.logger.debug(request.path)
-    if request.path != '/firstrun' and not request.path.startswith('/static/'):
+    if request.path != '/firstrun' and not request.path.startswith('/static/') and not request.path == '/favicon.ico':
         return redirect('/firstrun')
 
 if is_first_run():
