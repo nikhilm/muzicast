@@ -35,9 +35,9 @@
 <p>Please select the folders on your computer which Muzicast should scan
 for music. You should tick the checkbox next to the folder. Selecting a parent folder will select all the children also.</p>
 
-<form action="{{ url_for('admin.rescan') }}" method="POST">
+{# <form action="{{ url_for('admin.rescan') }}" method="POST">
     <input type="submit" value="Rescan Collection" id="rescan-collection-button">
-</form>
+</form> #}
 <form action="{{ url_for('admin.save_directories') }}" method="POST" id="save-directories-form">
     <input type="submit" value="Save" id="save-directories-button">
 </form>
