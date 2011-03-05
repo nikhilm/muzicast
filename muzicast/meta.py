@@ -48,6 +48,26 @@ class Track(SQLObject):
     createdate = DateTimeCol()
     modifydate = DateTimeCol()
 
+class TrackStatistics(SQLObject):
+    track = ForeignKey('Track')
+    last_played = DateTimeCol()
+    play_count = IntCol()
+
+class AlbumStatistics(SQLObject):
+    album = ForeignKey('Album')
+    last_played = DateTimeCol()
+    play_count = IntCol()
+
+class ArtistStatistics(SQLObject):
+    artist = ForeignKey('Artist')
+    last_played = DateTimeCol()
+    play_count = IntCol()
+
+class GenreStatistics(SQLObject):
+    genre = ForeignKey('Genre')
+    last_played = DateTimeCol()
+    play_count = IntCol()
+
 def init_meta():
     """
     Creates metadata tables.
@@ -62,6 +82,10 @@ def init_meta():
     Genre.createTable()
     Composer.createTable()
     Track.createTable()
+    TrackStatistics.createTable()
+    AlbumStatistics.createTable()
+    ArtistStatistics.createTable()
+    GenreStatistics.createTable()
     # XXX: Add more HERE
     return True
 
