@@ -1,4 +1,5 @@
 import os
+import sys
 from sqlobject import *
 
 from muzicast.const import DB_FILE
@@ -13,30 +14,30 @@ connection = connectionForURI(connection_string)
 sqlhub.processConnection = connection
 
 class Artist(SQLObject):
-    name = StringCol()
+    name = UnicodeCol()
     albums = MultipleJoin('Album')
 
 class Album(SQLObject):
-    name = StringCol()
+    name = UnicodeCol()
     artist = ForeignKey('Artist')
-    image = StringCol()
+    image = UnicodeCol()
     tracks = MultipleJoin('Track')
 
 class Genre(SQLObject):
-    name = StringCol()
+    name = UnicodeCol()
 
 class Composer(SQLObject):
-    name = StringCol()
+    name = UnicodeCol()
 
 class Track(SQLObject):
-    url = StringCol()
+    url = UnicodeCol()
     artist = ForeignKey('Artist')
     album = ForeignKey('Album')
     genre = ForeignKey('Genre')
     composer = ForeignKey('Composer')
     year = IntCol()
-    title = StringCol()
-    comment = StringCol()
+    title = UnicodeCol()
+    comment = UnicodeCol()
     tracknumber = IntCol()
     discnumber = IntCol()
     bitrate = IntCol()
