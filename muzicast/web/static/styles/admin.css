@@ -73,3 +73,14 @@ a.goodbutton {
     text-shadow: 2px 2px 1px white;
     color: #000099;
 }
+
+.disabled {
+    color: #555 !important;
+    background: #aaa !important;
+    border-color: #333 !important;
+}
+
+#dirtree-messages {
+    font-size: 75%;
+    padding: 10px;
+}

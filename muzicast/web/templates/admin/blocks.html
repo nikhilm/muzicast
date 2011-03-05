@@ -51,6 +51,8 @@ $(function() {
         return false;
     });
     $('#save-directories-button').click(function(e) {
+        if($('#save-directories-button').hasClass('disabled'))
+            return;
         // external defined in dirtree macro
         saveDirectoryTree();
         e.preventDefault();

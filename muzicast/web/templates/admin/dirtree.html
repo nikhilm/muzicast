@@ -2,6 +2,8 @@
 {% from "util.html" import script %}
 {% macro dirtree() %}
     {{ script('jquery.jstree.js') }}
+    <div id="dirtree-messages">
+    </div>
     <div id="dirtree-div">
     </div>
     <script language="javascript">
@@ -46,6 +48,9 @@
         });
 
         function saveDirectoryTree() {
+            $('#save-directories-button').addClass('disabled');
+            $('#dirtree-messages').html('<img src="/static/scripts/themes/themes/default/throbber.gif">');
+
             var json = jQuery.jstree._reference($('#dirtree-div')).get_json();
             // TODO(nikhil) can probably be made
             // more efficient rather than sending
@@ -61,11 +66,13 @@
 
                 data:  JSON.stringify(json),
                 success: function(data, textStatus, xhr) {
-                          console.log("Got reply", data, textStatus);
+                    $('#dirtree-messages').html('<ul class="flashes"><li>Successfully updated collection directories! It may take upto a few minutes for the changes to show up.</li></ul>');
+                    $('#save-directories-button').removeClass('disabled');
                 },
 
                 error: function(xhr, textStatus, error) {
-                    // TODO(nikhil)
+                    $('#dirtree-messages').html('<ul class="flashes"><li class="error">Error saving new collection directories!</li></ul>');
+                    $('#save-directories-button').removeClass('disabled');
                 }
             });
         }
