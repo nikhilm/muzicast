@@ -5,8 +5,11 @@ from muzicast.const import DB_FILE
 
 # NOTE: When adding a class to this file, make a relevant
 # entry in init_meta to initialize the database
-#TODO(nikhil) handle windows sqlobject alternate drive syntax
-connection = connectionForURI('sqlite://' + DB_FILE)
+connection_string = 'sqlite://' + DB_FILE
+if sys.platform == 'win32':
+    connection_string = 'sqlite:/' + os.path.normpath(DB_FILE).replace(':', '|/', 1)
+
+connection = connectionForURI(connection_string)
 sqlhub.processConnection = connection
 
 class Artist(SQLObject):
