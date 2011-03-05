@@ -42,3 +42,8 @@ def download_playlist():
     pls = make_pls_playlist(playlist.playlist())
     response = make_response(pls, None, None, 'audio/x-scpls')
     return response
+
+@main.route('playlist/clear')
+def clear_playlist():
+    playlist.playlist_clear()
+    return redirect(request.headers['referer'])
