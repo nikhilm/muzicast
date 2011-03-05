@@ -6,6 +6,10 @@ from muzicast.web.playlist import add_to_playlist, delete_from_playlist
 
 track = Module(__name__)
 
+@track.route('s')
+def tracks():
+    return "TODO: fixme"
+
 @track.route('/<int:id>')
 def index(id):
     track = Track.get(id)

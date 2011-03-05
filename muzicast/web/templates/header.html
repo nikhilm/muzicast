@@ -1,8 +1,8 @@
 {% from 'util.html' import image %}
 {{ image('muzicast_logo.png') }}
 <ul id="top-navigation">
-<li><a href="/artist">Artist</a></li>
-<li><a href="/album">Album</a></li>
-<li><a href="/genre">Genre</a></li>
-<li><a href="/tracks">Tracks</a></li>
+<li><a href="{{ url_for('.artist.artists') }}">Artists</a></li>
+<li><a href="{{ url_for('.album.albums') }}">Albums</a></li>
+<li><a href="{{ url_for('.genre.genres') }}">Genres</a></li>
+<li><a href="{{ url_for('.track.tracks') }}">Tracks</a></li>
 </ul>
