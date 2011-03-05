@@ -1,0 +1,22 @@
+{% from 'util.html' import image %}
+<div id="playlist">
+<h3>Playlist</h3>
+
+<ol>
+{% for track in playlist.playlist()  %}
+    <li class="{{ loop.cycle('odd', 'even') }}">
+        <a href="{{ url_for('.track.index', id=track.id) }}">
+            {{ track.title }}
+        </a>
+        <a href="{{ url_for('.track.delete_track_from_playlist', id=track.id) }}">
+            {{ image('delete.png') }}
+        </a>
+    </li>
+{% else %}
+<p>Your playlist is empty!</p>
+{% endfor %}
+</ol>
+
+<a href="{{ url_for('.main.download_playlist') }}">Download</a>
+<a href="{{ url_for('.main.clear_playlist') }}">Clear</a>
+</div>
