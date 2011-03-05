@@ -126,6 +126,7 @@ class CollectionScanner(object):
                         update_job(fn)
 
     def start(self):
+        pass
 # initialization
 # 1. read last scan time
 #    if non existent, we have to do a full scan
