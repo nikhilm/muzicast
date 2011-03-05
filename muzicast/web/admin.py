@@ -102,7 +102,7 @@ def dirlist():
 
 @admin.route('/stop', methods=['POST'])
 def stop():
-    signal.alarm(1)
+#TODO(nikhil) drop this
     #TODO: do cleanup
     return render_template('admin/stopped.html')
     #TODO: do more cleanup
@@ -167,7 +167,3 @@ def save_directories():
     config.save()
 
     return jsonify(success=True)
-
-def shutdown(signal, stack_frame):
-    sys.exit(0)
-signal.signal(signal.SIGALRM, shutdown)
