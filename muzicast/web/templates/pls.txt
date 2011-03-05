@@ -1,0 +1,9 @@
+[playlist]
+NumberOfEntries={{tracks|length}}
+{# TODO: get base URL #}
+{% for track in tracks %}
+File{{loop.index}}={{request.url_root}}/{{track.id}}
+Title{{loop.index}}={{track.title}}
+Length{{loop.index}}={{track.duration}}
+{% endfor %}
+Version=2
