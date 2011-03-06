@@ -89,12 +89,11 @@ class ConfigWatcher(FileSystemEventHandler):
             self.scanner.configuration_changed()
     
 class CollectionScanner(object):
-    def __init__(self, list_of_directories):
+    def __init__(self):
         self.log = logging.getLogger('collectionscanner')
         self.log.addHandler(logging.StreamHandler())
         self.log.setLevel(logging.DEBUG)
 
-        self.directories = list_of_directories
         self.fswatcher = CollectionEventHandler(self)
         self.observer = Observer()
         self.watches = {}
@@ -105,7 +104,6 @@ class CollectionScanner(object):
 
         signal.signal(signal.SIGINT, self.quit)
         signal.signal(signal.SIGTERM, self.quit)
-        self.start()
 
     def add_directory(self, directory, full_scan=False):
         # start a full scan if required
@@ -219,14 +217,6 @@ class CollectionScanner(object):
         sys.exit(0)
 
 if __name__ == '__main__':
-    config = GlobalConfig()
-
-    # TODO(nikhil) needs to be refactored!
-    if 'collection' in config and 'paths' in config['collection']:
-        scanner = CollectionScanner(config['collection']['paths'])
-        try:
-            while True:
-                time.sleep(1)
-        except KeyboardInterrupt:
-            scanner.observer.stop()
-        scanner.observer.join()
+    CollectionScanner().start()
+    while True:
+        time.sleep(1)
