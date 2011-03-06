@@ -56,7 +56,7 @@ def bake(url):
         d['bpm'] = 0
         print 'timestamp', datetime.datetime.fromtimestamp(int(f.get('~#mtime', '0')) or time.time())
         d['createdate'] = d['modifydate'] = datetime.datetime.fromtimestamp(int(f.get('~#mtime', '0')) or time.time())
-    	print '1'
+        print '1'
         return d
 
     return None
@@ -109,7 +109,7 @@ class ScanRunner(object):
         info = bake(url)
         self.log.debug('Got info %s', info)
         if not info:
-        	return
+            return
         self.log.debug('after bake')
         # does it exist already?
         entry = list(Track.select(Track.q.url == ('file://'+url)))
