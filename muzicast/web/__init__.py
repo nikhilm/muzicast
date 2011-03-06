@@ -46,7 +46,7 @@ def first_run():
         app.before_request_funcs[None] = filter(not_first_run_func,
                                                 app.before_request_funcs[None])
         return render_template('firstrun/success.html')
-    except (OSError, dberrors.Error, Error, exceptions.RuntimeError), e: #TODO(nikhil) add more errors as req
+    except (OSError, dberrors.Error, exceptions.RuntimeError), e: #TODO(nikhil) add more errors as req
         current_app.logger.debug(e)
         return render_template('firstrun/error.html', error=e.message)
 
