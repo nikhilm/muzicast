@@ -35,7 +35,6 @@ app.register_module(main, url_prefix='/')
 @app.route('/firstrun')
 def first_run():
     try:
-        os.mkdir(USERDIR)
         init_meta()
 
         #remove hook
