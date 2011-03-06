@@ -14,9 +14,9 @@ class ScanRunner(object):
 
         self.log.debug("starting scan on %s. full? %s. comparing against %d", directory, full, last_shutdown_time)
         if full:
-        	self.full_scan()
+            self.full_scan()
         else:
-        	self.incremental_scan()
+            self.incremental_scan()
 
     def full_scan(self):
         # incremental scan with require_update always true
@@ -49,7 +49,7 @@ class ScanRunner(object):
         stat_info = os.stat(path)
         if stat.S_ISDIR(stat_info.st_mode):
             if stat_info.st_mtime > self.last_shutdown_time:
-            	return True
+                return True
             return False
 
         # TODO(nikhil) handle various file cases

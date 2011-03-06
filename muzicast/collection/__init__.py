@@ -5,11 +5,13 @@ import logging
 import datetime
 import time
 import signal
+from multiprocessing import Pool
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 from muzicast.collection.formats import MusicFile
 from muzicast.collection.fswatcher import CollectionEventHandler
+from muzicast.collection.scanrunner import ScanRunner
 from muzicast.meta import Artist, Album, Genre, Composer, Track
 from muzicast.config import GlobalConfig
 from muzicast.const import CONFIG, USERDIR
@@ -96,6 +98,7 @@ class CollectionScanner(object):
         self.fswatcher = CollectionEventHandler(self)
         self.observer = Observer()
         self.watches = {}
+        self.scanner_pool = Pool(processes=4)
 
         self.log.debug("Starting fswatcher")
 #TODO(nikhil) enable this, but only after initialization (self.start) is done
@@ -110,6 +113,7 @@ class CollectionScanner(object):
         # and schedule a watch.
         self.log.debug("Adding directory %s. full scan? %s", directory, full_scan)
 
+        self.scanner_pool.apply_async(ScanRunner, [directory, full_scan, self.last_shutdown_time])
         #TODO(nikhil) fix me
         self.watches[directory] = True
         #self.watches[directory] = self.observer.schedule(self.fswatcher, path=directory, recursive=True)
@@ -206,6 +210,12 @@ class CollectionScanner(object):
         now = int(time.time())
         config['collection']['last_scan'] = now
         config.save()
+
+        self.scanner_pool.close()
+        # wait a few seconds for finish
+        time.sleep(3)
+        self.scanner_pool.terminate()
+        self.scanner_pool.join()
         sys.exit(0)
 
 if __name__ == '__main__':
