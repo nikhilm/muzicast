@@ -59,18 +59,21 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             f = open(metadata.url.replace('file://', ''), 'rb')
             chunk = f.read(512)
             first = True
-            while chunk:
-                self.connection.send(chunk)
+            try:
+                while chunk:
+                    self.connection.send(chunk)
 #TODO(nikhil) deal with larger titles
-                if send_title:
-                    if first:
-                        title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
-                        title = title.ljust(33, '\x00')
-                        self.connection.send(title)
-                        first = False
-                    else:
-                        self.connection.send('\x00')
-                chunk = f.read(512)
+                    if send_title:
+                        if first:
+                            title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
+                            title = title.ljust(33, '\x00')
+                            self.connection.send(title)
+                            first = False
+                        else:
+                            self.connection.send('\x00')
+                    chunk = f.read(512)
+            except socket.error:
+                return
         else:
             #play fake stream or error out
             pass
