@@ -30,7 +30,7 @@ class Composer(SQLObject):
     name = UnicodeCol()
 
 class Track(SQLObject):
-    url = UnicodeCol()
+    url = UnicodeCol(alternateID=True)
     artist = ForeignKey('Artist')
     album = ForeignKey('Album')
     genre = ForeignKey('Genre')
