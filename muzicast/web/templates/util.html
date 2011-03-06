@@ -17,3 +17,15 @@
 {{ "%02d:%02d"|format(seconds%3600//60, seconds%3600%60) }}
 {% endif %}
 {%- endmacro %}
+
+{% macro paging(endpoint, current, total) %}
+<div class="paging">
+    {% if current > 1 %}
+    <a href="{{ url_for(endpoint, page=current-1) }}">&#171;</a>
+    {% endif %}
+    <span>Page {{ current }} of {{ total }}</span>
+    {% if current < total %}
+    <a href="{{ url_for(endpoint, page=current+1) }}">&#187;</a>
+    {% endif %}
+</div>
+{%- endmacro %}
