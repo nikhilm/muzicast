@@ -15,7 +15,7 @@ class CollectionEventHandler(FileSystemEventHandler):
         entries = list(Track.selectBy(url='file://' + event.src_path))
         if entries:
             for entry in entries:
-            	print entry
+                print entry
 
     def on_created(self, event):
         print "Created", dir(event), event.src_path

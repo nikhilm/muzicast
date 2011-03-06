@@ -12,6 +12,7 @@ from muzicast.collection.formats import MusicFile
 from muzicast.collection.fswatcher import CollectionEventHandler
 from muzicast.meta import Artist, Album, Genre, Composer, Track
 from muzicast.config import GlobalConfig
+from muzicast.const import CONFIG, USERDIR
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -74,69 +75,129 @@ def update_job(url):
         else:
             #TODO(nikhil) handle ascii encoding issues
             Track(**d)
+
+class ConfigWatcher(FileSystemEventHandler):
+    def __init__(self, scanner):
+        FileSystemEventHandler.__init__(self)
+        self.scanner = scanner
+
+    def on_modified(self, event):
+        print "DETECTED CHANGE"
+        if event.src_path == CONFIG:
+            self.scanner.configuration_changed()
     
 class CollectionScanner(object):
     def __init__(self, list_of_directories):
         self.log = logging.getLogger('collectionscanner')
         self.log.addHandler(logging.StreamHandler())
-        #self.log.addHandler(logging.NullHandler())
         self.log.setLevel(logging.DEBUG)
+
         self.directories = list_of_directories
         self.fswatcher = CollectionEventHandler(self)
         self.observer = Observer()
-        for directory in list_of_directories:
-            self.observer.schedule(self.fswatcher, path=directory, recursive=True)
+        self.watches = {}
 
         self.log.debug("Starting fswatcher")
 #TODO(nikhil) enable this, but only after initialization (self.start) is done
-        #self.observer.start()
 
         signal.signal(signal.SIGINT, self.quit)
-
+        signal.signal(signal.SIGTERM, self.quit)
         self.start()
 
-    def update(self, url):
-        pass
-        #self.log.debug("Updating %s", url)
+    def add_directory(self, directory, full_scan=False):
+        # start a full scan if required
+        # otherwise do an incremental
+        # and schedule a watch.
+        self.log.debug("Adding directory %s. full scan? %s", directory, full_scan)
 
-    def requires_update(self):
-        return False
+        #TODO(nikhil) fix me
+        self.watches[directory] = True
+        #self.watches[directory] = self.observer.schedule(self.fswatcher, path=directory, recursive=True)
+        self.log.debug("Added watch, everything fine")
 
-    def full_scan(self):
-        # incremental scan with require_update always true
-        old_requires_update = self.requires_update
-        self.requires_update = lambda x: True
-        self.incremental_scan()
-        self.requires_update = old_requires_update
+    def remove_directory(self, directory):
+        try:
+            self.log.debug("Removed watch on %s", directory)
+            #TODO(nikhil) fixme
+            #self.observer.unschedule(self.watches[directory])
+            del self.watches[directory]
+        except KeyError:
+            self.log.debug("Could not unschedule %s", directory)
 
-    def incremental_scan(self):
-        for directory in self.directories:
-            for dirpath, dirnames, filenames in os.walk(directory):
-                # only get the directories we know are modified
-                # this way os.walk is more efficient
-                [dirnames.remove(dir) for dir in dirnames if not self.requires_update(os.path.join(dirpath, dir))]
-                
-                #self.log.debug("Directory %s Scanning %s", dirpath, dirnames)
+    def configuration_changed(self):
+        # check if collection dirs have
+        # been changed since we last started
+        # if yes, we will do a full rescan
+        # otherwise, an incremental scan.
+        self.log.debug("Config changed")
 
-                for file in filenames:
-                    fn = os.path.join(dirpath, file)
-                    if self.requires_update(fn):
-                        # TODO: Do we wait around for updates to occur
-                        # or do we have a two step pool
-                        update_job(fn)
+        config = GlobalConfig()
+        paths_saved_at = 0
+        last_scan = 0
+        self.last_shutdown_time = 0
+        try:
+            paths_saved_at = int(config['collection']['paths_saved_at'])
+        except KeyError:
+#TODO(nikhil) test this behaviour
+            pass
+
+        try:
+            last_scan = int(config['collection']['last_scan'])
+        except KeyError:
+            last_scan = paths_saved_at - 1
+
+        try:
+            self.last_shutdown_time = int(config['last_shutdown_time'])
+        except KeyError:
+            pass
+
+        collection_directories = set()
+        try:
+            collection_directories = set(config['collection']['paths'])
+        except KeyError:
+            pass
+        self.log.debug("New collection paths %s", collection_directories)
+
+        full_scan = False
+        if last_scan < paths_saved_at:
+            full_scan = True
+
+        # first remove watches on
+        # any directories that have been
+        # removed from the collection directories
+        existing_directories = set(self.watches.keys())
+        self.log.debug("Existing %s", existing_directories)
+        for dir in existing_directories.difference(collection_directories):
+            self.remove_directory(dir)
+
+        for dir in collection_directories:
+            if dir in self.watches:
+                self.log.debug("%s is already watched", dir)
+                # directory is already being watched
+                # do nothing
+                pass
+            else:
+                self.add_directory(dir, full_scan)
+
 
     def start(self):
-        pass
-# initialization
-# 1. read last scan time
-#    if non existent, we have to do a full scan
-#    otherwise we have to do an incremental scan
-#
-# 2. set up watchers
-#
+        self.configuration_changed()
+        # Note: a 'first' scan is an
+        # incremental scan behaving like a full
+        # scan, so we don't have to explicitly
+        # handle that case.
+        # finally put a watch on the config file itself
+        self.observer.schedule(ConfigWatcher(self), path=USERDIR)
+        self.observer.start()
+
     def quit(self, signum, frame):
-# close all update threads
-# save current time
+        signal.signal(signal.SIGINT, signal.SIG_DFL)
+        signal.signal(signal.SIGTERM, signal.SIG_DFL)
+        # stop watching file before we make any changes
+        self.observer.unschedule_all()
+        self.observer.stop()
+        # close all update threads
+        # save current time
         config = GlobalConfig()
         try:
             config['collection']
