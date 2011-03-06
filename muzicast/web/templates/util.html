@@ -7,7 +7,7 @@
 {%- endmacro %}
 
 {% macro image(name) %}
-<img src="{{ url_for('.static', filename='images/%s'%name) }}"> </img>
+<img src="{{ url_for('.static', filename='images/%s'%name) }}"{% for k in kwargs %} {{ k }}="{{ kwargs[k] }}"{% endfor %}> </img>
 {%- endmacro %}
 
 {% macro pretty_time(seconds) %}
