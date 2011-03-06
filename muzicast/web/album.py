@@ -20,3 +20,13 @@ def index(id):
     #TODO(nikhil) handle exception
     album = Album.get(id)
     return render_template("album.html", album=album, playlist=playlist)
+
+@album.route('/add/<int:id>')
+def add_album_to_playlist(id):
+    try:
+        album = Album.get(id)
+        for track in album.tracks:
+            playlist.add_to_playlist(track.id)
+        return redirect(request.headers['referer'])
+    except LookupError:
+        abort(400)
