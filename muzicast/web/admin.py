@@ -1,6 +1,7 @@
 import os
 import sys
 import signal
+import time
 from hashlib import sha256
 
 try: import simplejson as json
@@ -164,6 +165,7 @@ def save_directories():
     if not 'collection' in config:
         config['collection'] = {'paths': []}
     config['collection']['paths'] = list(paths)
+    config['collection']['paths_saved_at'] = int(time.time())
     config.save()
 
     return jsonify(success=True)
