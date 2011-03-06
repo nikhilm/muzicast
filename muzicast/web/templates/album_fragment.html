@@ -1,0 +1,8 @@
+{% from 'util.html' import image %}
+
+<li id="{{album.id}}" class="album" >
+<a href="{{ url_for('.album.index', id=album.id) }}"><!-- TODO: cover image or blank cover image -->{{ image('nocover.png', class='cover') }}</a>
+<a href="{{ url_for('.album.index', id=album.id) }}">{{ album.name }}</a>
+
+    <a class="add-to-playlist-button" href="{{ url_for('.album.add_album_to_playlist', id=album.id) }}">{{ image('add.png') }}</a>
+</li>
