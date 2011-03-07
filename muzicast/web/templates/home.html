@@ -1,12 +1,11 @@
 {% from 'util.html' import stylesheet %}
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-<title>Muzicast</title>
-    {{ stylesheet('muzicast.css') }}
+    {% set title = "Muzicast" %}
+    {% include 'head.html' %}
 </head>
-
 <body>
-
 <div id="wrapper">
 
 <!-- header -->
@@ -14,14 +13,22 @@
     {% include 'header.html' %}
 </div>
 <!-- end header -->
+<br>
+<br>
+<br>
+
+<div id="playlist_display">
+     {% include 'playlist_interface.html' %}
+</div>
 
 <div id="main">
     {% include 'top_tracks.html' %}
 
     {% include 'recent.html' %}
 
-    {% include 'playlist_interface.html' %}
 </div>
+
+
 
 <div id="footer">
     {% include 'footer.html' %}
