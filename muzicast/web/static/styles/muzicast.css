@@ -1,0 +1,89 @@
+body{
+	background-image: url('/static/images/home_background.jpg');
+	}
+#logo{
+     float: left;
+     width: 10px;
+     height: 10px;
+     
+     }
+     
+li{
+	font-size:14px;
+   list-style: none;
+	}
+
+#top-navigation{
+  position: absolute;
+  top: 0px;
+  left: 335px;
+  width: 500px;
+     }
+
+#top-navigation li{
+   font-size: 25px;
+  float: left;
+  background: url(images/nav_left.gif) no-repeat;
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-top: 45px;
+  line-height: 1.1;
+  display: inline;
+     }
+     
+#top-navigation ul{
+    margin: 0; padding: 0; 
+    list-style-type: none; list-style-image: none; }
+
+a.top-navigation{
+     font-family: Arial, Helvetica, sans-serif;
+     font-size: 14px;
+     color: #FFFFFF;
+     background-color:blue;
+     text-decoration:none;
+     border-right:1px solid white;
+   
+     }
+#playlist_display{
+	 float: right;}
+
+h3.playlist_right{
+	white-space:nowrap; width:40ex;}
+p.playlist_right{
+	white-space:nowrap; width:40ex;}	 
+
+a.track{
+     text-decoration:no;
+     font-size:10px;
+     font-family:Arial;
+     color: green;
+     left-margin: 20px;
+     }     
+
+
+
+h2{
+     display: inline;
+    font-size:20px;
+     color: black;
+     background-color:purple;
+     }
+
+#footer{
+     float: right;
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
