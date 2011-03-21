@@ -1,29 +1,9 @@
-{% from "util.html" import stylesheet, paging %}
-
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Muzicast: Artists</title>
-</head>
-<body>
-    <div id="header">
-        {% include 'header.html' %}
-    </div>
-    <div id="main">
-        <h1>Artists</h1>
-        <!-- TODO: fixme fetch top artists -->
-        <ul>
-        {% for artist in artists %}
-            <li><a href="{{ url_for('.artist.index', id=artist.id) }}">{{ artist.name }}</a></li>
-        {% endfor %}
-        </ul>
-        {{ paging('.artist.artists_page', current_page, pages) }}
-    </div>
-
-    {% include 'playlist_interface.html' %}
-    <div id="footer">
-    {% include 'footer.html' %}
-</div>
-</body>
-</html>
+{% from 'util.html' import paging %}
+<h1>Artists</h1>
+<!-- TODO: fixme fetch top artists -->
+<ul>
+{% for artist in artists %}
+    <li><a href="{{ url_for('.artist.index', id=artist.id) }}">{{ artist.name }}</a></li>
+{% endfor %}
+</ul>
+{{ paging('.artist.artists_page', current_page, pages) }}

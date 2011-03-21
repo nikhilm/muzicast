@@ -1,8 +1,8 @@
-from flask import Module, render_template, url_for, redirect, session, escape, request
+from flask import Module, url_for, redirect, session, escape, request
 
 from muzicast.const import DB_FILE
 from muzicast.meta import Genre
-from muzicast.web import playlist
+from muzicast.web.util import render_master_page
 
 genre = Module(__name__)
 
@@ -14,4 +14,4 @@ def genres():
 def index(id):
     #TODO(nikhil) handle exception
     genre = Genre.get(id)
-    return render_template("genre.html", genre=genre, playlist=playlist)
+    return render_master_page("genre.html", title="Genre", genre=genre)

@@ -8,6 +8,15 @@ from muzicast.web import playlist
 def is_first_run():
     return not os.path.exists(const.CONFIG)
 
+def render_master_page(body_page, **kwargs):
+    page_data = {
+        'playlist': playlist,
+        'body_page': body_page,
+    }
+
+    page_data.update(kwargs)
+    return render_template('master.html', **page_data)
+
 def page_view(page, cls, template, key):
     """
     TODO: document this
@@ -19,12 +28,11 @@ def page_view(page, cls, template, key):
     insts = query[(page-1)*PER_PAGE:page*PER_PAGE]
 
     kwargs = {
-        'playlist'    : playlist,
         'current_page': page,
         'pages'       : int(ceil(query.count()*1.0/PER_PAGE)),
         key           : insts
     }
-    return render_template(template, **kwargs)
+    return render_master_page(template, **kwargs)
 
 def make_pls_playlist(tracks):
     """

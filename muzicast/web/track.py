@@ -2,7 +2,7 @@ from flask import Module, render_template, url_for, redirect, session, escape, r
 
 from muzicast.const import DB_FILE
 from muzicast.meta import Track
-from muzicast.web import playlist
+from muzicast.web.util import render_master_page
 
 track = Module(__name__)
 
@@ -13,7 +13,7 @@ def tracks():
 @track.route('/<int:id>')
 def index(id):
     track = Track.get(id)
-    return render_template("track.html", track=track, playlist=playlist)
+    return render_master_page("track.html", title='Muzicast: Track', track=track)
 
 @track.route('/add/<int:id>')
 def add_track_to_playlist(id):

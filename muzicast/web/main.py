@@ -1,8 +1,8 @@
-from flask import Module, render_template, url_for, redirect, session, escape, request, make_response
+from flask import Module, url_for, redirect, session, escape, request, make_response
 
 from sqlobject.main import SQLObjectNotFound
 
-from muzicast.web.util import is_first_run, make_pls_playlist
+from muzicast.web.util import is_first_run, make_pls_playlist, render_master_page
 from muzicast.meta import Track
 from muzicast.web import playlist
 
@@ -35,7 +35,7 @@ def index():
         return redirect(url_for('admin.index'))
 
     # TODO: will need attributes for template
-    return render_template('home.html', top_tracks=top_tracks, recently_played=recently_played, playlist=playlist)
+    return render_master_page('home.html', title='Muzicast', top_tracks=top_tracks, recently_played=recently_played)
 
 @main.route('playlist/download/playlist.pls')
 def download_playlist():

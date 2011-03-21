@@ -1,39 +1,3 @@
-{% from 'util.html' import stylesheet %}
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    {% set title = "Muzicast" %}
-    {% include 'head.html' %}
-</head>
-<body>
-<div id="wrapper">
-
-<!-- header -->
-<div id="header">
-    {% include 'header.html' %}
-</div>
-<!-- end header -->
-<br>
-<br>
-<br>
-
-<div id="playlist_display">
-     {% include 'playlist_interface.html' %}
-</div>
-
-<div id="main">
     {% include 'top_tracks.html' %}
 
     {% include 'recent.html' %}
-
-</div>
-
-
-
-<div id="footer">
-    {% include 'footer.html' %}
-</div>
-
-</body>
-
-</html>

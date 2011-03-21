@@ -3,7 +3,7 @@ from flask import Module, render_template, url_for, redirect, session, escape, r
 from muzicast.const import DB_FILE
 from muzicast.meta import Artist
 from muzicast.web import playlist
-from muzicast.web.util import page_view
+from muzicast.web.util import page_view, render_master_page
 
 artist = Module(__name__)
 
@@ -19,7 +19,7 @@ def artists_page(page):
 def index(id):
     #TODO(nikhil) handle exception
     artist = Artist.get(id)
-    return render_template("artist.html", artist=artist, playlist=playlist)
+    return render_master_page("artist.html", title="Artist", artist=artist)
 
 @artist.route('/add/<int:id>')
 def add_artist_to_playlist(id):

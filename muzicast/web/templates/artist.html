@@ -1,27 +1,7 @@
-{% from "util.html" import stylesheet, image %}
-
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Artist: {{ artist.name }}</title>
-</head>
-<body>
-    <div id="header">
-        {% include 'header.html' %}
-    </div>
-    <div id="main">
-        <h1>Albums by {{ artist.name }}</h1>
-        <h3><a href="{{ url_for('.artist.add_artist_to_playlist', id=artist.id) }}">{{ image('add.png') }} Add all tracks by {{ artist.name }} to playlist</a></h3>
-        {% for album in artist.albums %}
-            {% include 'album_fragment.html' %}
-        {% endfor %}
-        <!-- TODO add good stuff like their top tracks, plays -->
-    </div>
-
-    {% include 'playlist_interface.html' %}
-    <div id="footer">
-    {% include 'footer.html' %}
-</div>
-</body>
-</html>
+{% from 'util.html' import image %}
+<h1>Albums by {{ artist.name }}</h1>
+<h3><a href="{{ url_for('.artist.add_artist_to_playlist', id=artist.id) }}">{{ image('add.png') }} Add all tracks by {{ artist.name }} to playlist</a></h3>
+{% for album in artist.albums %}
+    {% include 'album_fragment.html' %}
+{% endfor %}
+<!-- TODO add good stuff like their top tracks, plays -->
