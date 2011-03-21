@@ -18,7 +18,7 @@ def register():
         except SQLObjectNotFound:
             # username available
             if not request.form['password']:
-            	flash("Please enter a password!", "error")
+                flash("Please enter a password!", "error")
             else:
                 user = User(username=request.form['username'], password=sha1(request.form['password']).hexdigest())
                 current_app.logger.debug("%s", user)
@@ -33,16 +33,16 @@ def login():
         try:
             user = User.byUsername(request.form['username'])
             if user.password != sha1(request.form['password']).hexdigest():
-            	flash("Wrong password!", "error")
+                flash("Wrong password!", "error")
             else:
                 # login successful
-            	session['username'] = user.username
-            	success = True
+                session['user'] = user
+                success = True
         except SQLObjectNotFound:
             flash("No such user exists!", "error")
 
     if success:
-    	return redirect(url_for('main.index'))
+        return redirect(url_for('main.index'))
     else:
         return render_master_page('login.html', title='Muzicast: Login')
 
@@ -60,7 +60,7 @@ def edit():
                 cnf = request.form['confirm-password']
 
                 if new_password != cnf:
-                	flash("New password and Confirm password are not the same!", "error")
+                    flash("New password and Confirm password are not the same!", "error")
                 else:
                     user.password = sha1(new_password).hexdigest()
                     flash("Password changed! Please login again.")
