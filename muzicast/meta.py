@@ -68,6 +68,11 @@ class GenreStatistics(SQLObject):
     last_played = DateTimeCol()
     play_count = IntCol()
 
+class User(SQLObject):
+    username = UnicodeCol(alternateID=True)
+    password = StringCol()
+    registered_on = DateTimeCol(default=DateTimeCol.now)
+
 def init_meta():
     """
     Creates metadata tables.
