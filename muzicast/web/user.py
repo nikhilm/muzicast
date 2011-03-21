@@ -3,6 +3,7 @@ from flask import Module, url_for, redirect, session, escape, request, current_a
 from sqlobject.main import SQLObjectNotFound
 
 from muzicast.web.util import render_master_page
+from muzicast.web.playlist import set_active
 from muzicast.meta import User
 
 user = Module(__name__)
@@ -37,6 +38,8 @@ def login():
             else:
                 # login successful
                 session['user'] = user
+                if user.current_playlist != -1:
+                    set_active(user.current_playlist)
                 success = True
         except SQLObjectNotFound:
             flash("No such user exists!", "error")
