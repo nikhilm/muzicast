@@ -1,0 +1,23 @@
+{% from 'util.html' import image %}
+<h1>Your Playlists</h1>
+
+<table>
+{% for playlist in playlists %}
+    <tr class="{{ loop.cycle('odd', 'even') }}">
+        <td>
+            {{ playlist.name }}
+        </td>
+        <td>
+            {% if session['user'].current_playlist != playlist.id %}
+                <a href="{{ url_for('playlist.set_active', id=playlist.id) }}" title="Edit">{{ image('edit_playlist.png') }}</a>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('playlist.delete', id=playlist.id) }}" title="Delete Playlist">{{ image('delete.png') }}</a>
+        </td>
+    </tr>
+{% else %}
+</table>
+<p>You have no playlists yet! Add tracks and save to create one.</p>
+{% endfor %}
+</ol>

@@ -70,14 +70,9 @@ def save_current():
 
 @playlist.route('/manage')
 def manage():
+    from muzicast.web.util import render_master_page
     if not 'user' in session:
-        return ""
+        return redirect(url_for('main.index'))
 
-    ls = []
-    for p in Playlist.select(Playlist.q.user == session['user']):
-        ls.append(p.name)
-        if session['user'].current_playlist == p.id:
-            ls[-1] += '*'
-        for t in p.tracks:
-            ls.append('Track %d'%t)
-    return '<br>'.join(ls)
+    return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == session['user']))
+
