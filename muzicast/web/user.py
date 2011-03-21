@@ -69,3 +69,9 @@ def edit():
             flash("No such user exists!", "error")
 
     return render_master_page('user-edit.html', title='Muzicast: Change Password')
+
+@user.route('/logout')
+def logout():
+    if 'user' in session:
+        del session['user']
+    return redirect(url_for('main.index'))
