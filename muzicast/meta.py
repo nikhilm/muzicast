@@ -88,15 +88,17 @@ def init_meta():
     NOTE: This should be called only once,
     otherwise it will OVERWRITE the earlier data.
     """
-    Artist.createTable()
-    Album.createTable()
-    Genre.createTable()
-    Composer.createTable()
-    Track.createTable()
-    TrackStatistics.createTable()
-    AlbumStatistics.createTable()
-    ArtistStatistics.createTable()
-    GenreStatistics.createTable()
+    Artist.createTable(ifNotExists=True)
+    Album.createTable(ifNotExists=True)
+    Genre.createTable(ifNotExists=True)
+    Composer.createTable(ifNotExists=True)
+    Track.createTable(ifNotExists=True)
+    TrackStatistics.createTable(ifNotExists=True)
+    AlbumStatistics.createTable(ifNotExists=True)
+    ArtistStatistics.createTable(ifNotExists=True)
+    GenreStatistics.createTable(ifNotExists=True)
+    User.createTable(ifNotExists=True)
+    Playlist.createTable(ifNotExists=True)
     # XXX: Add more HERE
     return True
 
