@@ -76,3 +76,16 @@ def manage():
 
     return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == session['user']))
 
+@playlist.route('/makeactive/<int:id>')
+def set_active(id):
+    if 'user' in session:
+        try:
+            pl = Playlist.get(id)
+            current_app.logger.debug("PL OWNER %s", pl.user)
+            #TODO: check owner
+            session['user'].current_playlist = pl.id
+            session['playlist'] = pl.tracks
+            session.modified = True
+        except SQLObjectNotFound:
+            current_app.logger.debug("Playlist %d cannot be set active since it doesn't exist", id)
+    return redirect(request.headers['referer'])
