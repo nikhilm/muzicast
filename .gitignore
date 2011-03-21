@@ -6,6 +6,8 @@ docs/usermanual/build
 *.aux
 *.log
 *.toc
+.*.swp
+.*.swo
 jstree_demo
 env
 jstree_docs
