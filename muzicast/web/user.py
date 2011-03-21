@@ -48,14 +48,13 @@ def login():
 
 @user.route('/edit', methods=['GET', 'POST'])
 def edit():
-    if 'username' not in session:
-    	return redirect(url_for('user.login'))
+    if 'user' not in session:
+        return redirect(url_for('user.login'))
 
     if request.method == 'POST':
         try:
-            user = User.byUsername(session['username'])
-            if user.password != sha1(request.form['password']).hexdigest():
-            	flash("Wrong password!", "error")
+            if session['user'].password != sha1(request.form['password']).hexdigest():
+                flash("Wrong password!", "error")
             else:
                 new_password = request.form['new-password']
                 cnf = request.form['confirm-password']
@@ -65,7 +64,7 @@ def edit():
                 else:
                     user.password = sha1(new_password).hexdigest()
                     flash("Password changed! Please login again.")
-                    del session['username']
+                    del session['user']
         except SQLObjectNotFound:
             flash("No such user exists!", "error")
 

@@ -30,6 +30,8 @@ from muzicast.web.genre import genre
 app.register_module(genre, url_prefix='/genre')
 from muzicast.web.user import user
 app.register_module(user, url_prefix='/user')
+from muzicast.web.playlist import playlist
+app.register_module(playlist, url_prefix='/playlist')
 
 from muzicast.web.main import main
 app.register_module(main, url_prefix='/')

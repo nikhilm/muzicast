@@ -1,7 +1,7 @@
 <div id="user-links">
-{% if session['username'] %}
-<span>Hi, <a href="{{ url_for('user.edit') }}">{{ session['username'] }}</a></span>
-<a href="{# url_for('user.logout') #}">Logout</a>
+{% if session['user'] %}
+<span>Hi, <a href="{{ url_for('user.edit') }}">{{ session['user'].username }}</a></span>
+<a href="{{ url_for('user.logout') }}">Logout</a>
 {% else %}
 <a href="{{ url_for('user.register') }}">Register</a>
 <a href="{{ url_for('user.login') }}">Login</a>

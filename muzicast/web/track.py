@@ -2,6 +2,7 @@ from flask import Module, render_template, url_for, redirect, session, escape, r
 
 from muzicast.const import DB_FILE
 from muzicast.meta import Track
+from muzicast.web import playlist
 from muzicast.web.util import render_master_page
 
 track = Module(__name__)
