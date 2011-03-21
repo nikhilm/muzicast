@@ -39,7 +39,7 @@ def index():
 
 @main.route('playlist/download/playlist.pls')
 def download_playlist():
-    pls = make_pls_playlist(playlist.playlist())
+    pls = make_pls_playlist(playlist.playlist_entries())
     response = make_response(pls, None, None, 'audio/x-scpls')
     return response
 

@@ -72,6 +72,12 @@ class User(SQLObject):
     username = UnicodeCol(alternateID=True)
     password = StringCol()
     registered_on = DateTimeCol(default=DateTimeCol.now)
+    current_playlist = IntCol(default=-1)
+
+class Playlist(SQLObject):
+    user = ForeignKey('User')
+    name = StringCol()
+    tracks = PickleCol()
 
 def init_meta():
     """

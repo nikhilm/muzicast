@@ -24,7 +24,7 @@ def playlist_clear():
     del session['playlist']
     session.modified = True
 
-def playlist():
+def playlist_entries():
     if 'playlist' not in session:
         return []
     print session['playlist']

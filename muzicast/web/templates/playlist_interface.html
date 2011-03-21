@@ -3,7 +3,7 @@
 <h3>Playlist</h3>
 
 <ol>
-{% for track in playlist.playlist()  %}
+{% for track in playlist.playlist_entries()  %}
     <li class="{{ loop.cycle('odd', 'even') }}">
         <a href="{{ url_for('.track.index', id=track.id) }}">
             {{ track.title }}
