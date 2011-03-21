@@ -90,3 +90,21 @@ def set_active(id):
         except SQLObjectNotFound:
             current_app.logger.debug("Playlist %d cannot be set active since it doesn't exist", id)
     return redirect(request.headers['referer'])
+
+@playlist.route('/delete/<int:id>')
+def delete(id):
+    if 'user' in session:
+        try:
+            pl = Playlist.get(id)
+            if pl.user.id == session['user'].id:
+                if session['user'].current_playlist == pl.id:
+                    session['user'].current_playlist = -1
+                    del session['playlist']
+                    session.modified = True
+                pl.destroySelf()
+            else:
+                current_app.logger.debug("Playlist owner is not currently logged in user")
+        except SQLObjectNotFound:
+            current_app.logger.debug("Playlist %d cannot be deleted since it doesn't exist", id)
+
+    return redirect(request.headers['referer'])
