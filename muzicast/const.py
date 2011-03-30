@@ -15,6 +15,7 @@ else:
 
 CONFIG = os.path.join(USERDIR, "config")
 DB_FILE = os.path.join(USERDIR, "collection.db")
+COVERSDIR = os.path.join(USERDIR, "covers")
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
 
 WEB_PORT = 7664
