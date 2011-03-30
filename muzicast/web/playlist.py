@@ -1,7 +1,7 @@
 from sqlobject.main import SQLObjectNotFound
 from flask import Module, render_template, url_for, redirect, session, escape, request, current_app, abort
 
-from muzicast.meta import Track, Playlist
+from muzicast.meta import Track, Playlist, User
 
 playlist = Module(__name__)
 
@@ -24,7 +24,8 @@ def playlist_contains(tid):
     return tid in session['playlist']
 
 def playlist_clear():
-    del session['playlist']
+    if 'playlist' in session:
+        del session['playlist']
     session.modified = True
 
 def playlist_entries():
@@ -36,10 +37,10 @@ def playlist_entries():
 def playlist_name():
     if not 'user' in session:
         return ""
-    if session['user'].current_playlist == -1:
+    if session['user']['current_playlist'] == -1:
         return ""
     try:
-        pl = Playlist.get(session['user'].current_playlist)
+        pl = Playlist.get(session['user']['current_playlist'])
         return pl.name
     except SQLObjectNotFound:
         return ""
@@ -51,10 +52,9 @@ def save_current():
 
     user = session['user']
     pl = None
-    if user.current_playlist == -1:
+    if user['current_playlist'] == -1:
         # we have to create a new playlist
-        pl = Playlist(user=user, name=request.form['playlist-name'], tracks=set())
-        session.modified = True
+        pl = Playlist(user=User.byUsername(user['username']), name=request.form['playlist-name'], tracks=set())
     else:
         try:
             pl = Playlist.get(user.current_playlist)
@@ -64,8 +64,10 @@ def save_current():
     pl.name = request.form['playlist-name']
     pl.tracks = session['playlist']
     pl.sqlmeta.expired = True
-    session['user'].current_playlist = -1
-    del session['playlist']
+    session['user']['current_playlist'] = -1
+    if 'playlist' in session:
+        del session['playlist']
+    session.modified = True
     return redirect(request.headers['referer'])
 
 @playlist.route('/manage')
@@ -74,15 +76,16 @@ def manage():
     if not 'user' in session:
         return redirect(url_for('main.index'))
 
-    return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == session['user']))
+    user = User.byUsername(session['user']['username'])
+    return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == user))
 
 @playlist.route('/makeactive/<int:id>')
 def set_active(id):
     if 'user' in session:
         try:
             pl = Playlist.get(id)
-            if pl.user.id == session['user'].id:
-                session['user'].current_playlist = pl.id
+            if pl.user.username == session['user']['username']:
+                session['user']['current_playlist'] = pl.id
                 session['playlist'] = pl.tracks
                 session.modified = True
             else:
@@ -96,10 +99,11 @@ def delete(id):
     if 'user' in session:
         try:
             pl = Playlist.get(id)
-            if pl.user.id == session['user'].id:
-                if session['user'].current_playlist == pl.id:
-                    session['user'].current_playlist = -1
-                    del session['playlist']
+            if pl.user.username == session['user']['username']:
+                if session['user']['current_playlist'] == pl.id:
+                    session['user']['current_playlist'] = -1
+                    if 'playlist' in session:
+                        del session['playlist']
                     session.modified = True
                 pl.destroySelf()
             else:

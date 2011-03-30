@@ -1,13 +1,14 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<h2>Change Password</h2>
 <form action="{{ url_for('user.edit') }}" method="POST">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <ul class="flashes">
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
     <table>
         <tr>
             <td><label for="password">Old Password:</label></td>
@@ -26,6 +27,22 @@
 
         <tr>
             <td><input type="submit" value="Change Password"></input></td>
+        </tr>
+    </table>
+</form>
+
+<h2>Delete Account</h2>
+<p>To delete your account, type in your password below.</p>
+<p style="color: red; font-size: 120%">This action is irreversible and will also delete all playlists!</p>
+<form action="{{ url_for('user.delete') }}" method="POST">
+    <table>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="password" name="password" placeholder="Password"></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="Delete Account"></input></td>
         </tr>
     </table>
 </form>

@@ -4,7 +4,7 @@ from sqlobject.main import SQLObjectNotFound
 
 from muzicast.web.util import render_master_page
 from muzicast.web.playlist import set_active
-from muzicast.meta import User
+from muzicast.meta import User, Playlist
 
 user = Module(__name__)
 
@@ -37,7 +37,7 @@ def login():
                 flash("Wrong password!", "error")
             else:
                 # login successful
-                session['user'] = user
+                session['user'] = {'username': user.username, 'current_playlist': -1}
                 if user.current_playlist != -1:
                     set_active(user.current_playlist)
                 success = True
@@ -56,7 +56,8 @@ def edit():
 
     if request.method == 'POST':
         try:
-            if session['user'].password != sha1(request.form['password']).hexdigest():
+            user = User.byUsername(session['user']['username'])
+            if user.password != sha1(request.form['password']).hexdigest():
                 flash("Wrong password!", "error")
             else:
                 new_password = request.form['new-password']
@@ -68,6 +69,29 @@ def edit():
                     user.password = sha1(new_password).hexdigest()
                     flash("Password changed! Please login again.")
                     del session['user']
+        except SQLObjectNotFound:
+            flash("No such user exists!", "error")
+
+    return render_master_page('user-edit.html', title='Muzicast: Change Password')
+
+@user.route('/delete', methods=['POST'])
+def delete():
+    if 'user' not in session:
+        return redirect(url_for('user.login'))
+
+    if request.method == 'POST':
+        try:
+            user = User.byUsername(session['user']['username'])
+            if user.password != sha1(request.form['password']).hexdigest():
+                flash("Wrong password!", "error")
+            else:
+                playlists = Playlist.select(Playlist.q.user == user)
+                [pl.destroySelf() for pl in playlists]
+                user.destroySelf()
+                del session['user']
+                if 'playlist' in session:
+                    del session['playlist']
+                flash("User account deleted!")
         except SQLObjectNotFound:
             flash("No such user exists!", "error")
 
