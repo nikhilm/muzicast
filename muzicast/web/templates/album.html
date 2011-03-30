@@ -4,6 +4,10 @@
         {{ album.artist.name }}
     </a>
 </h3>
+<img class="large-cover" src="{{ url_for('.album.cover', id=album.id) }}">
+
+<ul id="album-tracks">
 {% for track in album.tracks %}
     {% include 'track_fragment.html' %}
 {% endfor %}
+</ul>

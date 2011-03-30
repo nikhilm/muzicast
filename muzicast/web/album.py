@@ -1,4 +1,4 @@
-from flask import Module, url_for, redirect, session, escape, request, abort
+from flask import Module, url_for, redirect, session, escape, request, abort, current_app, send_file
 
 from muzicast.const import DB_FILE
 from muzicast.meta import Album
@@ -28,5 +28,16 @@ def add_album_to_playlist(id):
         for track in album.tracks:
             playlist.add_to_playlist(track.id)
         return redirect(request.headers['referer'])
+    except LookupError:
+        abort(400)
+
+@album.route('/cover/<int:id>')
+def cover(id):
+    try:
+        album = Album.get(id)
+        current_app.logger.debug('Album cover for %s', album.image)
+        if not album.image:
+            return redirect(url_for('.static', filename='images/nocover.png'))
+        return send_file(album.image)
     except LookupError:
         abort(400)

@@ -72,18 +72,18 @@ h2{
 
 #footer{
      float: right;
-     }
+}
 
+.cover {
+    width: 100px;
+}
 
+.large-cover {
+    max-width: 200px;
+    float: left;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#album-tracks {
+    margin-left: 200px;
+    line-height: 150%;
+}
