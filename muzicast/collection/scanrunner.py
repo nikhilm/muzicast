@@ -34,7 +34,7 @@ def bake(url):
         d = {}
         d['url'] = 'file://' + url
         d['artist'] = get_row(Artist, name=f.get('artist', ''))
-        d['album'] = get_row(Album, name=f.get('album', ''), artistID=d['artist'], image='')
+        d['album'] = get_row(Album, name=f.get('album', ''), artistID=d['artist'])
         d['genre'] = get_row(Genre, name=f.get('genre', ''))
         d['composer'] = get_row(Composer, name=f.get('composer', ''))
         d['year'] = int(f.get('date', '-1'))

@@ -20,7 +20,7 @@ class Artist(SQLObject):
 class Album(SQLObject):
     name = UnicodeCol()
     artist = ForeignKey('Artist')
-    image = UnicodeCol()
+    image = UnicodeCol(default=None)
     tracks = MultipleJoin('Track')
 
 class Genre(SQLObject):
