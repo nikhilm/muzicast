@@ -10,10 +10,11 @@
                 {{ track.album.name }}
             </a>
         </h3>
-        <a href="http://localhost:7665/{{track.id}};.mp3" id="player" style="width:200px; height: 50px"></a>
+        <div id="player" style="width:400px; height: 170px"></div>
         <script language="javascript">
             flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf", {
                 clip: {
+                    url: "http://localhost:7665/{{track.id}};.mp3",
                     autoPlay: false,
                     provider: 'audio'
                 },
@@ -21,8 +22,9 @@
                     myContent: {
                         url: 'flowplayer.content-3.2.0.swf',
 
-                        top: 20,
-                        width: 200,
+                        top: 10,
+                        width: 300,
+                        height: 50,
 
                         html: '<p>{{ track.title }} - {{ track.artist.name }}</p><p>{{ track.album.name }}</p>'
                     },
