@@ -3,8 +3,11 @@ import stat
 import os
 import logging
 import datetime
+import hashlib
 
+from muzicast.const import COVERSDIR
 from muzicast.meta import Track, Album, Artist, Genre, Composer
+from muzicast.collection.coverfetch import fetch_cover
 from muzicast.collection.formats import MusicFile
 
 logging.basicConfig(level=logging.DEBUG)
@@ -54,26 +57,49 @@ def bake(url):
         d['filetype'] = os.path.splitext(url)[1]
         #TODO(nikhil) get bpm or trash column
         d['bpm'] = 0
-        print 'timestamp', datetime.datetime.fromtimestamp(int(f.get('~#mtime', '0')) or time.time())
         d['createdate'] = d['modifydate'] = datetime.datetime.fromtimestamp(int(f.get('~#mtime', '0')) or time.time())
-        print '1'
         return d
 
     return None
 
+def find_existing(url, attrs):
+    #TODO: improve
+    return list(Track.select(Track.q.url == ('file://'+url)))
+
 def update_meta(obj, attrs):
     obj.set(**attrs)
 
+def insert_meta(attrs):
+    return Track(**attrs)
+
+def set_album_cover(track_info):
+    print 'Setting album cover for', track_info['album']
+    if track_info['album'].image:
+        # we already have a cover
+        return track_info['album'].image
+
+    if not os.path.exists(COVERSDIR):
+        os.mkdir(COVERSDIR)
+
+    filename = hashlib.sha1(track_info['album'].name).hexdigest() + '.png'
+    path = os.path.join(COVERSDIR, filename)
+    result = fetch_cover(track_info['artist'].name, track_info['album'].name, path)
+    if not result:
+        print 'none found'
+        return None
+
+    print 'found', path
+    track_info['album'].image = path
+    print 'returning'
+    return path
+
 class ScanRunner(object):
     def __init__(self, directory, full=False, last_shutdown_time=0):
-        self.log = logging.getLogger('scanrunner-%d'%os.getpid())
-        self.log.addHandler(logging.StreamHandler())
         self.directory = directory
         self.full = full
         self.last_shutdown_time = last_shutdown_time
 
     def scan(self):
-        self.log.debug("starting scan on %s. full? %s. comparing against %d", self.directory, self.full, self.last_shutdown_time)
         if self.full:
             self.full_scan()
         else:
@@ -82,48 +108,51 @@ class ScanRunner(object):
 
     def full_scan(self):
         # incremental scan with require_update always true
-        old_requires_update = self.requires_update
-        self.requires_update = lambda x: True
-        self.log.debug("FULL SCAN")
         self.incremental_scan()
-        self.requires_update = old_requires_update
 
     def incremental_scan(self):
         for dirpath, dirnames, filenames in os.walk(self.directory):
+            print dirpath, dirnames, filenames
             # only get the directories we know are modified
             # this way os.walk is more efficient
             [dirnames.remove(dir) for dir in dirnames if not self.requires_update(os.path.join(dirpath, dir))]
             
-            #self.log.debug("Directory %s Scanning %s", dirpath, dirnames)
-
             for file in filenames:
                 fn = os.path.join(dirpath, file)
                 if self.requires_update(fn):
-                    self.log.debug("UPDATING %s", fn)
                     # TODO: Do we wait around for updates to occur
                     # or do we have a two step pool
                     self.update(fn)
 
     def update(self, url):
-        self.log.debug('before bake %s', url)
         info = bake(url)
-        self.log.debug('Got info %s', info)
+        print 'info', info
         if not info:
             return
-        self.log.debug('after bake')
+        print 'cover', set_album_cover(info)
         # does it exist already?
-        entry = list(Track.select(Track.q.url == ('file://'+url)))
+        print 'finding exi'
+        entry = find_existing(url, info)
+        print 'found existing?', entry
+        # TODO:
+        # also try that if the file was renamed
+        # while muzicast was not running
+        # then if the meta-data is an exact match
         if entry:
             update_meta(entry[0], info)
+            print 'updated meta'
         else:
             # insert new
-            Track(**info)
+            insert_meta(info)
+            print 'inserted meta'
 
     def requires_update(self, path):
+        if self.full: return True
+
         stat_info = os.stat(path)
-        self.log.debug("Checking %s", path)
+        print "Checking %s", path
         if stat.S_ISDIR(stat_info.st_mode):
-            self.log.debug("mtime for %s %d, lastshut %d", path, stat_info.st_mtime, self.last_shutdown_time)
+            print "mtime for %s %d, lastshut %d", path, stat_info.st_mtime, self.last_shutdown_time
             if stat_info.st_mtime > self.last_shutdown_time:
                 return True
             return False
@@ -132,5 +161,6 @@ class ScanRunner(object):
         return True
 
 def start_scanrunner(*args):
+    print "Launching scanrunner with", args
     r = ScanRunner(*args)
     r.scan()
