@@ -17,19 +17,18 @@ def render_master_page(body_page, **kwargs):
     page_data.update(kwargs)
     return render_template('master.html', **page_data)
 
-def page_view(page, cls, template, key):
+def page_view(page, cls, template, key, per_page=5):
     """
     TODO: document this
     """
-    PER_PAGE = 5
     if page < 1:
         return abort(400)
     query = cls.select()
-    insts = query[(page-1)*PER_PAGE:page*PER_PAGE]
+    insts = query[(page-1)*per_page:page*per_page]
 
     kwargs = {
         'current_page': page,
-        'pages'       : int(ceil(query.count()*1.0/PER_PAGE)),
+        'pages'       : int(ceil(query.count()*1.0/per_page)),
         key           : insts
     }
     return render_master_page(template, **kwargs)
