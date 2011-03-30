@@ -63,6 +63,7 @@ Play a song
 
 Once the setup is done, you should not be at the Muzicast home screen. You
 can see the artists, albums and tracks. To play a track,
-simply click the arrow next to it.
+simply click the song title. The embedded flash player on that page will start
+playing the song.
 
 To create playlists or listen to songs in your favourite music player, :doc:`read on </using>`.
