@@ -1,0 +1,9 @@
+{% from 'util.html' import paging %}
+<h1>Tracks</h1>
+<ul>
+{% for track in tracks %}
+    {% include 'track_fragment.html' %}
+{% endfor %}
+</ul>
+
+{{ paging('.track.tracks_page', current_page, pages) }}
