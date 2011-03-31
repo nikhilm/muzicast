@@ -3,7 +3,7 @@
 <!-- TODO: fixme fetch top artists -->
 <ul>
 {% for artist in artists %}
-    <li><a href="{{ url_for('.artist.index', id=artist.id) }}">{{ artist.name }}</a></li>
+    {% include 'artist_fragment.html' %}
 {% endfor %}
 </ul>
 {{ paging('.artist.artists_page', current_page, pages) }}
