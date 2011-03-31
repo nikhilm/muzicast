@@ -1,12 +1,14 @@
 import asyncore
 import BaseHTTPServer
 import os
+import math
 import sys
 import signal
 import socket
 from datetime import datetime
 import time
 import sqlobject
+import struct
 import re
 
 from muzicast.const import DB_FILE
@@ -89,12 +91,21 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             try:
                 while chunk:
                     self.connection.send(chunk)
-#TODO(nikhil) deal with larger titles
                     if send_title:
                         if first:
-                            title = "\x02StreamTitle='%s';StreamUrl='';"%metadata.title
-                            title = title.ljust(33, '\x00')
-                            self.connection.send(title)
+                            # In Shoutcast, a byte is sent
+                            # identifying the size of the following
+                            # meta-data in multiples of 16
+                            # So if the byte is 4, 64 bytes of data follows.
+                            # Here we first get the length of the title
+                            # in chunks of 16, then generate a format string
+                            # for the 'struct' module with the right
+                            # count inserted before the string packing instruction
+                            # so that the title is padded with null bytes.
+                            title = "StreamTitle='%s';StreamUrl='';"%metadata.title
+                            length = math.ceil(len(title)/16.0)
+                            fmt = "B%ds"%(length*16)
+                            self.connection.send(struct.pack(fmt, length, str(title)))
                             first = False
                         else:
                             self.connection.send('\x00')
