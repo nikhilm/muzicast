@@ -44,11 +44,15 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
     def update_statistic(self, cls, attrib, value):
         existing = cls.select(getattr(cls.q, attrib) == value.id)
         for ex in existing:
-            print 'found existing', ex
             self.increment_statistic(ex)
+            # IMPORTANT: This break
+            # SHOULD NOT be removed
+            # In Python the else clause is executed
+            # only if the loop exits without hitting a break.
+            # When an entry is found we don't want to create
+            # a new one
             break
         else:
-            print 'creating new', cls, attrib, value
             ex = cls(**{attrib: value})
             self.increment_statistic(ex)
 
