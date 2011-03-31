@@ -1,0 +1,21 @@
+<h2>Artists</h2>
+{% for artist in results['artists'] %}
+{% include 'artist_fragment.html' %}
+{% else %}
+<p>No results</p>
+{% endfor %}
+
+<h2>Albums</h2>
+{% for album in results['albums'] %}
+{% include 'album_fragment.html' %}
+{% else %}
+<p>No results</p>
+{% endfor %}
+
+<h2>Tracks</h2>
+{% for track in results['tracks'] %}
+{% include 'track_fragment.html' %}
+{% else %}
+<p>No results</p>
+{% endfor %}
+

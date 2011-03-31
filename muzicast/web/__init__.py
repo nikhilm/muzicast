@@ -32,6 +32,8 @@ from muzicast.web.user import user
 app.register_module(user, url_prefix='/user')
 from muzicast.web.playlist import playlist
 app.register_module(playlist, url_prefix='/playlist')
+from muzicast.web.search import search
+app.register_module(search, url_prefix='/search')
 
 from muzicast.web.main import main
 app.register_module(main, url_prefix='/')
