@@ -6,7 +6,7 @@
 {% for track in playlist.playlist_entries()  %}
     <li class="{{ loop.cycle('odd', 'even') }}">
         <a href="{{ url_for('.track.index', id=track.id) }}">
-            {{ track.title }}
+            {{ track.title | truncate(20, True) }}
         </a>
         <a href="{{ url_for('.track.delete_track_from_playlist', id=track.id) }}">
             {{ image('delete.png') }}
