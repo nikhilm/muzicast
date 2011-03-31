@@ -6,6 +6,7 @@ import signal
 import socket
 from datetime import datetime
 import time
+import sqlobject
 import re
 
 from muzicast.const import DB_FILE
@@ -21,9 +22,11 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
         Get track meta-data given a track ID.
         Returns {} in case of failure
         """
-        #TODO(nikhil) handle exception
-        track = Track.get(id)
-        return track
+        try:
+            track = Track.get(id)
+            return track
+        except sqlobject.main.SQLObjectNotFound:
+            return None
 
     def do_GET(self):
         #TODO(nikhil) keep regex compiled
@@ -95,8 +98,7 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             except socket.error:
                 return
         else:
-            #play fake stream or error out
-            pass
+            self.send_error(404)
 
 #TODO(nikhil) respect meta and send at bitrate
 
