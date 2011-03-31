@@ -68,10 +68,9 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             self.update_statistic(AlbumStatistics, 'album', metadata.album)
             self.update_statistic(ArtistStatistics, 'artist', metadata.artist)
             self.update_statistic(GenreStatistics, 'genre', metadata.genre)
-            #TODO(nikhil) Fix Hi there
             self.wfile.write("ICY 200 OK\r\n")
-            self.send_header("icy-notice1", "Hi there")
-            self.send_header("icy-notice2", "Hi there")
+            self.send_header("icy-notice1", "Welcome to a Muzicast streaming server")
+            self.send_header("icy-notice2", "Register to be able to save playlists.")
             self.send_header("icy-name", "Muzicast")
             self.send_header("icy-genre", "Unknown")
             self.send_header("icy-url", "http://localhost:7664")
