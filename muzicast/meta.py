@@ -50,23 +50,23 @@ class Track(SQLObject):
 
 class TrackStatistics(SQLObject):
     track = ForeignKey('Track')
-    last_played = DateTimeCol()
-    play_count = IntCol()
+    last_played = DateTimeCol(default=DateTimeCol.now)
+    play_count = IntCol(default=0)
 
 class AlbumStatistics(SQLObject):
     album = ForeignKey('Album')
-    last_played = DateTimeCol()
-    play_count = IntCol()
+    last_played = DateTimeCol(default=DateTimeCol.now)
+    play_count = IntCol(default=0)
 
 class ArtistStatistics(SQLObject):
     artist = ForeignKey('Artist')
-    last_played = DateTimeCol()
-    play_count = IntCol()
+    last_played = DateTimeCol(default=DateTimeCol.now)
+    play_count = IntCol(default=0)
 
 class GenreStatistics(SQLObject):
     genre = ForeignKey('Genre')
-    last_played = DateTimeCol()
-    play_count = IntCol()
+    last_played = DateTimeCol(default=DateTimeCol.now)
+    play_count = IntCol(default=0)
 
 class User(SQLObject):
     username = UnicodeCol(alternateID=True)

@@ -4,11 +4,12 @@ import os
 import sys
 import signal
 import socket
+from datetime import datetime
 import time
 import re
 
 from muzicast.const import DB_FILE
-from muzicast.meta import Track
+from muzicast.meta import Track, TrackStatistics, AlbumStatistics, ArtistStatistics, GenreStatistics
 
 class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 #    def __init__(self, socket, addr, server):
@@ -32,6 +33,21 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             self.send_error(404)
 
+    def increment_statistic(self, row):
+        row.play_count += 1
+        row.last_played = datetime.now()
+
+    def update_statistic(self, cls, attrib, value):
+        existing = cls.select(getattr(cls.q, attrib) == value.id)
+        for ex in existing:
+            print 'found existing', ex
+            self.increment_statistic(ex)
+            break
+        else:
+            print 'creating new', cls, attrib, value
+            ex = cls(**{attrib: value})
+            self.increment_statistic(ex)
+
     def stream_song(self, id):
         metadata = self.get_track(id)
 
@@ -40,7 +56,11 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             send_title = True
 
         if metadata:
-            #TODO(nikhil) statistics update
+            self.update_statistic(TrackStatistics, 'track', metadata)
+            self.update_statistic(AlbumStatistics, 'album', metadata.album)
+            self.update_statistic(ArtistStatistics, 'artist', metadata.artist)
+            self.update_statistic(GenreStatistics, 'genre', metadata.genre)
+            #TODO(nikhil) Fix Hi there
             self.wfile.write("ICY 200 OK\r\n")
             self.send_header("icy-notice1", "Hi there")
             self.send_header("icy-notice2", "Hi there")
