@@ -12,6 +12,8 @@ import re
 from muzicast.const import DB_FILE
 from muzicast.meta import Track, TrackStatistics, AlbumStatistics, ArtistStatistics, GenreStatistics
 
+route_regex = re.compile(r'/([0-9]*)(;\.mp3)?$')
+
 class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 #    def __init__(self, socket, addr, server):
 #        #asyncore.dispatcher_with_send.__init__(self, socket)
@@ -29,8 +31,7 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             return None
 
     def do_GET(self):
-        #TODO(nikhil) keep regex compiled
-        match = re.match(r'/([0-9]*)(;\.mp3)?$', self.path)
+        match = route_regex.match(self.path)
         if match:
             self.stream_song(match.group(1))
         else:
