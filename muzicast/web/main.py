@@ -1,9 +1,10 @@
 from flask import Module, url_for, redirect, session, escape, request, make_response
 
 from sqlobject.main import SQLObjectNotFound
+from sqlobject import DESC
 
 from muzicast.web.util import is_first_run, make_pls_playlist, render_master_page
-from muzicast.meta import Track
+from muzicast.meta import Track, TrackStatistics
 from muzicast.web import playlist
 
 main = Module(__name__)
@@ -14,7 +15,7 @@ def top_tracks(n):
     """
     #TODO(nikhil) fix this to use statistics
     try:
-        return [Track.get(i) for i in range(1, n+1)]
+        return [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.play_count))[:10]]
     except SQLObjectNotFound:
         return []
 
@@ -24,7 +25,7 @@ def recently_played(n):
     """
     #TODO(nikhil) fix this to use statistics
     try:
-        return [Track.get(i) for i in range(1, n+1)]
+        return [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.last_played))[:10]]
     except SQLObjectNotFound:
         return []
 
