@@ -158,8 +158,17 @@ class ScanRunner(object):
                 return True
             return False
 
-        # TODO(nikhil) handle various file cases
-        return True
+        if stat.S_ISREG(stat_info.st_mode):
+            #print "mtime for %s %d, lastshut %d", path, stat_info.st_mtime, self.last_shutdown_time
+            # if file hasn't been catalogued before
+            # index it anyway
+            already_done = list(Track.select(Track.q.url == 'file://' + path))
+            if not already_done:
+                return True
+            if stat_info.st_mtime > self.last_shutdown_time:
+                return True
+
+        return False
 
 def start_scanrunner(*args):
     print "Launching scanrunner with", args
