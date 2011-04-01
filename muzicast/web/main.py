@@ -13,7 +13,6 @@ def top_tracks(n):
     """
     Returns the top n tracks
     """
-    #TODO(nikhil) fix this to use statistics
     try:
         return [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.play_count))[:10]]
     except SQLObjectNotFound:
@@ -23,7 +22,6 @@ def recently_played(n):
     """
     Returns n latest played tracks
     """
-    #TODO(nikhil) fix this to use statistics
     try:
         return [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.last_played))[:10]]
     except SQLObjectNotFound:

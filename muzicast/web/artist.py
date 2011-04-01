@@ -10,10 +10,6 @@ from muzicast.web.util import page_view, render_master_page
 artist = Module(__name__)
 
 def top_artists(n):
-    """
-    Returns the top n tracks
-    """
-    #TODO(nikhil) fix this to use statistics
     try:
         return [t.artist for t in ArtistStatistics.select(orderBy=DESC(ArtistStatistics.q.play_count))[:10]]
     except SQLObjectNotFound:

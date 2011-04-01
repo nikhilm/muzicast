@@ -1,4 +1,14 @@
 {% from 'util.html' import paging %}
+<div id="top-albums" class="top">
+<h1>Top albums</h1>
+<ul>
+{% for album in top_albums %}
+    {% include 'album_fragment.html' %}
+{% endfor %}
+</ul>
+</div>
+
+<div class="center">
 <h1>Albums</h1>
 <!-- TODO: fixme fetch top albums -->
 <ul>
@@ -8,3 +18,4 @@
 </ul>
 
 {{ paging('.album.albums_page', current_page, pages) }}
+</div>

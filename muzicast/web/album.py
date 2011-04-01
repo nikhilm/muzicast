@@ -1,11 +1,19 @@
+from sqlobject import DESC
+from sqlobject.main import SQLObjectNotFound
 from flask import Module, url_for, redirect, session, escape, request, abort, current_app, send_file
 
 from muzicast.const import DB_FILE
-from muzicast.meta import Album
+from muzicast.meta import Album, AlbumStatistics
 from muzicast.web import playlist
 from muzicast.web.util import page_view, render_master_page
 
 album = Module(__name__)
+
+def top_albums(n):
+    try:
+        return [t.album for t in AlbumStatistics.select(orderBy=DESC(AlbumStatistics.q.play_count))[:10]]
+    except SQLObjectNotFound:
+        return []
 
 @album.route('s')
 def albums():
@@ -13,7 +21,7 @@ def albums():
 
 @album.route('s/<int:page>')
 def albums_page(page):
-    return page_view(page, Album, "albums.html", "albums")
+    return page_view(page, Album, "albums.html", "albums", top_albums=top_albums(10))
 
 @album.route('/<id>')
 def index(id):
