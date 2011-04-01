@@ -1,4 +1,15 @@
 {% from 'util.html' import paging %}
+
+<div id="top-artists">
+<h1>Top artists</h1>
+<ul>
+{% for artist in top_artists %}
+    {% include 'artist_fragment.html' %}
+{% endfor %}
+</ul>
+</div>
+
+<div class="center">
 <h1>Artists</h1>
 <!-- TODO: fixme fetch top artists -->
 <ul>
@@ -7,3 +18,4 @@
 {% endfor %}
 </ul>
 {{ paging('.artist.artists_page', current_page, pages) }}
+</div>

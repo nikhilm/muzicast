@@ -1,11 +1,23 @@
+from sqlobject import DESC
+from sqlobject.main import SQLObjectNotFound
 from flask import Module, render_template, url_for, redirect, session, escape, request, current_app, abort
 
 from muzicast.const import DB_FILE
-from muzicast.meta import Artist
+from muzicast.meta import Artist, ArtistStatistics
 from muzicast.web import playlist
 from muzicast.web.util import page_view, render_master_page
 
 artist = Module(__name__)
+
+def top_artists(n):
+    """
+    Returns the top n tracks
+    """
+    #TODO(nikhil) fix this to use statistics
+    try:
+        return [t.artist for t in ArtistStatistics.select(orderBy=DESC(ArtistStatistics.q.play_count))[:10]]
+    except SQLObjectNotFound:
+        return []
 
 @artist.route('s')
 def artists():
@@ -13,7 +25,7 @@ def artists():
 
 @artist.route('s/<int:page>')
 def artists_page(page):
-    return page_view(page, Artist, "artists.html", "artists")
+    return page_view(page, Artist, "artists.html", "artists", top_artists=top_artists(10))
 
 @artist.route('/<id>')
 def index(id):
