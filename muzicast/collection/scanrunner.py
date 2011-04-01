@@ -129,22 +129,18 @@ class ScanRunner(object):
         print 'info', info
         if not info:
             return
-        print 'cover', set_album_cover(info)
+        set_album_cover(info)
         # does it exist already?
-        print 'finding exi'
         entry = find_existing(url, info)
-        print 'found existing?', entry
         # TODO:
         # also try that if the file was renamed
         # while muzicast was not running
         # then if the meta-data is an exact match
         if entry:
             update_meta(entry[0], info)
-            print 'updated meta'
         else:
             # insert new
             insert_meta(info)
-            print 'inserted meta'
 
     def requires_update(self, path):
         if self.full: return True
