@@ -7,7 +7,7 @@
 <img class="large-cover" src="{{ url_for('.album.cover', id=album.id) }}">
 
 <ul id="album-tracks">
-{% for track in album.tracks %}
+{% for track in album.tracks.orderBy('track.tracknumber') %}
     {% include 'track_fragment.html' %}
 {% endfor %}
 </ul>

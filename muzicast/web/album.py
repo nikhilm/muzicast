@@ -3,7 +3,7 @@ from sqlobject.main import SQLObjectNotFound
 from flask import Module, url_for, redirect, session, escape, request, abort, current_app, send_file
 
 from muzicast.const import DB_FILE
-from muzicast.meta import Album, AlbumStatistics
+from muzicast.meta import Album, AlbumStatistics, Track
 from muzicast.web import playlist
 from muzicast.web.util import page_view, render_master_page
 
