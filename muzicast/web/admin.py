@@ -53,7 +53,7 @@ def login():
             return redirect(url_for('index'))
         else:
             wrong = True
-    return render_template('admin/login.html', wrong=wrong)
+    return render_template('admin/admin_login.html', wrong=wrong)
 
 @admin.route('/password', methods=['POST'])
 def change_password():
