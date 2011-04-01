@@ -115,8 +115,13 @@ class ScanRunner(object):
             print dirpath, dirnames, filenames
             # only get the directories we know are modified
             # this way os.walk is more efficient
-            [dirnames.remove(dir) for dir in dirnames if not self.requires_update(os.path.join(dirpath, dir))]
+            remove = [x for x in dirnames if not self.requires_update(os.path.join(dirpath, x))]
+            for entry in remove:
+                dirnames.remove(entry)
             
+            # at this point, modified directories are in dirnames
+            # os.walk will take care of iterating over them
+            # so we only iterate over files.
             for file in filenames:
                 fn = os.path.join(dirpath, file)
                 if self.requires_update(fn):
