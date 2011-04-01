@@ -17,7 +17,7 @@ def render_master_page(body_page, **kwargs):
     page_data.update(kwargs)
     return render_template('master.html', **page_data)
 
-def page_view(page, cls, template, key, per_page=5):
+def page_view(page, cls, template, key, per_page=5, **kw):
     """
     TODO: document this
     """
@@ -31,6 +31,7 @@ def page_view(page, cls, template, key, per_page=5):
         'pages'       : int(ceil(query.count()*1.0/per_page)),
         key           : insts
     }
+    kwargs.update(kw)
     return render_master_page(template, **kwargs)
 
 def make_pls_playlist(tracks):
