@@ -1,3 +1,4 @@
+from sqlobject.main import SQLObjectNotFound
 from flask import Module, render_template, url_for, redirect, session, escape, request, current_app, abort
 
 from muzicast.const import DB_FILE
@@ -17,8 +18,11 @@ def tracks_page(page):
 
 @track.route('/<int:id>')
 def index(id):
-    track = Track.get(id)
-    return render_master_page("track.html", title='Muzicast: Track', track=track)
+    try:
+        track = Track.get(id)
+        return render_master_page("track.html", title='Muzicast: Track', track=track)
+    except SQLObjectNotFound:
+        abort(404)
 
 @track.route('/add/<int:id>')
 def add_track_to_playlist(id):

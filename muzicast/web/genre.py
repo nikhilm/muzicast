@@ -25,9 +25,11 @@ def genres_page(page):
 
 @genre.route('/<id>')
 def index(id):
-    #TODO(nikhil) handle exception
-    genre = Genre.get(id)
-    return render_master_page("genre.html", title="genre", genre=genre)
+    try:
+        genre = Genre.get(id)
+        return render_master_page("genre.html", title="genre", genre=genre)
+    except SQLObjectNotFound:
+        abort(404)
 
 @genre.route('/add/<int:id>')
 def add_genre_to_playlist(id):

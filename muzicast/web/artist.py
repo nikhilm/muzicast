@@ -25,9 +25,11 @@ def artists_page(page):
 
 @artist.route('/<id>')
 def index(id):
-    #TODO(nikhil) handle exception
-    artist = Artist.get(id)
-    return render_master_page("artist.html", title="Artist", artist=artist)
+    try:
+        artist = Artist.get(id)
+        return render_master_page("artist.html", title="Artist", artist=artist)
+    except SQLObjectNotFound:
+        abort(404)
 
 @artist.route('/add/<int:id>')
 def add_artist_to_playlist(id):
