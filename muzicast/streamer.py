@@ -15,6 +15,12 @@ from muzicast.const import DB_FILE
 from muzicast.meta import Track, TrackStatistics, AlbumStatistics, ArtistStatistics, GenreStatistics
 
 route_regex = re.compile(r'/([0-9]*)(;\.mp3)?$')
+exts = {
+    '.mp3': 'audio/mpeg',
+    '.ogg': 'audio/ogg',
+    '.flac': 'audio/flac',
+    '.wav':  'audio/wav'
+}
 
 class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
 #    def __init__(self, socket, addr, server):
@@ -77,8 +83,8 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             self.send_header("icy-genre", "Unknown")
             self.send_header("icy-url", "http://localhost:7664")
             self.send_header("icy-pub", "1")
-# TODO(nikhil) decide all the ones below based on actual file
-            self.send_header("Content-Type", "audio/mpeg")
+            base, ext = os.path.splitext(metadata.url.replace('file://', ''))
+            self.send_header("Content-Type", exts.get(ext, "audio/mpeg"))
             self.send_header("icy-br", metadata.bitrate)
 
             if send_title:
