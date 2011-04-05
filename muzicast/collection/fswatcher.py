@@ -21,7 +21,11 @@ class CollectionEventHandler(FileSystemEventHandler):
         print "Created", dir(event), event.src_path
 
     def on_deleted(self, event):
-        print "Deleted", dir(event), event.src_path
+        # instead of bothering with file/directory changes
+        # we simply match path and drop all tracks.
+        tracks = Track.select(Track.q.url.startswith('file://'+event.src_path))
+        [track.destroySelf() for track in tracks]
+
 
     def on_modified(self, event):
         print "Modified", dir(event), event.src_path
