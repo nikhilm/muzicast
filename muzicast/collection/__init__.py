@@ -5,13 +5,14 @@ import logging
 import datetime
 import time
 import signal
+from sqlobject.dberrors import OperationalError
 from multiprocessing import Pool
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 from muzicast.collection.fswatcher import CollectionEventHandler
 from muzicast.collection.scanrunner import start_scanrunner
-from muzicast.meta import Artist, Album, Genre, Composer, Track
+from muzicast.meta import *
 from muzicast.config import GlobalConfig
 from muzicast.const import CONFIG, USERDIR
 
@@ -103,6 +104,21 @@ class CollectionScanner(object):
         full_scan = False
         if last_scan < paths_saved_at:
             full_scan = True
+
+        if full_scan:
+            try:
+                # for a full scan, first wipe all tables
+                Artist.deleteMany(None)
+                Album.deleteMany(None)
+                Genre.deleteMany(None)
+                Composer.deleteMany(None)
+                Track.deleteMany(None)
+                TrackStatistics.deleteMany(None)
+                AlbumStatistics.deleteMany(None)
+                ArtistStatistics.deleteMany(None)
+                GenreStatistics.deleteMany(None)
+            except OperationalError:
+                pass
 
         # first remove watches on
         # any directories that have been
