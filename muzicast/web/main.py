@@ -5,7 +5,7 @@ from sqlobject import DESC
 
 from muzicast.web.util import is_first_run, make_pls_playlist, render_master_page
 from muzicast.meta import Track, TrackStatistics
-from muzicast.web import playlist
+from muzicast.web.playlist import playlist_clear, playlist_entries
 
 main = Module(__name__)
 
@@ -38,11 +38,11 @@ def index():
 
 @main.route('playlist/download/playlist.pls')
 def download_playlist():
-    pls = make_pls_playlist(playlist.playlist_entries())
+    pls = make_pls_playlist(playlist_entries())
     response = make_response(pls, None, None, 'audio/x-scpls')
     return response
 
 @main.route('playlist/clear')
 def clear_playlist():
-    playlist.playlist_clear()
+    playlist_clear()
     return redirect(request.headers['referer'])
