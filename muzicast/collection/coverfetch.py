@@ -17,9 +17,23 @@ def fetch_cover(artist, album, save_url):
     Returns save_url on success, None on failure.
     """
 
-    connection = pylast.LastFMNetwork(api_key = API_key,api_secret = API_secret)
-    album = connection.get_album(artist, album)
-    image = album.get_cover_image()
+    connection = None
+    try:
+        connection = pylast.LastFMNetwork(api_key = API_key,api_secret = API_secret)
+    except pylast.NetworkError:
+        return None
+
+    album = None
+    try:
+        album = connection.get_album(artist, album)
+    except pylast.NetworkError:
+        return None
+
+    image = None
+    try:
+        image = album.get_cover_image()
+    except pylast.NetworkError:
+        return None
     print 'got image', image
 
     if not image:
