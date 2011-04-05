@@ -25,6 +25,7 @@ class Album(SQLObject):
 
 class Genre(SQLObject):
     name = UnicodeCol()
+    tracks = SQLMultipleJoin('Track')
 
 class Composer(SQLObject):
     name = UnicodeCol()
