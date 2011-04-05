@@ -10,7 +10,7 @@ from muzicast.meta import Artist,Album,Genre,Composer,Track
 
 search = Module(__name__)
 
-def Artist_Search(keylist):
+def artist_search(keylist):
     artist=[]
     for keyword in keylist:
         #tmp= Track.select(AND(Artist.q.name.contains(keyword),Artist.q.id==Track.q.artist))
@@ -19,7 +19,7 @@ def Artist_Search(keylist):
     artist=set(artist)
     return artist
 
-def Album_Search(keylist):
+def album_search(keylist):
     album=[]
     for keyword in keylist:
         #tmp= Track.select(AND(Album.q.name.contains(keyword),Album.q.id==Track.q.album))
@@ -28,7 +28,7 @@ def Album_Search(keylist):
     album=set(album)
     return album
 
-def Genre_Search(keylist):
+def genre_search(keylist):
     genre=[]
     for keyword in keylist:
         #tmp= Track.select(AND(Genre.q.name.contains(keyword),Genre.q.id==Track.q.genre))
@@ -37,7 +37,7 @@ def Genre_Search(keylist):
     genre=set(genre)
     return genre
 
-def Composer_Search(keylist):
+def composer_search(keylist):
     composer=[]
     for keyword in keylist:
         #tmp= Track.select(AND(Composer.q.name.contains(keyword),Composer.q.id==Track.q.composer))
@@ -46,7 +46,7 @@ def Composer_Search(keylist):
     composer=set(composer)
     return composer
 
-def Track_Search(keylist):
+def track_search(keylist):
     track=[]
     for keyword in keylist:
         tmp= Track.select(Track.q.title.contains(keyword))
@@ -59,7 +59,7 @@ def index():
     query = request.args.get('query', '')
     keylist = query.split()
     return render_master_page("search_results.html", title="Results for \"%s\""%query, results={
-        'artists': Artist_Search(keylist),
-        'albums' : Album_Search(keylist),
-        'tracks' : Track_Search(keylist)
+        'artists': artist_search(keylist),
+        'albums' : album_search(keylist),
+        'tracks' : track_search(keylist)
     })
