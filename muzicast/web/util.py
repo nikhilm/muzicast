@@ -19,7 +19,15 @@ def render_master_page(body_page, **kwargs):
 
 def page_view(page, cls, template, key, per_page=5, **kw):
     """
-    TODO: document this
+    Creates a paging system to allow browsing
+    larger data sets.
+
+    page is the current page to be shown
+    cls is the ORM instance whose rows are displayed
+    template is the template that is to be rendered as the main page
+    key is the name the template expects the results to be as
+    per_page is the number of results shown per page
+    kw are keyword arguments passed on to render_master_page, useful for plugging in other things.
     """
     if page < 1:
         return abort(400)

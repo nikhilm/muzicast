@@ -115,8 +115,6 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
         else:
             self.send_error(404)
 
-#TODO(nikhil) respect meta and send at bitrate
-
 class StreamServer(asyncore.dispatcher):
     def __init__(self, host, port):
         asyncore.dispatcher.__init__(self)

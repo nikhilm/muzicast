@@ -22,7 +22,13 @@ WEB_PORT = 7664
 STREAM_PORT = 7665
 
 AUTHORS = sorted("""\
-TODO
+Anurakt Awasthi
+Jay Bhorania
+Nikhil Marathe
+Sandeep Sharma
+Saurabh Barnwal
+Shreya Agarwal
+Swati Ittan
 """.strip().split("\n"))
 
 try: ENCODING = locale.getpreferredencoding()

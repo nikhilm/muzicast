@@ -33,7 +33,6 @@ def index():
     if is_first_run():
         return redirect(url_for('admin.index'))
 
-    # TODO: will need attributes for template
     return render_master_page('home.html', title='Muzicast', top_tracks=top_tracks, recently_played=recently_played)
 
 @main.route('playlist/download/playlist.pls')

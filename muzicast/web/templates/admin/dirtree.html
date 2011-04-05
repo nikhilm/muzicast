@@ -52,9 +52,6 @@
             $('#dirtree-messages').html('<img src="/static/scripts/themes/themes/default/throbber.gif">');
 
             var json = jQuery.jstree._reference($('#dirtree-div')).get_json();
-            // TODO(nikhil) can probably be made
-            // more efficient rather than sending
-            // the entire thing across
             $.ajax({
                 url: $('#save-directories-form').attr('action'), 
                 type: "POST",

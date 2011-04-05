@@ -66,7 +66,6 @@ def change_password():
         flash("Password changed successfully.")
     except Exception:
         flash("Error changing password!", "error")
-    #TODO(nikhil) flash success/error
     return redirect(url_for('index'))
 
 @admin.route('/dirlist', methods=['GET'])
@@ -81,7 +80,6 @@ def dirlist():
         paths = config['collection']['paths']
 
     req_path = request.args.keys()[0]
-    # TODO: lots of security checks
     if req_path == "/":
         # TODO: on windows for root, get drive letters
         pass
@@ -89,7 +87,6 @@ def dirlist():
     ret = []
     for entry in os.listdir(req_path):
         path = os.path.join(req_path, entry)
-        # TODO: don't set state if no subdir
         if os.path.isdir(path):
             d = {'data': entry, 'metadata': path, 'state': 'closed', 'attr': {}}
             if path in paths:

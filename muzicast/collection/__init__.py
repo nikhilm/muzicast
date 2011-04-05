@@ -41,7 +41,6 @@ class CollectionScanner(object):
         self.scanner_pool = Pool(processes=4)
 
         self.log.debug("Starting fswatcher")
-#TODO(nikhil) enable this, but only after initialization (self.start) is done
 
         signal.signal(signal.SIGINT, self.quit)
         signal.signal(signal.SIGTERM, self.quit)

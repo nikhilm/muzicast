@@ -103,4 +103,3 @@ def init_meta():
     # XXX: Add more HERE
     return True
 
-#TODO(nikhil) statistics, playlists tables
