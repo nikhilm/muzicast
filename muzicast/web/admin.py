@@ -1,6 +1,7 @@
 import os
 import sys
 import signal
+import threading
 import time
 from hashlib import sha256
 
@@ -103,10 +104,11 @@ def dirlist():
 
 @admin.route('/stop', methods=['POST'])
 def stop():
-#TODO(nikhil) drop this
-    #TODO: do cleanup
+    def kill():
+        os.kill(os.getpid(), signal.SIGINT)
+    t = threading.Timer(2, kill)
+    t.start()
     return render_template('admin/stopped.html')
-    #TODO: do more cleanup
 
 @admin.route('/rescan', methods=['POST'])
 def rescan():
