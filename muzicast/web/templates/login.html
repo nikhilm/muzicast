@@ -1,3 +1,4 @@
+<div id="login-form" class="form-div">
 <form action="{{ url_for('user.login') }}" method="POST">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -8,7 +9,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
-    <table>
+    <table id="login">
         <tr>
             <td><label for="username">Username:</label></td>
             <td><input type="text" name="username" placeholder="Username"></td>
@@ -24,3 +25,4 @@
         </tr>
     </table>
 </form>
+</div>

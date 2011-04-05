@@ -1,10 +1,17 @@
-{% from 'util.html' import image %}
-{{ image('muzicast_logo.png') }}
 
-{% include 'user-links.html' %}
+
+{% from 'util.html' import image %}
+
+
 <ul id="top-navigation">
-<li><a href="{{ url_for('.artist.artists') }}">Artists</a></li>
+<li><a href="{{ url_for('.artist.artists') }}">Artists </a></li>
 <li><a href="{{ url_for('.album.albums') }}">Albums</a></li>
 <li><a href="{{ url_for('.genre.genres') }}">Genres</a></li>
 <li><a href="{{ url_for('.track.tracks') }}">Tracks</a></li>
+
 </ul>
+
+
+
+
+

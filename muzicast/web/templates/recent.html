@@ -1,7 +1,7 @@
-<div id="recently-played">
+<div id="recently-played" class="top">
 <h2>Recently Played</h2>
 
-<ul id="recently-played">
+<ul id="recently-player">
 {% for track in recently_played(10)  %}
 {% include 'track_fragment.html' %}
 {% endfor %}

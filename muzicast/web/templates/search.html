@@ -1,4 +1,8 @@
-<form id="search-form" action="{{ url_for('.search.index') }}" method="GET">
+<div id="links-bar">
+	{% include 'user-links.html' %}
+	<div id="search"><form id="search-form" action="{{ url_for('.search.index') }}" method="GET">
     <input name="query" placeholder="Keywords" value="{{ request.args.get('query', '') }}">
     <input type="submit" value="Search">
-</form>
+	</form>
+	</div>
+</div>

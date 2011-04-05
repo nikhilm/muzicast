@@ -1,4 +1,5 @@
 {% from 'util.html' import paging %}
+<div id="tracks-list" class="center">
 <h1>Tracks</h1>
 <ul>
 {% for track in tracks %}
@@ -7,3 +8,4 @@
 </ul>
 
 {{ paging('.track.tracks_page', current_page, pages) }}
+</div>

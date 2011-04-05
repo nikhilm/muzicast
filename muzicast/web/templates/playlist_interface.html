@@ -1,6 +1,6 @@
 {% from 'util.html' import image %}
 <div id="playlist">
-<h3>Playlist</h3>
+<h2>Playlist</h2>
 
 <ol>
 {% for track in playlist.playlist_entries()  %}
@@ -24,6 +24,8 @@
 </form>
 <a href="{{ url_for('playlist.manage') }}">Manage Playlists</a>
 {% endif %}
+<div id="dowload-clear"> <!-- Change -->
 <a href="{{ url_for('.main.download_playlist') }}">Download</a>
 <a href="{{ url_for('.main.clear_playlist') }}">Clear</a>
+</div>
 </div>

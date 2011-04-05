@@ -1,3 +1,4 @@
+<div id="edit-profile" class="form-div">
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <ul class="flashes">
@@ -33,7 +34,7 @@
 
 <h2>Delete Account</h2>
 <p>To delete your account, type in your password below.</p>
-<p style="color: red; font-size: 120%">This action is irreversible and will also delete all playlists!</p>
+<p style="color: maroon; padding: 10px; font-weight: bolder">This action is irreversible and will also delete all playlists!</p>
 <form action="{{ url_for('user.delete') }}" method="POST">
     <table>
         <tr>
@@ -46,3 +47,4 @@
         </tr>
     </table>
 </form>
+</div>

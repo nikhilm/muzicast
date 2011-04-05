@@ -1,3 +1,4 @@
+<div id="registration-form" class="form-div">
 {% if registration_successful %}
 <h2>Registration Successful!</h2>
 <p>Welcome {{ user.username }}. Please <a href="{{ url_for('user.login') }}">login</a> to continue using Muzicast with extended features.</p>
@@ -29,3 +30,4 @@
     </table>
 </form>
 {% endif %}
+</div>
