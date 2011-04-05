@@ -1,0 +1,6 @@
+{% from 'util.html' import image %}
+
+<li id="{{genre.id}}" class="genre" >
+<a href="{{ url_for('.genre.index', id=genre.id) }}">{{ genre.name }}</a>
+    <a class="add-to-playlist-button" href="{{ url_for('.genre.add_genre_to_playlist', id=genre.id) }}">{{ image('add.png') }}</a>
+</li>
