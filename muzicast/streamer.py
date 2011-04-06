@@ -138,8 +138,9 @@ class StreamServer(asyncore.dispatcher):
             print 'New conn', addr
             handler = StreamJob(sock, addr, self)
 
-server = StreamServer('0.0.0.0', 7665)
-asyncore.loop()
+if __name__ == '__main__':
+    server = StreamServer('0.0.0.0', 7665)
+    asyncore.loop()
 
 #def stream(a, b):
 #    print a, b
