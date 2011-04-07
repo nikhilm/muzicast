@@ -1,3 +1,5 @@
+import string
+import random
 from hashlib import sha1
 from flask import Module, url_for, redirect, session, escape, request, current_app, abort, flash
 from sqlobject.main import SQLObjectNotFound
@@ -55,6 +57,51 @@ def login():
     else:
         return render_master_page('login.html', title='Muzicast: Login')
 
+@user.route('/forgotpassword')
+def forgot_password():
+    return render_master_page('forgot_password_1.html', title='Password reclamation')
+
+@user.route('/forgotpassword/2', methods=['POST'])
+def forgot_password_username():
+    sq = user = None
+    if not request.form['username']:
+        flash("Enter username!", "error")
+    else:
+        try:
+            user = User.byUsername(request.form['username'])
+            sq = user.secret_question
+        except SQLObjectNotFound:
+            flash("No such user!", "error")
+
+    if sq:
+        return render_master_page('forgot_password_2.html', title='Answer secret question', user=user.username, secret_question=sq)
+    else:
+        return redirect(url_for('user.forgot_password'))
+
+@user.route('/forgotpassword/reset', methods=['POST'])
+def forgot_password_reset():
+    new_pass = None
+    if not request.form['username'] or not request.form['secret_answer']:
+        flash("Invalid inputs!", "error")
+    else:
+        try:
+            user = User.byUsername(request.form['username'])
+            given = sha1(request.form['secret_answer']).hexdigest()
+            actual = user.secret_answer
+
+            if given != actual:
+                flash("Wrong answer!", "error")
+            else:
+                new_pass = generate_random_password()
+                user.password = sha1(new_pass).hexdigest()
+        except SQLObjectNotFound:
+            flash("No such user!", "error")
+
+    if new_pass:
+        return render_master_page('password_reset.html', title='Password reset', new_password=new_pass)
+    else:
+        return redirect(url_for('user.forgot_password'))
+
 @user.route('/edit', methods=['GET', 'POST'])
 def edit():
     if 'user' not in session:
@@ -108,3 +155,11 @@ def logout():
     if 'user' in session:
         del session['user']
     return redirect(url_for('main.index'))
+
+def generate_random_password():
+    pool = string.ascii_letters + string.digits + string.punctuation
+    length = random.randint(6, 10)
+    password = ""
+    for i in range(length):
+        password += random.choice(pool)
+    return password
