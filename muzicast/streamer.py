@@ -81,7 +81,6 @@ class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
             self.send_header("icy-notice2", "Register to be able to save playlists.")
             self.send_header("icy-name", "Muzicast")
             self.send_header("icy-genre", "Unknown")
-            self.send_header("icy-url", "http://localhost:7664")
             self.send_header("icy-pub", "1")
             base, ext = os.path.splitext(metadata.url.replace('file://', ''))
             self.send_header("Content-Type", exts.get(ext, "audio/mpeg"))

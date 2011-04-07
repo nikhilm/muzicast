@@ -14,7 +14,7 @@
         <script language="javascript">
             flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf", {
                 clip: {
-                    url: "http://localhost:7665/{{track.id}};.mp3",
+                    url: "http://{{url}}:{{port}}/{{track.id}};.mp3",
                     autoPlay: false,
                     provider: 'audio'
                 },

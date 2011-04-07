@@ -20,7 +20,13 @@ def tracks_page(page):
 def index(id):
     try:
         track = Track.get(id)
-        return render_master_page("track.html", title='Muzicast: Track', track=track)
+        url = request.environ['HTTP_HOST']
+        pos = url.rfind(':' + request.environ['SERVER_PORT'])
+        if pos != -1:
+            url = url[:pos]
+        # otherwise the host is just the host without a port,
+        # which is just what we want
+        return render_master_page("track.html", title='Muzicast: Track', track=track, url=url, port=const.STREAM_PORT)
     except SQLObjectNotFound:
         abort(404)
 
