@@ -390,10 +390,31 @@ div.form-div {
  }
 #footer * {
      font-size: 12px;
- }
+}
 
 
- div.paging {
-     text-align: center;
-     margin-top: 20px;
- }
+div.paging {
+    text-align: center;
+    margin-top: 20px;
+}
+
+div.single-pane {
+    width: 50%;
+    margin-left: 5%;
+}
+
+div.single-pane h1 {
+    padding: 0 0 5px 0;
+}
+
+div.single-pane h3, div.single-pane ul, div.single-pane img {
+    padding: 0 20px;
+}
+
+div.single-pane h3, div.single-pane ul {
+    padding-top: 10px;
+}
+
+div.track-pane #player {
+    padding: 10px;
+}

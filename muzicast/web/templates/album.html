@@ -1,3 +1,4 @@
+<div class="center single-pane">
 <h1>{{ album.name }}</h1>
 <h3>by
     <a href="{{ url_for('.artist.index', id=album.artist.id) }}">
@@ -11,3 +12,4 @@
     {% include 'track_fragment.html' %}
 {% endfor %}
 </ul>
+</div>

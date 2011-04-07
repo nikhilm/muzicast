@@ -1,6 +1,10 @@
 {% from 'util.html' import image %}
+<div class="center single-pane">
 <h1>Albums by {{ artist.name }}</h1>
 <h3><a href="{{ url_for('.artist.add_artist_to_playlist', id=artist.id) }}">{{ image('add.png') }} Add all tracks by {{ artist.name }} to playlist</a></h3>
+<ul>
 {% for album in artist.albums %}
     {% include 'album_fragment.html' %}
 {% endfor %}
+</ul>
+</div>

@@ -1,7 +1,8 @@
+<div class="center single-pane">
 <h1>Genre: {{ genre.name }}</h1>
-
 <ul id="genre-tracks">
 {% for track in genre.tracks %}
     {% include 'track_fragment.html' %}
 {% endfor %}
 </ul>
+</div>
