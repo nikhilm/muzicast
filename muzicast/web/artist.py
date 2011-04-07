@@ -21,7 +21,7 @@ def artists():
 
 @artist.route('s/<int:page>')
 def artists_page(page):
-    return page_view(page, Artist, "artists.html", "artists", top_artists=top_artists(10))
+    return page_view(page, Artist, "artists.html", "artists", top_artists=top_artists(10), title='Artists')
 
 @artist.route('/<id>')
 def index(id):

@@ -21,7 +21,7 @@ def genres():
 
 @genre.route('s/<int:page>')
 def genres_page(page):
-    return page_view(page, Genre, "genres.html", "genres", top_genres=top_genres(10))
+    return page_view(page, Genre, "genres.html", "genres", top_genres=top_genres(10), title='Genres')
 
 @genre.route('/<id>')
 def index(id):

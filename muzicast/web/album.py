@@ -21,7 +21,7 @@ def albums():
 
 @album.route('s/<int:page>')
 def albums_page(page):
-    return page_view(page, Album, "albums.html", "albums", top_albums=top_albums(10))
+    return page_view(page, Album, "albums.html", "albums", top_albums=top_albums(10), title='Albums')
 
 @album.route('/<id>')
 def index(id):

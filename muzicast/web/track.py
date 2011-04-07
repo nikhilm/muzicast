@@ -14,7 +14,7 @@ def tracks():
 
 @track.route('s/<int:page>')
 def tracks_page(page):
-    return page_view(page, Track, "tracks.html", "tracks", 20)
+    return page_view(page, Track, "tracks.html", "tracks", 20, title='Tracks')
 
 @track.route('/<int:id>')
 def index(id):
