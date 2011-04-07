@@ -12,7 +12,7 @@
         </h3>
         <div id="player" style="width:400px; height: 170px"></div>
         <script language="javascript">
-            flowplayer("player", "http://releases.flowplayer.org/swf/flowplayer-3.2.5.swf", {
+            flowplayer("player", "{{ url_for('.static', filename="flowplayer/flowplayer-3.2.5.swf") }}", {
                 clip: {
                     url: "http://{{url}}:{{port}}/{{track.id}};.mp3",
                     autoPlay: false,

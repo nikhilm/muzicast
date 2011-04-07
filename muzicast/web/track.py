@@ -1,7 +1,7 @@
 from sqlobject.main import SQLObjectNotFound
 from flask import Module, render_template, url_for, redirect, session, escape, request, current_app, abort
 
-from muzicast.const import DB_FILE
+from muzicast.const import DB_FILE, STREAM_PORT
 from muzicast.meta import Track
 from muzicast.web import playlist
 from muzicast.web.util import page_view, render_master_page
@@ -26,7 +26,7 @@ def index(id):
             url = url[:pos]
         # otherwise the host is just the host without a port,
         # which is just what we want
-        return render_master_page("track.html", title='Muzicast: Track', track=track, url=url, port=const.STREAM_PORT)
+        return render_master_page("track.html", title='Muzicast: Track', track=track, url=url, port=STREAM_PORT)
     except SQLObjectNotFound:
         abort(404)
 
