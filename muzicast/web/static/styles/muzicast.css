@@ -418,3 +418,11 @@ div.single-pane h3, div.single-pane ul {
 div.track-pane #player {
     padding: 10px;
 }
+
+#playlists-table {
+    padding: 10px;
+}
+
+td.playlist-name {
+    width: 80%;
+}

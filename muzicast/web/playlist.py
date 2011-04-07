@@ -77,7 +77,7 @@ def manage():
         return redirect(url_for('main.index'))
 
     user = User.byUsername(session['user']['username'])
-    return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == user))
+    return render_master_page('playlist-manager.html', title='Manage Playlists', playlists=Playlist.select(Playlist.q.user == user.id))
 
 @playlist.route('/makeactive/<int:id>')
 def set_active(id):
