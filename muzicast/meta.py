@@ -74,6 +74,8 @@ class User(SQLObject):
     password = StringCol()
     registered_on = DateTimeCol(default=DateTimeCol.now)
     current_playlist = IntCol(default=-1)
+    secret_question = StringCol()
+    secret_answer = StringCol()
 
 class Playlist(SQLObject):
     user = ForeignKey('User')

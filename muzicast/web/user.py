@@ -18,11 +18,17 @@ def register():
             flash("Username '%s' is already taken!"%request.form['username'], "error")
         except SQLObjectNotFound:
             # username available
-            if not request.form['password']:
+            if not request.form['username']:
+                flash("Please enter a username", "error")
+            elif not request.form['password']:
                 flash("Please enter a password!", "error")
+            elif not request.form['secret_answer']:
+                flash("Please enter secret answer!", "error")
             else:
-                user = User(username=request.form['username'], password=sha1(request.form['password']).hexdigest())
-                current_app.logger.debug("%s", user)
+                user = User(username=request.form['username'],
+                            password=sha1(request.form['password']).hexdigest(),
+                            secret_question=request.form['secret_question'],
+                            secret_answer=sha1(request.form['secret_answer']).hexdigest())
                 success = True
 
     return render_master_page('register.html', title='Muzicast: Register', registration_successful=success, user=user)

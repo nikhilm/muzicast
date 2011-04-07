@@ -3,6 +3,8 @@
 <h2>Registration Successful!</h2>
 <p>Welcome {{ user.username }}. Please <a href="{{ url_for('user.login') }}">login</a> to continue using Muzicast with extended features.</p>
 {% else %}
+<h2>Register</h2>
+<h3>All fields are mandatory</h3>
 <form action="{{ url_for('user.register') }}" method="POST">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -22,6 +24,21 @@
         <tr>
             <td><label for="password">Password:</label></td>
             <td><input type="password" name="password" placeholder="Password"></td>
+        </tr>
+
+        <tr>
+            <td><label for="secret_question">Secret Question:</label></td>
+            <td><select name="secret_question">
+                    <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                    <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                    <option value="Which color was your first school uniform?">Which color was your first school uniform?</option>
+                    <option value="What is your favourite book">What is your favourite book</option>
+            </select</td>
+        </tr>
+
+        <tr>
+            <td><label for="secret_answer">Answer:</label></td>
+            <td><input type="password" name="secret_answer"></td>
         </tr>
 
         <tr>
