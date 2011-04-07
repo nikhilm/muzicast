@@ -1,3 +1,4 @@
+import os
 from watchdog.events import FileSystemEventHandler
 
 from muzicast.meta import Track
@@ -18,7 +19,12 @@ class CollectionEventHandler(FileSystemEventHandler):
                 print entry
 
     def on_created(self, event):
-        print "Created", dir(event), event.src_path
+        # a created event is always followed by a modify event
+        # due to the actual data write that occurs to the file
+        # unless its a zero-byte file in which case we don't want
+        # to scan it anyway. So on_created does not do any handling
+        # it is done by on_modified
+        pass
 
     def on_deleted(self, event):
         # instead of bothering with file/directory changes
@@ -29,4 +35,7 @@ class CollectionEventHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         print "Modified", dir(event), event.src_path
-
+        if event.is_directory:
+            self.scanner.scan_directory(event.src_path, False)
+        else:
+            self.scanner.scan_directory(os.path.dirname(event.src_path), False)
