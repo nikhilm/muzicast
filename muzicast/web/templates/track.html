@@ -1,4 +1,4 @@
-{% from "util.html" import stylesheet %}
+{% from "util.html" import stylesheet, pretty_time, image %}
 <div class="center single-pane track-pane">
         <script language="javascript" src="{{ url_for('.static', filename='flowplayer/flowplayer-3.2.4.min.js') }}" type="text/javascript"> </script>
         <h1>{{ track.title }}</h1>
@@ -11,6 +11,10 @@
                 {{ track.album.name }}
             </a>
         </h3>
+        <p class="duration">Duration: {{ pretty_time(track.duration) }}</p>
+        {% if not playlist.playlist_contains(track.id) %}
+        <p><a class="add-to-playlist-button" href="{{ url_for('.track.add_track_to_playlist', id=track.id) }}">{{ image('add.png') }} Add to playlist</a></p>
+        {% endif %}
         <div id="player" style="width:400px; height: 170px"></div>
         <script language="javascript">
             flowplayer("player", "{{ url_for('.static', filename="flowplayer/flowplayer-3.2.5.swf") }}", {
