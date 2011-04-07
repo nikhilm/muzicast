@@ -23,18 +23,17 @@ def fetch_cover(artist, album, save_url):
     except pylast.NetworkError:
         return None
 
-    album = None
+    album_obj = None
     try:
-        album = connection.get_album(artist, album)
+        album_obj = connection.get_album(artist, album)
     except pylast.NetworkError:
         return None
 
     image = None
     try:
-        image = album.get_cover_image()
+        image = album_obj.get_cover_image()
     except (pylast.NetworkError, pylast.WSError, pylast.MalformedResponseError):
         return None
-    print 'got image', image
 
     if not image:
     	return None
@@ -43,14 +42,11 @@ def fetch_cover(artist, album, save_url):
         req = urllib.urlopen(image)
         im = cStringIO.StringIO(req.read())
         img = Image.open(im)
-        print 'got image', img
 
         img.save(save_url)
-        print 'saved image'
         return save_url
     except (IOError, IndexError):
-        print 'got exception'
         return None
 
 if __name__ == '__main__':
-	print fetch_cover(sys.argv[1], '/tmp/test.png')
+	print fetch_cover(sys.argv[1], sys.argv[2], '/tmp/test.png')
