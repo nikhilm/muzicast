@@ -32,7 +32,7 @@ def fetch_cover(artist, album, save_url):
     image = None
     try:
         image = album.get_cover_image()
-    except pylast.NetworkError:
+    except (pylast.NetworkError, pylast.WSError, pylast.MalformedResponseError):
         return None
     print 'got image', image
 
