@@ -17,7 +17,7 @@ Programs --> Muzicast --> Start Muzicast`.
 On Linux you may invoke Muzicast from your desktop environment's menu
 or run :command:`Muzicast` from the terminal.
 
-Now point your web browser to http://localhost:4000/admin. You should see the
+Now point your web browser to http://127.0.0.1:7664/. You should see the
 Muzicast first run wizard.
 
 .. todo:: Insert screenshot

@@ -34,7 +34,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 rst_prolog = """
-.. |webserver-url| replace:: http://localhost:4000
+.. |webserver-url| replace:: http://127.0.0.1:7664
 """
 
 # The encoding of source files.
