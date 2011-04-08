@@ -10,7 +10,7 @@ setup(name='Muzicast',
       url='http://github.com/nikhilm/muzicast/',
       packages=['muzicast', 'muzicast.web', 'muzicast.collection', 'muzicast.collection.formats', 'muzicast.collection.util'],
       modules=['muzicast.web.principal', 'muzicast.streamer'],
-      console=['run.py'],
+      console=['muzicast.py'],
       package_data={'muzicast.web': ['templates/master.html']},
       install_requires=['Flask>=0.6', 'watchdog>=0.5', 'sqlobject', 'jinja2', 'blinker', 'pylast'],
       options= {'py2exe': {
