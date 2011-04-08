@@ -11,7 +11,10 @@ genre = Module(__name__)
 
 def top_genres(n):
     try:
-        return [t.genre for t in GenreStatistics.select(orderBy=DESC(GenreStatistics.q.play_count))[:10]]
+        top = [t.genre for t in GenreStatistics.select(orderBy=DESC(GenreStatistics.q.play_count))[:n]]
+        if len(top) < n:
+            top = top + [genre for genre in Genre.select()[:n-len(top)]]
+        return set(top)
     except SQLObjectNotFound:
         return []
 

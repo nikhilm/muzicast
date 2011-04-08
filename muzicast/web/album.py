@@ -11,7 +11,10 @@ album = Module(__name__)
 
 def top_albums(n):
     try:
-        return [t.album for t in AlbumStatistics.select(orderBy=DESC(AlbumStatistics.q.play_count))[:10]]
+        top = [t.album for t in AlbumStatistics.select(orderBy=DESC(AlbumStatistics.q.play_count))[:n]]
+        if len(top) < n:
+            top = top + [album for album in Album.select()[:n-len(top)]]
+        return set(top)
     except SQLObjectNotFound:
         return []
 

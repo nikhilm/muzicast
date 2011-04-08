@@ -11,7 +11,10 @@ artist = Module(__name__)
 
 def top_artists(n):
     try:
-        return [t.artist for t in ArtistStatistics.select(orderBy=DESC(ArtistStatistics.q.play_count))[:10]]
+        top = [t.artist for t in ArtistStatistics.select(orderBy=DESC(ArtistStatistics.q.play_count))[:n]]
+        if len(top) < n:
+            top = top + [artist for artist in Artist.select()[:n-len(top)]]
+        return set(top)
     except SQLObjectNotFound:
         return []
 
