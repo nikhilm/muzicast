@@ -405,7 +405,7 @@ div.single-pane h1 {
     padding: 0 0 5px 0;
 }
 
-div.single-pane h3, div.single-pane ul, div.single-pane img {
+div.single-pane h3, div.single-pane ul, div.single-pane img, div.single-pane p {
     padding: 0 20px;
 }
 
