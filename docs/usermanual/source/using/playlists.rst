@@ -2,27 +2,17 @@ Playlists
 =========
 
 Playlists are the most important feature of Muzicast.
-You can:
-
-* Create a custom playlist by manually inserting tracks, albums and artists, queueing them up in your music player, and listening to the
-  tracks.
-* Randomize playlist orders.
-* Set playlists to loop or play randomly [TODO: REALLY?]
-* Use public playlists and create and modify copies of them.
-* Subscribe to **dynamic** playlists which keep streaming tracks of a certain
-  genre. This is a great way to discover new music. [TODO: again are we doing
-  this?]
+You can create a custom playlist by manually inserting tracks, albums and artists, queueing them up in your music player, and listening to the tracks.
 
 In addition, if you are a :doc:`registered user </using/register>` you may:
 
 * Create **multiple** playlists.
 * **Save** playlists permanently and modify them.
-* **Share** playlists or keep them private.
 
 Creating Playlists
 ------------------
 
-.. todo:: Add screenshot of "Add to Playlist button"
+.. image:: /_static/screenshots/add_to_pl.png
 
 Any musical item -- track, album and artist -- has a "Add to Playlist" button
 next to it. This makes it very easy to create playlists. If you do not have any
@@ -32,63 +22,25 @@ first time you add an item. Any additional items you select get added to this
 :term:`active playlist`.
 
 The :term:`active playlist` is shown to the side of the web interface once you create it.
-If there are a lot of tracks, only the first few entries will be shown, but you
-can click on the playlist any time to view the full list. The link next to the
-playlist can be inserted into your music player any time to start playing added
-tracks.
+You can click :guilabel:`Download` at any time to download the playlist and
+play the tracks in a music player.
 
-.. _playlist_options:
+All the sections below assume that you are **logged in**.
 
-Playlist options
-----------------
+Save a playlist
+---------------
 
-The playlist has a few options other than the list of tracks.
-
-Playlist name
-^^^^^^^^^^^^^
-A new playlist is by default named as "Playlist" followed by the date and time
-when the first track was added. To rename the :term:`active playlist` you can click
-on the name, change it and press :guilabel:`save`. To rename other playlists, you can go to the
-:ref:`playlist manager <editing_playlists>` and rename them by clicking on the
-name.
-
-.. todo:: Add icon pictures
-
-Shuffle
-^^^^^^^
-You can make the tracks in the playlist play randomly by toggling the Shuffle
-icon next to the playlist name or in the :ref:`playlist manager
-<editing_playlists>`.
-
-Loop
-^^^^
-You can make the playlist repeat itself once all the tracks are played by
-toggling the Loop icon next to the playlist name or in the :ref:`playlist
-manager <editing_playlists>`.
-
-Share with everybody
-^^^^^^^^^^^^^^^^^^^^
-You can make the playlist publicly available by checking the :guilabel:`Share`
-icon next to the playlist name in the :ref:`playlist manager
-<editing_playlists>`.
-
-.. note:: This feature is only available for :doc:`registered users </using/register>` who are logged in.
+To save the active playlist, give it a name and click save. The playlist is
+then saved, but the active playlist is cleared.
 
 .. _editing_playlists:
 
 Editing Playlists
 -----------------
 Playlists created by registered users are permanently saved. Those created by
-guests are deleted a few hours after the session is over (unless it is being
-played). At any point during this time you may edit various :ref:`playlist options <playlist_options>`.
+guests are deleted when they close the browser. At any point during this time you may edit them. Click on :guilabel:`Playlist Manager` in the right playlist pane to view your saved playlists.
 
-.. todo:: Insert playlist manager screenshot
-
-You can view all your playlists in the :term:`Playlist Manager` which can be accessed
-by clicking on the :guilabel:`Playlists` tab once you are logged in.
-
-You can perform the various actions :ref:`mentioned above <playlist_options>`.
-In addition you can delete and edit playlists.
+.. image:: /_static/screenshots/manager.png
 
 Delete a playlist
 ^^^^^^^^^^^^^^^^^
@@ -118,11 +70,6 @@ If you want to switch to a new playlist to add some other tracks, you can
 simply select another playlist from the drop down menu near the side, and
 choose another existing playlist or a new playlist as the :term:`active playlist`.
 
-Deleting or re-ordering tracks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-To delete tracks, click on the playlist name. You will see a page with all the
-tracks belonging to the playlist. You can now remove them as you wish, or
-re-arrange them to change the play order.
-
-.. warning::
-    Both deleting and re-ordering operations cannot be undone. Be careful.
+Deleting tracks
+~~~~~~~~~~~~~~~
+To delete tracks, set the playlist as the active playlist and then remove tracks.

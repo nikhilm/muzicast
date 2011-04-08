@@ -1,9 +1,8 @@
 Linux
 =====
 
-.. todo:: Put download URL
-
 First download Muzicast for Linux from
+`the Muzicast homepage <https://github.com/nikhilm/muzicast/downloads>`_.
 
 Installation on Linux depends on your distribution.
 Muzicast requires the following additional packages to
@@ -11,8 +10,15 @@ be installed.
 
 * Python 2.6 or later
 * setuptools
-* gevent 0.13.0 or later
-* gunicorn 0.11.0 or later
+* watchdog
+* flask
+* pylast
+* sqlobject
+* blinker
+* jinja2
+
+and their related dependencies. All of them should be easy installable using
+the package manager.
 
 Installing Muzicast on Debian
 --------------------------------
@@ -21,14 +27,15 @@ Installing Muzicast on Debian
 
 .. parsed-literal::
 
-    sudo apt-get install python python-setuptools python-gevent gunicorn
+    sudo apt-get install python python-pip
+    sudo pip install watchdog flask pylast sqlobject blinker jinja2
 
 #. Install Muzicast
 
 .. parsed-literal::
 
-    tar zxvf Muzicast-|release|.tar.gz
-    cd Muzicast-|release|
+    tar zxvf muzicast-|release|.tar.gz
+    cd muzicast-|release|
     sudo python setup.py install
 
 To run Muzicast, see the :doc:`/quickstart`.
@@ -36,20 +43,19 @@ To run Muzicast, see the :doc:`/quickstart`.
 Installing Muzicast on Fedora/Redhat
 ---------------------------------------
 
-.. todo:: check package names
-
 #. Install the required packages
 
 .. parsed-literal::
 
-    sudo yum install python python-setuptools python-gevent gunicorn
+    sudo yum install python python-pip
+    sudo pip install watchdog flask pylast sqlobject blinker jinja2
 
 #. Install Muzicast
 
 .. parsed-literal::
 
-    tar zxvf Muzicast-|release|.tar.gz
-    cd Muzicast-|release|
+    tar zxvf muzicast-|release|.tar.gz
+    cd muzicast-|release|
     sudo python setup.py install
 
 You may now proceed to the :doc:`/quickstart`.
@@ -57,17 +63,17 @@ You may now proceed to the :doc:`/quickstart`.
 Installing Muzicast on Archlinux
 -----------------------------------
 
-.. todo:: Provide AUR package
+.. parsed-literal::
 
-Archlinux has a `AUR <http://aur.archlinux.org>`_ PKGBUILD available which will create a package.
-
-`Download <http://aur.archlinux.org>`_ the PKGBUILD and save it to
-`/tmp/Muzicast/` then run
+    su
+    (As root)
+    # pacman -S python-pip
+    # pip install watchdog flask pylast sqlobject blinker jinja2
 
 .. parsed-literal::
     
-    cd /tmp/Muzicast
-    makepkg
-    pacman -U Muzicast-|release|.pkg.tar.xz
+    tar zxvf muzicast-|release|.tar.gz
+    cd muzicast-|release|
+    sudo python setup.py install
 
 See the :doc:`/quickstart` for setting up Muzicast.

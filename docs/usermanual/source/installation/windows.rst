@@ -1,9 +1,8 @@
 Windows
 =======
 
-.. todo:: Put download URL
-
 First download Muzicast for Windows from
+`the Muzicast homepage <https://github.com/nikhilm/muzicast/downloads>`_.
 
 Run the downloaded file by double clicking on it.
 The Muzicast installer should start.

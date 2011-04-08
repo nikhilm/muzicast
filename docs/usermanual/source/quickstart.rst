@@ -7,20 +7,15 @@ start streaming music as soon as you set a few things.
 First lets start Muzicast. On Windows go to the :menuselection:`Start -->
 Programs --> Muzicast --> Start Muzicast`.
 
-.. note::
-
-    On windows, the installer will launch the browser itself. Windows
-    users may
-    skip to :ref:`the next section <set-admin-password>` if they have just
-    installed Muzicast.
-
-On Linux you may invoke Muzicast from your desktop environment's menu
-or run :command:`Muzicast` from the terminal.
+On Linux you should run :command:`muzicast` from the terminal.
 
 Now point your web browser to http://127.0.0.1:7664/. You should see the
 Muzicast first run wizard.
 
-.. todo:: Insert screenshot
+.. image:: /_static/screenshots/firstrun.png
+
+Muzicast is all set up. Click continue, you are now at the adminstration
+interface.
 
 .. _set-admin-password:
 
@@ -34,6 +29,8 @@ Enter a password which will be used to change any server settings
    The Administrator Password allows you to change any settings of your server.
    You should keep it safe and ensure that no one else knows it.
 
+Enter a password and click 'Change password'.
+
 Adding the list of music directories
 ------------------------------------
 
@@ -43,27 +40,33 @@ Note that Muzicast is intelligent enough to scan directories below the
 specified directory. For example if you specify :file:`D:\\My Music` then
 Muzicast will also look for music in :file:`D:\\My Music\\Arcade Fire` and
 :file:`D:\\My Music\\Jazz`, so you only need to specify top level directories.
+You can use the little arrows to the left of the checkboxes to open and close
+a directory.
 
-.. todo:: Insert screenshot
+.. image:: /_static/screenshots/dirlist.png
 
 Muzicast will show you a directory tree as shown in the screenshot. To add
 a directory, simply tick the checkbox next to it.
 
-.. todo:: tick screenshot
+.. image:: /_static/screenshots/dirlist_checked.png
 
-Once you are done, Muzicast is ready to go.
-You may edit these and other settings any time later
+Once you are done, click :guilabel:`Save` and Muzicast is ready to go.
+You may edit this at any time
 by visiting the :doc:`Administration </administration>` area.
-
-Click on the :guilabel:`Finish` button to start Muzicast.
-Muzicast is now ready to go.
 
 Play a song
 -----------
 
-Once the setup is done, you should not be at the Muzicast home screen. You
+Once the setup is done, you can click :guilabel:`Back to Music` at the top of
+the screen to reach the Muzicast web interface. Here you
 can see the artists, albums and tracks. To play a track,
 simply click the song title. The embedded flash player on that page will start
 playing the song.
+
+.. note::
+
+    Muzicast can take some time to scan all of your music.
+    If you can't see any tracks immediately after installation
+    please wait for some time then refresh the page.
 
 To create playlists or listen to songs in your favourite music player, :doc:`read on </using>`.
