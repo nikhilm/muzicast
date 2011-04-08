@@ -9,11 +9,9 @@ body{
 }
 
 #space{
-		background-color: blue;
 		border-bottom-right-radius: 20px;
 		border-bottom-left-radius: 20px;
-		background-image: url('/static/images/background.jpg');
-		background-size: 100%;
+		background: url('/static/images/background.jpg') top center no-repeat;
 }
 	
 #logo img{
