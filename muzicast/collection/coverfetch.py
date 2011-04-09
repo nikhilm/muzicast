@@ -3,11 +3,15 @@ from hashlib import md5
 import urllib
 import Image
 import cStringIO
+import socket
+from threading import Timer
 
 import pylast
 
 API_key = "d4e4bcc1745369ea3319820b31f3f637"
 API_secret = "397a9d0662394ee5aff40bc9beeb4882"
+
+socket.setdefaulttimeout(10)
 
 def fetch_cover(artist, album, save_url):
     """
@@ -39,13 +43,24 @@ def fetch_cover(artist, album, save_url):
     	return None
 
     try:
+        print 'where'
         req = urllib.urlopen(image)
+        print 'here'
+        def close(f):
+            raise Exception()
+            f.close()
+	
+        t = Timer(10, close, [req])
+        t.start()
         im = cStringIO.StringIO(req.read())
+        t.cancel()
+        print 'im', im, 'ready to sve to', save_url
         img = Image.open(im)
 
         img.save(save_url)
         return save_url
-    except (IOError, IndexError):
+    except (IOError, IndexError), err:
+        print err
         return None
 
 if __name__ == '__main__':
