@@ -45,26 +45,35 @@ class CollectionScanner(object):
         signal.signal(signal.SIGINT, self.quit)
         signal.signal(signal.SIGTERM, self.quit)
 
+    def scan_directory(self, directory, full_scan):
+        self.scanner_pool.apply_async(start_scanrunner, [directory, full_scan, self.last_shutdown_time])
+
     def add_directory(self, directory, full_scan=False):
         # start a full scan if required
         # otherwise do an incremental
         # and schedule a watch.
         self.log.debug("Adding directory %s. full scan? %s", directory, full_scan)
 
-        self.scanner_pool.apply_async(start_scanrunner, [directory, full_scan, self.last_shutdown_time])
+        self.scan_directory(directory, full_scan)
+        #start_scanrunner(directory, full_scan, self.last_shutdown_time)
         #TODO(nikhil) fix me
         self.watches[directory] = True
-        #self.watches[directory] = self.observer.schedule(self.fswatcher, path=directory, recursive=True)
+        self.watches[directory] = self.observer.schedule(self.fswatcher, path=directory, recursive=True)
         self.log.debug("Added watch, everything fine")
 
     def remove_directory(self, directory):
         try:
             self.log.debug("Removed watch on %s", directory)
             #TODO(nikhil) fixme
-            #self.observer.unschedule(self.watches[directory])
+            self.observer.unschedule(self.watches[directory])
             del self.watches[directory]
         except KeyError:
             self.log.debug("Could not unschedule %s", directory)
+        # also remove all tracks within that directory from DB
+        tracks = Track.select(Track.q.url.startswith('file://'+directory))
+        for track in tracks:
+            print 'removing', track
+            track.destroySelf()
 
     def configuration_changed(self):
         # check if collection dirs have
