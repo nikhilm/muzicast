@@ -9,7 +9,7 @@ from muzicast.const import BASEDIR, WEB_PORT, USERDIR
 from muzicast.config import GlobalConfig
 from muzicast.web import app
 
-print 'Running', os.getpid(), os.getppid()
+print 'Running', os.getpid()
 
 class Runner(object):
     def run(self):
