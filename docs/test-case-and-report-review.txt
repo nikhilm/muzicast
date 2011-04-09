@@ -1,0 +1,22 @@
+Review of the test plans
+------------------------
+
+The test plan was a bit weak and vague in
+the beginning. With the split into
+the testplanieee.doc.pdf which describes a
+general overview of the testing and responsibilities
+and the actual test cases in Test Cases 1.doc, a more
+comprehensive test plan was achieved.
+
+Test Cases 1 still lacks in the breadth of testing
+by concentrating only on a few aspects of the program
+and not focusing on benchmarking.
+
+As the interface was actually implemented, Test Case 2
+was more granular and in line with basic penetration testing and ensuring that edge cases were handled.
+
+For backend modules like cover fetch and configuration,
+automated unit tests supplement the manual testing required for web applications.
+
+The test report creation gave much more comprehensive testing since more test cases were figured out as tests were actually performed. In two cases, critical bugs were discovered that hadn't been found before, stemming from trivial syntactical issues.
+Applying a continuous system wide testing strategy might be a better idea.
