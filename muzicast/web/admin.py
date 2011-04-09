@@ -1,6 +1,7 @@
 import os
 import sys
 import signal
+import string
 import threading
 import time
 from hashlib import sha256
@@ -80,12 +81,27 @@ def dirlist():
         paths = config['collection']['paths']
 
     req_path = request.args.keys()[0]
-    if req_path == "/":
-        # TODO: on windows for root, get drive letters
-        pass
-
     ret = []
-    for entry in os.listdir(req_path):
+
+    current_app.logger.debug('req %s %s', req_path, sys.platform)
+    if req_path == "/" and sys.platform == 'win32':
+        req_path = ''
+        drives = []
+        for letter in string.uppercase:
+            if os.path.exists(letter+":\\"):
+                drives.append(letter + ":\\")
+	for drive in drives:
+            d = {'data': drive, 'metadata': drive, 'state': 'closed', 'attr': {}}
+            if drive in paths:
+                d['attr']['class'] = "jstree-checked"
+            else:
+                for p in paths:
+                    if p.startswith(drive):
+                        d['attr']['class'] = "jstree-undetermined"
+            ret.append(d)
+	return jsonify(tree=ret)
+
+    for entry in os.listdir(os.path.join(req_path)):
         path = os.path.join(req_path, entry)
         if os.path.isdir(path):
             d = {'data': entry, 'metadata': path, 'state': 'closed', 'attr': {}}
@@ -136,8 +152,10 @@ def save_directories():
             return
 
         if root['data'] == 'Computer' and base is '':
-            # TODO(nikhil) handle windows
-            root['data'] = '/'
+            if sys.platform == 'win32':
+	        root['data'] = ''
+	    else:
+                root['data'] = '/'
 
         abspath = os.path.join(base, root['data'])
 
