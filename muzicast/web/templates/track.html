@@ -17,6 +17,11 @@
         <p id="play-count">Play count: {{ stats.play_count }}</p>
         <p id="last-played">Last played: {{ stats.last_played }}</p>
         </p>
+        {% else %}
+        <p class="stats">
+        <p id="play-count">Play count: 0</p>
+        <p id="last-played">Last played: Never</p>
+        </p>
         {% endif %}
         {% if not playlist.playlist_contains(track.id) %}
         <p><a class="add-to-playlist-button" href="{{ url_for('.track.add_track_to_playlist', id=track.id) }}">{{ image('add.png') }} Add to playlist</a></p>
