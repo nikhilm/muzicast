@@ -6,12 +6,13 @@
 
 body{
     scroll: auto;
+    background: #ddd;
 }
 
 #space{
 		border-bottom-right-radius: 20px;
 		border-bottom-left-radius: 20px;
-		background: url('/static/images/background.jpg') top center no-repeat;
+		background: url('/static/images/background.jpg') top center no-repeat white;
 }
 	
 #logo img{
@@ -25,7 +26,6 @@ body{
 	padding-left: 10%;
 	padding-right: 10%;
     margin: 0 auto;
-    background: #ddd;
 } 
 
  #dowload-clear a {
@@ -382,9 +382,10 @@ div.form-div {
     margin-bottom: 4%;
 }
 #footer{
-     padding-top: 50%;
+     padding-top: 70%;
      text-align: center;
      margin-right: 45px;
+     margin-bottom: 10px;
  }
 #footer * {
      font-size: 12px;
