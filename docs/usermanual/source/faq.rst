@@ -44,3 +44,9 @@ support scrobbling tracks.  Any modern music
 player has last.fm integration, so it can submit your
 information based on your settings. We do not want to
 duplicate this effort.
+
+Muzicast has suddenly stopped working completely!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the rare and unlikely case this does happen, delete the '.muzicast' folder
+in your home folder then start again.
