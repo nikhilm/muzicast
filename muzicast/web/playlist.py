@@ -47,8 +47,8 @@ def playlist_name():
 
 @playlist.route('/save', methods=['POST'])
 def save_current():
-    if not 'user' in session:
-        return redirect(url_for('main.index'))
+    if not 'user' in session or not 'playlist' in session:
+        return redirect(request.headers['referer'])
 
     user = session['user']
     pl = None
