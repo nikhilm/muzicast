@@ -1,0 +1,23 @@
+Traceability matrix review
+--------------------------
+
+Updates from iteration 1 to 2:
+
+* Interface is themed and made user friendly
+* Streaming server is implemented
+* Scalability testing is underway
+
+Updates in iteration 3:
+
+* functioning administration interface that interacts with collection scanner
+* statistics are updated by streaming server
+* cover fetch is implemented, switch to last.fm from amazon
+
+Updates in iteration 4:
+
+* All project goals are completed
+* server is load tested
+* easy of installation requirement is satisfied by creating windows installer
+* search is implemented
+* multiple users which weren't in the original traceability matrices.
+
