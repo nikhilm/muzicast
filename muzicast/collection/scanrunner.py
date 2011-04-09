@@ -1,7 +1,6 @@
 import sys
 import stat
 import os
-import logging
 import datetime
 import hashlib
 
@@ -9,8 +8,6 @@ from muzicast.const import COVERSDIR
 from muzicast.meta import Track, Album, Artist, Genre, Composer
 from muzicast.collection.coverfetch import fetch_cover
 from muzicast.collection.formats import MusicFile
-
-logging.basicConfig(level=logging.DEBUG)
 
 def bake(url):
     """ Scan a file.
@@ -73,7 +70,6 @@ def insert_meta(attrs):
     return Track(**attrs)
 
 def set_album_cover(track_info):
-    print 'Setting album cover for', track_info['album']
     if track_info['album'].image:
         # we already have a cover
         return track_info['album'].image
@@ -85,12 +81,9 @@ def set_album_cover(track_info):
     path = os.path.join(COVERSDIR, filename)
     result = fetch_cover(track_info['artist'].name, track_info['album'].name, path)
     if not result:
-        print 'none found'
         return None
 
-    print 'found', path
     track_info['album'].image = path
-    print 'returning'
     return path
 
 class ScanRunner(object):
@@ -112,7 +105,6 @@ class ScanRunner(object):
 
     def incremental_scan(self):
         for dirpath, dirnames, filenames in os.walk(self.directory):
-            print dirpath, dirnames, filenames
             # only get the directories we know are modified
             # this way os.walk is more efficient
             remove = [x for x in dirnames if not self.requires_update(os.path.join(dirpath, x))]
@@ -131,7 +123,6 @@ class ScanRunner(object):
 
     def update(self, url):
         info = bake(url)
-        print 'info', info
         if not info:
             return
         set_album_cover(info)
@@ -151,15 +142,12 @@ class ScanRunner(object):
         if self.full: return True
 
         stat_info = os.stat(path)
-        print "Checking %s", path
         if stat.S_ISDIR(stat_info.st_mode):
-            print "mtime for %s %d, lastshut %d", path, stat_info.st_mtime, self.last_shutdown_time
             if stat_info.st_mtime > self.last_shutdown_time:
                 return True
             return False
 
         if stat.S_ISREG(stat_info.st_mode):
-            #print "mtime for %s %d, lastshut %d", path, stat_info.st_mtime, self.last_shutdown_time
             # if file hasn't been catalogued before
             # index it anyway
             already_done = list(Track.select(Track.q.url == 'file://' + path))
@@ -171,6 +159,5 @@ class ScanRunner(object):
         return False
 
 def start_scanrunner(*args):
-    print "Launching scanrunner with", args
     r = ScanRunner(*args)
     r.scan()

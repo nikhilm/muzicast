@@ -12,11 +12,10 @@ class CollectionEventHandler(FileSystemEventHandler):
 # a move is simple to handle, search for track
 # with src and modify it to dest
 # TODO(nikhil) handle directory move
-        print event.src_path, '->', event.dest_path
         entries = list(Track.selectBy(url='file://' + event.src_path))
         if entries:
             for entry in entries:
-                print entry
+                entry.url = 'file://' + event.dest_path
 
     def on_created(self, event):
         # a created event is always followed by a modify event
@@ -34,7 +33,6 @@ class CollectionEventHandler(FileSystemEventHandler):
 
 
     def on_modified(self, event):
-        print "Modified", dir(event), event.src_path
         if event.is_directory:
             self.scanner.scan_directory(event.src_path, False)
         else:

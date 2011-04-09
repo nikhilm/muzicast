@@ -23,10 +23,6 @@ exts = {
 }
 
 class StreamJob(BaseHTTPServer.BaseHTTPRequestHandler):
-#    def __init__(self, socket, addr, server):
-#        #asyncore.dispatcher_with_send.__init__(self, socket)
-#        BaseHTTPServer.BaseHTTPRequestHandler.__init__(self, socket, addr, server)
-
     def get_track(self, id):
         """
         Get track meta-data given a track ID.
@@ -134,30 +130,9 @@ class StreamServer(asyncore.dispatcher):
             pass
         else:
             sock, addr = pair
-            print 'New conn', addr
             handler = StreamJob(sock, addr, self)
 
 if __name__ == '__main__':
     server = StreamServer('0.0.0.0', 7665)
     asyncore.loop()
 
-#def stream(a, b):
-#    print a, b
-#    print a.recv(1024)
-#    a.send("ICY 200 OK\r\n")
-#    a.send("icy-name: Awesome\r\n")
-#    a.send("icy-genre: Ambient\r\n")
-#    a.send("Content-Type: audio/mpeg\r\n")
-#    a.send("icy-br: 56\r\n")
-#    a.send("\r\n")
-#    size = os.stat("/shared/music/Harry Potter and the Deathly Hallows Part I/01 The Oblivation.mp3").st_size
-#    f = open("/shared/music/Harry Potter and the Deathly Hallows Part I/01 The Oblivation.mp3", 'rb')
-#    chunk = f.read(512)
-#    while chunk:
-#        a.send(chunk)
-#        chunk = f.read(512)
-#    a.close()
-#
-#def shutdown():
-#    print "Shut down"
-#

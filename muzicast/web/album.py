@@ -48,7 +48,6 @@ def add_album_to_playlist(id):
 def cover(id):
     try:
         album = Album.get(id)
-        current_app.logger.debug('Album cover for %s', album.image)
         if not album.image:
             return redirect(url_for('.static', filename='images/nocover.png'))
         return send_file(album.image)

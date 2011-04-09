@@ -1,7 +1,6 @@
 import os
 import sys
 import sqlite3
-import logging
 import datetime
 import time
 import signal
@@ -16,31 +15,22 @@ from muzicast.meta import *
 from muzicast.config import GlobalConfig
 from muzicast.const import CONFIG, USERDIR
 
-logging.basicConfig(level=logging.DEBUG)
-
-
 class ConfigWatcher(FileSystemEventHandler):
     def __init__(self, scanner):
         FileSystemEventHandler.__init__(self)
         self.scanner = scanner
 
     def on_modified(self, event):
-        print "DETECTED CHANGE"
         if event.src_path == CONFIG:
             self.scanner.configuration_changed()
     
 class CollectionScanner(object):
     def __init__(self):
-        self.log = logging.getLogger('collectionscanner')
-        self.log.addHandler(logging.StreamHandler())
-        self.log.setLevel(logging.DEBUG)
 
         self.fswatcher = CollectionEventHandler(self)
         self.observer = Observer()
         self.watches = {}
         self.scanner_pool = Pool(processes=4)
-
-        self.log.debug("Starting fswatcher")
 
         signal.signal(signal.SIGINT, self.quit)
         signal.signal(signal.SIGTERM, self.quit)
@@ -52,27 +42,22 @@ class CollectionScanner(object):
         # start a full scan if required
         # otherwise do an incremental
         # and schedule a watch.
-        self.log.debug("Adding directory %s. full scan? %s", directory, full_scan)
 
         self.scan_directory(directory, full_scan)
         #start_scanrunner(directory, full_scan, self.last_shutdown_time)
         #TODO(nikhil) fix me
         self.watches[directory] = True
         self.watches[directory] = self.observer.schedule(self.fswatcher, path=directory, recursive=True)
-        self.log.debug("Added watch, everything fine")
 
     def remove_directory(self, directory):
         try:
-            self.log.debug("Removed watch on %s", directory)
-            #TODO(nikhil) fixme
             self.observer.unschedule(self.watches[directory])
             del self.watches[directory]
         except KeyError:
-            self.log.debug("Could not unschedule %s", directory)
+            pass
         # also remove all tracks within that directory from DB
         tracks = Track.select(Track.q.url.startswith('file://'+directory))
         for track in tracks:
-            print 'removing', track
             track.destroySelf()
 
     def configuration_changed(self):
@@ -80,7 +65,6 @@ class CollectionScanner(object):
         # been changed since we last started
         # if yes, we will do a full rescan
         # otherwise, an incremental scan.
-        self.log.debug("Config changed")
 
         config = GlobalConfig()
         paths_saved_at = 0
@@ -107,7 +91,6 @@ class CollectionScanner(object):
             collection_directories = set(config['collection']['paths'])
         except KeyError:
             pass
-        self.log.debug("New collection paths %s", collection_directories)
 
         full_scan = False
         if last_scan < paths_saved_at:
@@ -132,13 +115,11 @@ class CollectionScanner(object):
         # any directories that have been
         # removed from the collection directories
         existing_directories = set(self.watches.keys())
-        self.log.debug("Existing %s", existing_directories)
         for dir in existing_directories.difference(collection_directories):
             self.remove_directory(dir)
 
         for dir in collection_directories:
             if dir in self.watches:
-                self.log.debug("%s is already watched", dir)
                 # directory is already being watched
                 # do nothing
                 pass

@@ -83,7 +83,6 @@ def dirlist():
     req_path = request.args.keys()[0]
     ret = []
 
-    current_app.logger.debug('req %s %s', req_path, sys.platform)
     if req_path == "/" and sys.platform == 'win32':
         req_path = ''
         drives = []

@@ -43,9 +43,7 @@ def fetch_cover(artist, album, save_url):
     	return None
 
     try:
-        print 'where'
         req = urllib.urlopen(image)
-        print 'here'
         def close(f):
             raise Exception()
             f.close()
@@ -54,14 +52,12 @@ def fetch_cover(artist, album, save_url):
         t.start()
         im = cStringIO.StringIO(req.read())
         t.cancel()
-        print 'im', im, 'ready to sve to', save_url
         img = Image.open(im)
 
         img.save(save_url)
         return save_url
     except (IOError, IndexError), err:
-        print err
         return None
 
 if __name__ == '__main__':
-	print fetch_cover(sys.argv[1], sys.argv[2], '/tmp/test.png')
+	print fetch_cover(sys.argv[1], sys.argv[2], sys.argv[3])

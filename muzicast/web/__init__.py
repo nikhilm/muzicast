@@ -14,7 +14,6 @@ def page_not_found(error):
     return render_template('404.html')
 
 def redirect_firstrun():
-    current_app.logger.debug(request.path)
     if request.path != '/firstrun' and not request.path.startswith('/static/') and not request.path == '/favicon.ico':
         return redirect('/firstrun')
 
@@ -57,7 +56,6 @@ def first_run():
                                                 app.before_request_funcs[None])
         return render_template('firstrun/success.html')
     except (OSError, dberrors.Error, exceptions.RuntimeError), e:
-        current_app.logger.debug(e)
         return render_template('firstrun/error.html', error=e.message)
 
 app.secret_key = os.urandom(24)

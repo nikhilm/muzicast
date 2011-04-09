@@ -8,7 +8,6 @@ playlist = Module(__name__)
 def add_to_playlist(tid):
     if 'playlist' not in session:
         session['playlist'] = set()
-    print 'adding', tid, session['playlist']
     session['playlist'].add(tid)
     session.modified = True
 
@@ -31,7 +30,6 @@ def playlist_clear():
 def playlist_entries():
     if 'playlist' not in session:
         return []
-    print session['playlist']
     return (Track.get(id) for id in session['playlist'])
 
 def playlist_name():
@@ -89,9 +87,9 @@ def set_active(id):
                 session['playlist'] = pl.tracks
                 session.modified = True
             else:
-                current_app.logger.debug("Playlist owner is not currently logged in user")
+                pass
         except SQLObjectNotFound:
-            current_app.logger.debug("Playlist %d cannot be set active since it doesn't exist", id)
+            pass
     return redirect(request.headers['referer'])
 
 @playlist.route('/delete/<int:id>')
@@ -107,8 +105,8 @@ def delete(id):
                     session.modified = True
                 pl.destroySelf()
             else:
-                current_app.logger.debug("Playlist owner is not currently logged in user")
+                pass
         except SQLObjectNotFound:
-            current_app.logger.debug("Playlist %d cannot be deleted since it doesn't exist", id)
+            pass
 
     return redirect(request.headers['referer'])
