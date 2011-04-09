@@ -13,8 +13,8 @@ def top_artists(n):
     try:
         top = [t.artist for t in ArtistStatistics.select(orderBy=DESC(ArtistStatistics.q.play_count))[:n]]
         if len(top) < n:
-            top = top + [artist for artist in Artist.select()[:n-len(top)]]
-        return set(top)
+            top = top + [artist for artist in Artist.select()[:n-len(top)] if artist not in top]
+        return top
     except SQLObjectNotFound:
         return []
 

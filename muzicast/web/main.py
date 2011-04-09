@@ -16,8 +16,8 @@ def top_tracks(n):
     try:
         top = [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.play_count))[:10]]
         if len(top) < n:
-            top = top + [track for track in Track.select()[:n-len(top)]]
-        return set(top)
+            top = top + [track for track in Track.select()[:n-len(top)] if track not in top]
+        return top
     except SQLObjectNotFound:
         return []
 
@@ -28,8 +28,8 @@ def recently_played(n):
     try:
         recent = [t.track for t in TrackStatistics.select(orderBy=DESC(TrackStatistics.q.last_played))[:10]]
         if len(recent) < n:
-            recent = recent + [track for track in Track.select()[:n-len(recent)]]
-        return set(recent)
+            recent = recent + [track for track in Track.select()[:n-len(recent)] if track not in recent]
+        return recent
     except SQLObjectNotFound:
         return []
 

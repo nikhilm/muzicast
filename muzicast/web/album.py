@@ -13,8 +13,8 @@ def top_albums(n):
     try:
         top = [t.album for t in AlbumStatistics.select(orderBy=DESC(AlbumStatistics.q.play_count))[:n]]
         if len(top) < n:
-            top = top + [album for album in Album.select()[:n-len(top)]]
-        return set(top)
+            top = top + [album for album in Album.select()[:n-len(top)] if album not in top]
+        return top
     except SQLObjectNotFound:
         return []
 
