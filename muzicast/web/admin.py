@@ -10,7 +10,7 @@ except ImportError: import json
 
 from flask import Module, render_template, url_for, redirect, session, escape, request, jsonify, current_app, flash
 
-from flaskext.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
+from muzicast.web.principal import Principal, Permission, RoleNeed, PermissionDenied, Identity, identity_changed, identity_loaded
 
 from muzicast.web.util import is_first_run
 from muzicast.config import GlobalConfig
