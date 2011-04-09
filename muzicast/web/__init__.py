@@ -9,6 +9,10 @@ from muzicast.web.util import is_first_run
 
 app = Flask(__name__)
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html')
+
 def redirect_firstrun():
     current_app.logger.debug(request.path)
     if request.path != '/firstrun' and not request.path.startswith('/static/') and not request.path == '/favicon.ico':
