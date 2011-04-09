@@ -9,8 +9,6 @@ from muzicast.const import BASEDIR, WEB_PORT, USERDIR
 from muzicast.config import GlobalConfig
 from muzicast.web import app
 
-print 'Running', os.getpid()
-
 class Runner(object):
     def run(self):
         if not os.path.exists(USERDIR):
@@ -18,12 +16,9 @@ class Runner(object):
 
         self.streamer = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'streamer.py')])
         self.scanner = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'collection/__init__.py')])
-        print 'Started streamer PID %d'%self.streamer.pid
-        print 'Started scanner PID %d'%self.scanner.pid
         signal.signal(signal.SIGINT, self.shutdown)
         signal.signal(signal.SIGTERM, self.shutdown)
-        app.run('0.0.0.0', WEB_PORT, debug=True, use_reloader=False)
-        #app.run('0.0.0.0', WEB_PORT, debug=False, use_reloader=False)
+        app.run('0.0.0.0', WEB_PORT, debug=False, use_reloader=False)
 
     def shutdown(self, signum, frame):
         self.streamer.terminate()
