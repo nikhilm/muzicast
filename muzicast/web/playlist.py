@@ -57,7 +57,7 @@ def save_current():
         pl = Playlist(user=User.byUsername(user['username']), name=request.form['playlist-name'], tracks=set())
     else:
         try:
-            pl = Playlist.get(user.current_playlist)
+            pl = Playlist.get(user['current_playlist'])
         except SQLObjectNotFound:
             return redirect(url_for('main.index'))
     
