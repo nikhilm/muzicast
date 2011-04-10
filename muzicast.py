@@ -11,6 +11,8 @@ sys.path.append(os.path.join(dirpath, "3rdparty"))
 
 if 'PYTHONPATH' in os.environ:
     os.environ['PYTHONPATH'] = os.pathsep.join(set(os.environ['PYTHONPATH'].split(os.pathsep) + sys.path))
+else:
+    os.environ['PYTHONPATH'] = os.pathsep.join(sys.path)
 
 from muzicast.const import BASEDIR, WEB_PORT, USERDIR
 from muzicast.config import GlobalConfig
