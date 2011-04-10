@@ -5,6 +5,13 @@ import sys
 import signal
 import subprocess
 
+dirpath = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dirpath)
+sys.path.append(os.path.join(dirpath, "3rdparty"))
+
+if 'PYTHONPATH' in os.environ:
+    os.environ['PYTHONPATH'] = os.pathsep.join(set(os.environ['PYTHONPATH'].split(os.pathsep) + sys.path))
+
 from muzicast.const import BASEDIR, WEB_PORT, USERDIR
 from muzicast.config import GlobalConfig
 from muzicast.web import app
@@ -14,8 +21,8 @@ class Runner(object):
         if not os.path.exists(USERDIR):
             os.mkdir(USERDIR)
 
-        self.streamer = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'streamer.py')])
-        self.scanner = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'collection/__init__.py')])
+        self.streamer = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'streamer.py')], env=os.environ)
+        self.scanner = subprocess.Popen([sys.executable, os.path.join(BASEDIR, 'collection/__init__.py')], env=os.environ)
         signal.signal(signal.SIGINT, self.shutdown)
         signal.signal(signal.SIGTERM, self.shutdown)
         app.run('0.0.0.0', WEB_PORT, debug=False, use_reloader=False)
